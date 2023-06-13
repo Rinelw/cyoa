@@ -16,16 +16,16 @@
     font-family: "PixelSGA";
     src: local("SGA Pixies"), local("SgaPixies"), url("../fonts/SgaPixies.ttf") format("truetype");
 }
-@font-face {
-    font-family: "Galactico";
-    src: local("Galactico Basic"), local("GalacticoBasic"), url("../fonts/GalacticoBasic.otf") format("opentype");
-}
 @import "../scss/bootstrap.scss";
 
 html {
     user-select: none;
-    background: #7109aa;
-    background: linear-gradient(180deg, rgba(158,0,89,1) 0%, rgba(43,14,136,1) 100%);
+    background-color: rgba(114, 9, 170, 0.5);
+    background-image: url("../img/Aethereal_Planes_-_Cosmic_Rift_2500x2500.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    //background: linear-gradient(180deg, rgba(158,0,89,1) 0%, rgba(43,14,136,1) 100%);
     min-height: 100%;
     > body {
         font-family: 'Pixeloid';
@@ -95,4 +95,16 @@ html {
 }
 .glitch{
     font-family: 'PixelSGA';
+}
+#canvas {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width:100%;
+    position:fixed;
+    display:block;
+    z-index: -50;
+}
+#canopy{
+    height: 5px;
 }

@@ -6,12 +6,13 @@
 		<title>Nameless CYOA</title>
 		<link href="css/main.css" rel="stylesheet">
 	</head>
-	<body class="py-2"><audio id="bgm" preload="auto" loop autoplay>
+	<body><audio id="bgm" preload="auto" loop autoplay>
 			<source src="audio/bgm1.ogg" type="audio/ogg"> BGM
 		</audio>
-		<div class="category category-bg container-xl mt-2 py-2 shadow-lg rounded" id="welcome">
+		<div class="m-0 p-0" id="canopy"><canvas id="canvas"></canvas></div>
+		<div class="category category-bg container-xl mt-2 pt-2 pe-0 shadow-lg rounded" id="welcome">
 			<h1 class="category-title text-center">Welcome Mortal</h2>
-				<div class="text-white container-xl rounded p-2">
+				<div class="text-white container-xl rounded pt-2 pb-0 pe-0">
 					<div class="row">
 						<div class="col overflow-hidden">
 							<div class="intro p-2 text-center fs-5 rounded bg-gradient"> Welcome, mortal, I am <span class='glitch'>Luxuria</span>, Goddess of Life</div>
@@ -19,7 +20,7 @@
 								<div class="btn-group" role="group" aria-label="Controls"><button type="button" onclick="previous()" id="previous" class="btn btn-lg btn-primary" disabled>Backtrack</button><button type="button" onclick="next()" id="next" class="btn btn-lg btn-primary">Proceed</button></div><button type="button" onclick="accept()" id="accept" class="mx-1 btn btn-primary btn-lg d-none">Accept the offer!</button>
 							</div>
 						</div>
-						<div class="col-5 text-end overflow-hidden"><img src="img/succ-vamp2 purpleish.webp" class="w-100" alt="White Goddess"></div>
+						<div class="col-5 text-end overflow-hidden mb-0 pb-0"><img src="img/goddess.png" class="w-100 rounded mb-0 pb-0" alt="White Goddess"></div>
 					</div>
 				</div>
 		</div>
@@ -160,7 +161,7 @@
 					</div>
 				</div>
 		</div>
-        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="arborea">
+        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="arborea" data-limit="0">
             <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
                 <h1 class="category-title pt-2 px-5">Arborea Modifiers</h2>
                 <span class="text-white fs-5">Ah, I see you're drawn to the enchanting realm of Arborea. Allow me to present you with six distinct variations of this world, each offering its own unique flavor and opportunities.</span>
@@ -224,7 +225,7 @@
 					</div>
 				</div>
 		</div>
-        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="earth">
+        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="earth" data-limit="0">
             <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
                 <h1 class="category-title pt-2 px-5">Earth Modifiers</h2>
                 <span class="text-white fs-5">Before we proceed, allow me to present six alternative versions of this world. Each one carries its own unique characteristics and challenges. You may consider these options, but rest assured that you are under no obligation to choose any of them.</span>
@@ -288,6 +289,70 @@
 					</div>
 				</div>
 		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="future" data-limit="0">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Different Future</h2>
+                <span class="text-white fs-5">Ah, a daring choice! You've chosen a world where humanity has ventured beyond the confines of our home planet, unlocking the mysteries of the cosmos. But, dear soul, even within this realm of advanced technology and interstellar exploration, variations exist. Allow me to present six alternative versions of Futuristic Earth for your consideration.</span>
+            </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="united" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">United</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of the future, humanity has overcome its divisions, forming a unified government that fosters cooperation among the stars. The United Earth allows for peace and progress, but navigating its complex political landscape can prove challenging. Will you become a leader, guiding humanity to greater heights, or will the machinations of others thwart your ambitions?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="empires" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Empires</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Here, humanity has fractured into numerous interstellar empires, each vying for power and influence in the cosmos. Skirmishes and alliances are commonplace, as factions struggle for dominance. Can you rise to prominence, leading your empire to victory, or will you fall prey to the ever-shifting tides of conflict?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="future-utopia" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Future Utopie</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this iteration, advanced technology has eliminated scarcity, allowing for a world where every need is met. However, with such abundance comes complacency and a search for deeper meaning. Will you find purpose in a world where traditional notions of success and competition have faded, or will you be adrift in a sea of plenty?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="integration" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Integration</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Imagine a world where the line between human and machine has blurred, and cybernetic enhancements are the norm. This realm offers immense power through technology, but also raises questions of identity and humanity. Will you embrace the fusion of flesh and machine, or will you struggle to maintain your sense of self amidst the convergence?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="diplomatics" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Diplomatics</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>"In this future, humanity has forged alliances and rivalries with various alien races, leading to a complex tapestry of interstellar relations. Diplomacy, trade, and conflict intertwine, and your actions could have far-reaching consequences. Can you navigate the delicate balance of power and cement humanity's place in the galactic community?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="uncharted" data-karma="0" data-requires="future">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Uncharted</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Finally, we have a world where the vastness of space remains largely unexplored, with countless mysteries and untapped potential. As a pioneer on the fringes of known space, you'll encounter new civilizations, ancient relics, and untold dangers. Will you become a legend, unearthing the secrets of the cosmos, or will the void consume you?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
 		<div class="footer mx-5 g-2 row fixed-bottom justify-content-center" id="pointBar">
 			<div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world, high-profile, impactful, average, uneventful"><span id="karma">Karma: 0</span></div>
 			<div class="col-2 text-center text-white fs-5"><label for="customRange1" class="form-label">BGM Volume</label><input type="range" class="form-range" id="customRange1" value="100" oninput="changeVolume(document.getElementById('bgm'), this.value)"></div>
@@ -295,5 +360,8 @@
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/anime.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/matrix.js"></script>
+		<script src="js/scramble.js"></script>
+	</body>
 	</body>
 </html>
