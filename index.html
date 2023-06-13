@@ -1,184 +1,299 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nameless CYOA</title>
-    <link href="css/main.css" rel="stylesheet">
-  </head>
-  <body class="py-2">
-    <audio id="bgm" preload="auto" loop autoplay>
-        <source src="audio/bgm1.ogg" type="audio/ogg">
-        BGM
-    </audio>
-    <div class="category category-bg container-xl mt-2 py-2 shadow-lg rounded" id="welcome">
-      <h1 class="category-title text-center">Welcome Mortal</h2>
-        <div class="text-white container-xl rounded p-2">
-          <div class="row">
-            <div class="col overflow-hidden">
-              <div class="intro p-2 text-center fs-5 rounded bg-gradient"> Welcome, mortal, I am <span class='glitch'>Luxuria</span>, Goddess of Life</div>
-              <div class="grid rounded p-2 text-center">
-                <div class="btn-group" role="group" aria-label="Controls"><button type="button" onclick="previous()" id="previous" class="btn btn-lg btn-primary" disabled>Backtrack</button><button type="button" onclick="next()" id="next" class="btn btn-lg btn-primary">Proceed</button></div><button type="button" onclick="accept()" id="accept" class="mx-1 btn btn-primary btn-lg d-none">Accept the offer!</button>
-              </div>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Nameless CYOA</title>
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+	<body class="py-2"><audio id="bgm" preload="auto" loop autoplay>
+			<source src="audio/bgm1.ogg" type="audio/ogg"> BGM
+		</audio>
+		<div class="category category-bg container-xl mt-2 py-2 shadow-lg rounded" id="welcome">
+			<h1 class="category-title text-center">Welcome Mortal</h2>
+				<div class="text-white container-xl rounded p-2">
+					<div class="row">
+						<div class="col overflow-hidden">
+							<div class="intro p-2 text-center fs-5 rounded bg-gradient"> Welcome, mortal, I am <span class='glitch'>Luxuria</span>, Goddess of Life</div>
+							<div class="grid rounded p-2 text-center">
+								<div class="btn-group" role="group" aria-label="Controls"><button type="button" onclick="previous()" id="previous" class="btn btn-lg btn-primary" disabled>Backtrack</button><button type="button" onclick="next()" id="next" class="btn btn-lg btn-primary">Proceed</button></div><button type="button" onclick="accept()" id="accept" class="mx-1 btn btn-primary btn-lg d-none">Accept the offer!</button>
+							</div>
+						</div>
+						<div class="col-5 text-end overflow-hidden"><img src="img/succ-vamp2 purpleish.webp" class="w-100" alt="White Goddess"></div>
+					</div>
+				</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none" id="unwelcome">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			    <h1 class="category-title pt-2 px-5">Starting Karma Values</h2>
+                <span class="text-white fs-5">Now, let us unveil the fruits of your past endeavors and see just how captivating your story has been. Remember, the greater the impact you've made, the more opportunities you'll have to shape your new life.</span>
             </div>
-            <div class="col-5 text-end overflow-hidden"><img src="img/succ-vamp2 purpleish.webp" class="w-100" alt="White Goddess"></div>
-          </div>
-        </div>
-    </div>
-    <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none" id="unwelcome">
-      <h1 class="category-title category-bg mb-0 py-3 px-5 rounded-top">Starting Karma Values</h2>
-        <div class="container-xl category-bg shadow-lg rounded p-4">
-          <div class="row row-cols-2 row-cols-lg-5 justify-content-center g-2">
-            <div class="col">
-                <div class="card choice karma" id="uneventful" data-karma="-50">
-                    <div class="card-header card-img-overlay">
-                        <h2 class="category-title text-center">Uneventful<br>Life</h2>
-                        <h4 class="category-title text-center">-50 Karma</h4>
-                    </div>
-                    <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                    <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>My, my, it seems you've led quite an uneventful and rather unfortunate life, haven't you? This presents a unique challenge for you, dear soul. To even begin anew, you must choose some particularly interesting options to balance the scales. I can't wait to see what you decide.</span></div>
-                </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-5 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice karma" id="uneventful" data-karma="-50">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Uneventful<br>Life</h2>
+									<h4 class="category-title text-center">-50 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>My, my, it seems you've led quite an uneventful and rather unfortunate life, haven't you? This presents a unique challenge for you, dear soul. To even begin anew, you must choose some particularly interesting options to balance the scales. I can't wait to see what you decide.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice karma" id="average" data-karma="0">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Average<br>Person</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, it appears you've led a rather average life, neither exceptionally good nor terribly bad. A blank canvas, so to speak. You'll have the opportunity to paint a new story for your soul. What strokes of fortune and misfortune will you choose this time? I'm quite curious to find out.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice karma" id="impactful" data-karma="50">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Impactful<br>Life</h2>
+									<h4 class="category-title text-center">50 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Well now, it seems you've left quite an impact on the world in your previous life. A commendable feat. I wonder if you'll continue to make waves in your new life or if you'll choose a quieter path. Either way, the choices you make will surely amuse me.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice karma" id="high-profile" data-karma="100">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">High Profile<br>Life</h2>
+									<h4 class="category-title text-center">100 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Impressive! You've had a significant impact on the world, touching the lives of many others. Now, will you carry this legacy into your next life, or will you forge a new path entirely? I'm positively giddy at the prospect of observing your journey.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice karma" id="changed-world" data-karma="200">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Changed<br>The World</h2>
+									<h4 class="category-title text-center">200 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Incredible! You've practically changed the world yourself. A rare accomplishment indeed. Seeing how you'll navigate the choices before you fills me with unparalleled excitement. No matter what you decide, your next life will undoubtedly be a thrilling spectacle.</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="changed-world, high-profile, impactful, average, uneventful">
+			<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">World Selection</h2>
+                <span class="text-white fs-5">Now that we've assessed your Karma, it's time to present you with the realms available for your reincarnation. Each world offers its own unique challenges and opportunities, and the path you'll tread will be shaped by the choice you make. Remember, dear soul, that your journey will not only entertain me but also determine the course of your existence. So, choose wisely, and let your heart guide you to the world that calls your name.</span>
             </div>
-            <div class="col">
-                <div class="card choice karma" id="average" data-karma="0">
-                    <div class="card-header card-img-overlay">
-                        <h2 class="category-title text-center">Average<br>Person</h2>
-                        <h4 class="category-title text-center">0 Karma</h4>
-                    </div>
-                    <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                    <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, it appears you've led a rather average life, neither exceptionally good nor terribly bad. A blank canvas, so to speak. You'll have the opportunity to paint a new story for your soul. What strokes of fortune and misfortune will you choose this time? I'm quite curious to find out.</span></div>
-                </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-4 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="arborea" data-karma="-5">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Arborea</h2>
+									<h4 class="category-title text-center">-5 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, the realm of Arborea, a classic fantasy world filled with magic, mythical creatures, and various races. Here, you may find yourself embroiled in epic quests, forging alliances, and battling fearsome foes. Will you embrace the age of heroes and carve out a legend of your own?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="earth" data-karma="0">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Earth</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Perhaps you desire a return to familiarity? This world is much like the one you've left behind, save for your absence. You'll navigate the complexities of modern society, with all its challenges and opportunities. Will you seize the chance to rewrite your story?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="future" data-karma="-5">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Future</h2>
+									<h4 class="category-title text-center">-5 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>"Behold, a vision of Earth 400 years hence, where humanity has taken to the stars and made contact with other sentient beings. Advanced technology, interstellar travel, and the infinite possibilities of the cosmos await you. Are you prepared to embrace the unknown and explore the final frontier?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="wutian" data-karma="-5">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Wutian</h2>
+									<h4 class="category-title text-center">-5 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The Eastern Fantasy realm of Wutian offers a world steeped in martial arts, mysticism, and the pursuit of cultivation. Here, you'll embark on a journey of self-discovery, honing your skills to attain enlightenment and unearth hidden power. Will you walk the path of the martial hero and conquer the heavens?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="nocturne" data-karma="15">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Nocturne</h2>
+									<h4 class="category-title text-center">15 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In the dark and foreboding world of Nocturne, you'll face nightmarish creatures and twisted horrors. This realm is not for the faint of heart, but within the darkness lie secrets and power beyond imagination. Are you willing to confront the shadows and emerge triumphant?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="gaia" data-karma="5">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Gaia</h2>
+									<h4 class="category-title text-center">5 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Travel back to the dawn of civilization in the prehistoric realm of Gaia. A world of untamed wilderness, where the first seeds of agriculture and society are taking root. Will you become a pioneer, guiding the course of history and shaping the future of your people?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="midgard" data-karma="5">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Midgard</h2>
+									<h4 class="category-title text-center">5 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Welcome to Midgard, a world where the pantheons of ancient mythologies coexist and hold true power. Gods and monsters roam this realm, and you may find yourself caught in the midst of their eternal struggles. Can you navigate the divine tapestry and claim a place among the legends?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="personal" data-karma="-20">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Personal</h2>
+									<h4 class="category-title text-center">-20 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, I present you with the option to create your own world, limited only by your imagination. However, this choice comes at a cost, as shaping a realm tailored to your desires will require extra Karma. Are you prepared to pay the price for a world of your own design?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="arborea">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Arborea Modifiers</h2>
+                <span class="text-white fs-5">Ah, I see you're drawn to the enchanting realm of Arborea. Allow me to present you with six distinct variations of this world, each offering its own unique flavor and opportunities.</span>
             </div>
-            <div class="col">
-                <div class="card choice karma" id="impactful" data-karma="50">
-                    <div class="card-header card-img-overlay">
-                        <h2 class="category-title text-center">Impactful<br>Life</h2>
-                        <h4 class="category-title text-center">50 Karma</h4>
-                    </div>
-                    <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                    <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Well now, it seems you've left quite an impact on the world in your previous life. A commendable feat. I wonder if you'll continue to make waves in your new life or if you'll choose a quieter path. Either way, the choices you make will surely amuse me.</span></div>
-                </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="faeborea" data-karma="0" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Faeborea</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>This version of Arborea appar similar to the rich and diverse world of Faerun. Here, you'll find a land teeming with intrigue, where countless factions vie for power and influence. In this realm, your choices could have far-reaching consequences, and your actions may determine the fate of empires.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="tolkien" data-karma="0" data-conflicts="low-fantasy" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Tolkien?</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Should you choose this variant, you'll find yourself in a world reminiscent of Tolkien's Middle-earth. A realm steeped in ancient lore, where the forces of darkness threaten to engulf the land. Will you rise as a beacon of hope, uniting the free peoples against the encroaching shadow?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="low-fantasy" data-karma="0" data-conflicts="tolkien" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Low Fantasy</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this more grounded interpretation of Arborea, magic and fantastical elements are scarce, making them all the more precious. A world where the mundane and the miraculous coexist, with conflict and intrigue often rooted in political power struggles. Can you navigate this world's subtleties and emerge triumphant?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="rpg" data-karma="0" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">RPG</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Welcome to a version of Arborea where the very fabric of reality is interwoven with game concepts such as levels and classes. In this world, your growth and abilities are quantifiable, and your destiny is shaped by the choices and paths you follow. Will you rise through the ranks and carve your name into the annals of history?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="numorea" data-karma="0" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Numorea</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Behold a future incarnation of Arborea, where the remnants of once-great civilizations struggle to rebuild in the aftermath of a cataclysmic downfall. Here, technology is treated as magic, and the ruins of the past hold secrets waiting to be rediscovered. Will you become a harbinger of a new age, guiding the world toward rebirth?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="melting-pot" data-karma="0" data-requires="arborea">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Melting Pot</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, I present a version of Arborea where every conceivable trope coexists. A world where technological and magical civilizations thrive side by side, and Eastern and Western Fantasy elements intermingle. This realm offers endless possibilities and a vibrant tapestry of cultures, adventures, and challenges. Will you find your place amidst the kaleidoscope of wonders?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+        <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="earth">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Earth Modifiers</h2>
+                <span class="text-white fs-5">Before we proceed, allow me to present six alternative versions of this world. Each one carries its own unique characteristics and challenges. You may consider these options, but rest assured that you are under no obligation to choose any of them.</span>
             </div>
-            <div class="col">
-                <div class="card choice karma" id="high-profile" data-karma="100">
-                    <div class="card-header card-img-overlay">
-                        <h2 class="category-title text-center">High Profile<br>Life</h2>
-                        <h4 class="category-title text-center">100 Karma</h4>
-                    </div>
-                    <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                    <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Impressive! You've had a significant impact on the world, touching the lives of many others. Now, will you carry this legacy into your next life, or will you forge a new path entirely? I'm positively giddy at the prospect of observing your journey.</span></div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card choice karma" id="changed-world" data-karma="200">
-                    <div class="card-header card-img-overlay">
-                        <h2 class="category-title text-center">Changed<br>The World</h2>
-                        <h4 class="category-title text-center">200 Karma</h4>
-                    </div>
-                    <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                    <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Incredible! You've practically changed the world yourself. A rare accomplishment indeed. Seeing how you'll navigate the choices before you fills me with unparalleled excitement. No matter what you decide, your next life will undoubtedly be a thrilling spectacle.</span></div>
-                </div>
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="changed-world, high-profile, impactful, average, uneventful">
-        <h1 class="category-title category-bg mb-0 py-3 px-5 rounded-top">World Selection</h2>
-            <div class="container-xl category-bg shadow-lg rounded p-4">
-              <div class="row row-cols-2 row-cols-lg-4 justify-content-center g-2">
-                <div class="col">
-                    <div class="card choice" id="arborea" data-karma="-5">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Arborea</h2>
-                            <h4 class="category-title text-center">-5 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, the realm of Arborea, a classic fantasy world filled with magic, mythical creatures, and various races. Here, you may find yourself embroiled in epic quests, forging alliances, and battling fearsome foes. Will you embrace the age of heroes and carve out a legend of your own?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="earth" data-karma="0">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Earth</h2>
-                            <h4 class="category-title text-center">0 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Perhaps you desire a return to familiarity? This world is much like the one you've left behind, save for your absence. You'll navigate the complexities of modern society, with all its challenges and opportunities. Will you seize the chance to rewrite your story?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="future" data-karma="-5">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Future</h2>
-                            <h4 class="category-title text-center">-5 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>"Behold, a vision of Earth 400 years hence, where humanity has taken to the stars and made contact with other sentient beings. Advanced technology, interstellar travel, and the infinite possibilities of the cosmos await you. Are you prepared to embrace the unknown and explore the final frontier?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="wutian" data-karma="-5">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Wutian</h2>
-                            <h4 class="category-title text-center">-5 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The Eastern Fantasy realm of Wutian offers a world steeped in martial arts, mysticism, and the pursuit of cultivation. Here, you'll embark on a journey of self-discovery, honing your skills to attain enlightenment and unearth hidden power. Will you walk the path of the martial hero and conquer the heavens?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="nocturne" data-karma="15">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Nocturne</h2>
-                            <h4 class="category-title text-center">15 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In the dark and foreboding world of Nocturne, you'll face nightmarish creatures and twisted horrors. This realm is not for the faint of heart, but within the darkness lie secrets and power beyond imagination. Are you willing to confront the shadows and emerge triumphant?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="gaia" data-karma="5">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Gaia</h2>
-                            <h4 class="category-title text-center">5 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span =>Travel back to the dawn of civilization in the prehistoric realm of Gaia. A world of untamed wilderness, where the first seeds of agriculture and society are taking root. Will you become a pioneer, guiding the course of history and shaping the future of your people?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="midgard" data-karma="5">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Midgard</h2>
-                            <h4 class="category-title text-center">5 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Welcome to Midgard, a world where the pantheons of ancient mythologies coexist and hold true power. Gods and monsters roam this realm, and you may find yourself caught in the midst of their eternal struggles. Can you navigate the divine tapestry and claim a place among the legends?</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card choice" id="personal" data-karma="-20">
-                        <div class="card-header card-img-overlay">
-                            <h2 class="category-title text-center">Personal</h2>
-                            <h4 class="category-title text-center">-20 Karma</h4>
-                        </div>
-                        <img src="https://placehold.co/300x400" class="card-img" alt="...">
-                        <div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, I present you with the option to create your own world, limited only by your imagination. However, this choice comes at a cost, as shaping a realm tailored to your desires will require extra Karma. Are you prepared to pay the price for a world of your own design?</span></div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer mx-5 g-2 row fixed-bottom justify-content-center" id="pointBar">
-        <div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world, high-profile, impactful, average, uneventful"><span id="karma">Karma: 0</span></div>
-        <div class="col-2 text-center text-white fs-5">
-            <label for="customRange1" class="form-label">BGM Volume</label>
-            <input type="range" class="form-range" id="customRange1" value="100" oninput="changeVolume(document.getElementById('bgm'), this.value)">
-        </div>
-    </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/anime.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="worm" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Worm</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this incarnation of Modern Earth, a mysterious event has given rise to individuals with extraordinary abilities, known as Parahumans. These gifted beings wield their powers for both noble and nefarious purposes, leading to a complex, ever-shifting landscape of alliances, rivalries, and hidden agendas.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="masquerade" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Masquerade</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of Modern Earth, supernatural beings such as vampires, werewolves, and demons secretly walk among humanity, hidden in the shadows. As a part of this hidden world, you'll navigate the delicate balance of power and intrigue that exists between these ancient factions. Will you embrace the darkness and rise to power?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="fallout" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Fallout</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Here, you'll find a post-apocalyptic Earth, where humanity struggles for survival amidst the ruins of a once-thriving civilization. Scavengers, mutated creatures, and hardened warriors roam the wastelands. Are you prepared to fight for your life in this harsh, unforgiving world?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="utopia" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Utopia</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An Earth where global conflicts have been eradicated and humanity has united under the banner of peace and cooperation. Though harmony prevails, challenges still arise, and you must find your purpose in this seemingly utopian world. Will you maintain the delicate balance or seek to disrupt the status quo?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="umbra" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Umbra</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>"Welcome to a world forever shrouded in darkness, where the sun has vanished and humanity has adapted to life beneath the eternal night sky. In this realm, society has evolved to thrive in the shadows, and you must learn to navigate this twilight existence. Can you find your place in this nocturnal world?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="invasion" data-karma="0" data-requires="earth">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Invasion</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, I present you with a Modern Earth under siege by extraterrestrial forces. Humanity must band together to repel the invaders and protect their world. Will you join the resistance and fight for the survival of your species?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="footer mx-5 g-2 row fixed-bottom justify-content-center" id="pointBar">
+			<div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world, high-profile, impactful, average, uneventful"><span id="karma">Karma: 0</span></div>
+			<div class="col-2 text-center text-white fs-5"><label for="customRange1" class="form-label">BGM Volume</label><input type="range" class="form-range" id="customRange1" value="100" oninput="changeVolume(document.getElementById('bgm'), this.value)"></div>
+		</div>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/anime.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
 </html>

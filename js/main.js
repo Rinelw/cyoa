@@ -213,7 +213,7 @@ const hideHandler = () => {
 		const ids = element.dataset.reveals.split(', ');
 		for (let id of ids) {
 			const el = document.getElementById(id);
-			if (el.classList.contains('active-choice')){
+			if (el.classList.contains('active-choice') && !el.parentElement.parentElement.parentElement.parentElement.classList.contains('d-none')){
 				active = true;
 				break;
 			}
