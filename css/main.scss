@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "Pixeloid";
+    src: local("Pixeloid Sans"), local("PixeloidSans"), url("../fonts/PixeloidSans.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Pixeloid";
+    src: local("Pixeloid Sans Bold"), local("PixeloidSansBold"), url("../fonts/PixeloidSansBold.ttf") format("truetype");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "PixelRune";
+    src: local("Madoka Pixelica Regular"), local("MadokaPixelicaRegular"), url("../fonts/MadokaPixelicaRegular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "PixelSGA";
+    src: local("SGA Pixies"), local("SgaPixies"), url("../fonts/SgaPixies.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Galactico";
+    src: local("Galactico Basic"), local("GalacticoBasic"), url("../fonts/GalacticoBasic.otf") format("opentype");
+}
+@import "../scss/bootstrap.scss";
+
+html {
+    user-select: none;
+    background: #7109aa;
+    background: linear-gradient(180deg, rgba(158,0,89,1) 0%, rgba(43,14,136,1) 100%);
+    min-height: 100%;
+    > body {
+        font-family: 'Pixeloid';
+        background-color: unset;
+        margin-bottom: 100px;
+    }
+}
+.card {
+    background: rgb(43,14,136);
+}
+#unwelcome {
+    opacity: 0;
+}
+#pointBar {
+    background: rgb(100,14,14);
+    background: linear-gradient(90deg, rgba(100,14,14,0) 0%, rgba(100,14,14,1) 50%, rgba(100,14,14,0) 100%);
+}
+.choice {
+    &:hover {
+        cursor: pointer;
+    }
+    height: 100%;
+    background: rgb(43,14,136);
+    box-shadow: 0rem .125rem .25rem rgba(0,0,0,0.5);
+    > div > .category-title {
+        text-shadow: rgb(0, 0, 0) 0 0 15px;
+    }
+}
+.active-choice {
+    background: rgb(20, 67, 167);
+    > div > .category-title {
+        text-shadow: rgb(0, 255, 255) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+    }
+}
+.disabled-choice {
+    filter: grayscale(70%) blur(1px);
+    &:hover {
+        cursor: not-allowed;
+    }
+    background: rgb(100, 14, 14);
+    > div > .category-title {
+        text-shadow: unset;
+    }
+}
+.category-header{
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    box-shadow: 0rem -2.5rem 2.0rem -2.5rem rgba(0,0,0,0.75) inset;
+    > span {
+        display: block;
+        width: fit-content;
+        max-width: 800px;
+    }
+}
+.category-title {
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.category-bg {
+    background: rgb(43,14,136);
+    background: radial-gradient(circle, rgba(43,14,136,1) 0%, rgba(113,9,170,1) 100%);
+}
+.glitch{
+    font-family: 'PixelSGA';
+}
