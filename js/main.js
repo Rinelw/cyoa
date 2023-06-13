@@ -189,17 +189,28 @@ const accept = () => {
 //Karma System
 
 let karma = 0;
+const updateKarma = (number) => {
+	pointBar = document.getElementById("karma");
+	pointBar.innerText = `Karma: ${number}`;
+}
 const setKarma = (number) => {
 	karma = number;
-	pointBar = document.getElementById("karma");
-	pointBar.innerText = `Karma: ${karma}`;
+	updateKarma(number);
+}
+const subKarma = (number) => {
+	karma -= number;
+	updateKarma(karma);
+}
+const addKarma = (number) => {
+	karma += number;
+	updateKarma(karma);
 }
 //Hide n Unhide
 const hideHandler = () => {
 	const elements = document.querySelectorAll('[data-reveals]');
 	for (let element of elements){
 		let active = false;
-		const ids = element.getAttribute('data-reveals').split(', ');
+		const ids = element.dataset.reveals.split(', ');
 		for (let id of ids) {
 			const el = document.getElementById(id);
 			if (el.classList.contains('active-choice')){
@@ -214,31 +225,90 @@ const hideHandler = () => {
 		}
 	}
 }
-//conflict and requirements handler
-const conreq = (element) => {
-	const requires = element.dataset.requires ? JSON.parse(element.dataset.requires) : undefined;
-	const conflicts = element.dataset.conflicts ? JSON.parse(element.dataset.conflicts) : undefined;
-	if (conflicts){
-		for (let conflict of conflicts){
-			if (document.getElementById(conflict).classList.contains("active-choice")){
-				playSE('audio/error.ogg');
-				alert('Conflicting Choices Detected');
-				return true;
-			}		
-		}
-		
-	}
-	if (requires){
-		for (let require of requires){
-			if (!document.getElementById(require).classList.contains("active-choice")){
-				playSE('audio/error.ogg');
-				alert('You do not meet requirements for this choice');
-				return true;
-			}		
-		}
-	}
+const choiceDeactivator = (element) => {
+	if (element.classList.contains("active-choice")){
+		let value = parseInt(element.dataset.karma);
+		element.classList.remove("active-choice");
+		subKarma(value);
+		return true;
+	} else
 	return false;
 }
+const choiceActivator = (element) => {
+	if (!element.classList.contains("active-choice")){
+		let value = parseInt(element.dataset.karma);
+		element.classList.add("active-choice");
+		addKarma(value);
+		return true;
+	} else
+	return false;
+}
+
+//conflict and requirements handler
+
+// false when no conflicts and true when conflicts found
+const conflictChecker = (element) => {
+	const conflicts = element.dataset.conflicts ? element.dataset.conflicts.split(', ') : undefined;
+	if (!conflicts) return false;
+	for (let conflict of conflicts){
+		if (document.getElementById(conflict).classList.contains("active-choice")){
+			return true;
+		}		
+	}	
+	return false;
+}
+// True when requirements are met and false when they aren't
+const requirementChecker = (element) => {
+	const requires = element.dataset.requires ? element.dataset.requires.split(', ') : undefined;
+	if (!requires) return true;
+	let last = requires[requires.length-1]
+	if (last == 'and' || last == 'xor' || last == 'or'){
+		last = requires.pop();
+	} else {
+		last = 'or';
+	}
+	let active = 0;
+	for (let require of requires){
+		switch (last){
+			case 'and':
+				if (!document.getElementById(require).classList.contains("active-choice"))
+				return false;
+			case 'xor':
+				if (document.getElementById(require).classList.contains("active-choice"))
+				active++;
+				if (active > 1)
+				return false;
+			case 'or':
+				if (document.getElementById(require).classList.contains("active-choice"))
+				return true;
+			default:
+				console.log(last);
+				break;
+		}
+	}
+	if (last == 'or' || (last == 'xor' && active == 0)) {
+		return false;
+	} else {
+		return true;
+	}
+}
+const requireDeactivator = (disabledElement) => {
+	if (!disabledElement) return false;
+	const elements = document.querySelectorAll(`[data-requires*="${disabledElement.id}"]`);
+	if (!elements) return false;
+	for (let element of elements) {
+		if (requirementChecker(element)){
+		} else {
+			requireDeactivator(element);
+			choiceDeactivator(element);
+		}
+	}
+}
+//false when there are conflicts and requirements are not met, true when there aren't any conflicts and requirements are met
+const conreq = (element) => {
+	return (!conflictChecker(element) && requirementChecker(element));
+}
+
 //choice handler
 const setChoice = (element) => {
 	let grandParent = element.parentElement.parentElement;
@@ -254,26 +324,27 @@ const setChoice = (element) => {
 			break;
 		}
 	}
-	if (conreq(element)) return;
-	if (element.classList.contains("active-choice")){
-		playSE('audio/click2.ogg');
-		value = -parseInt(element.dataset.karma);
-		element.classList.remove("active-choice");
-	} else {
+	if (!conreq(element)) {
+		playSE('audio/error.ogg');
+		return;
+	}
+	const deactivated = choiceDeactivator(element);
+	if (!deactivated){
+		let nephew
 		if (stop) {
 			for (let sibling of siblings) {
-				if (sibling.firstElementChild.classList.contains("active-choice")) {
-					sibling.firstElementChild.classList.remove("active-choice");
-					value = parseInt(sibling.firstElementChild.dataset.karma)
-					setKarma(karma-value);
+				const deactivated = choiceDeactivator(sibling.firstElementChild);
+				if (deactivated) {
+					nephew = sibling.firstElementChild
 					break;
 				}
 			}
 		}
-		playSE('audio/click.ogg');
-		value = parseInt(element.dataset.karma)
-		element.classList.add("active-choice");
+		choiceActivator(element);
+		requireDeactivator(nephew);
+	} else {
+		requireDeactivator(element);
 	}
-	setKarma(karma+value);
+	playSE('audio/click2.ogg');
 	hideHandler();
 }
