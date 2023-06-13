@@ -147,7 +147,7 @@ document.getElementById("previous")
 
 let counter = 0;
 const next = () => {
-	playSE('audio/click.ogg');
+	playSE('audio/click1.ogg');
 	counter++;
 	fx.setText(phrases[counter]);
 	if (counter == 1) document.getElementById("previous").removeAttribute("disabled");
@@ -157,7 +157,7 @@ const next = () => {
 	}
 }
 const previous = () => {
-	playSE('audio/click.ogg');
+	playSE('audio/click1.ogg');
 	if (counter == phrases.length - 1) {
 		document.getElementById("next").removeAttribute("disabled");
 		document.getElementById("accept").classList.add("d-none");
@@ -168,7 +168,7 @@ const previous = () => {
 }
 
 const accept = () => {
-	playSE('audio/click.ogg');
+	playSE('audio/click1.ogg');
 	changeAudio(document.getElementById("bgm"), 'audio/bgm2.ogg', document.getElementById('customRange1').value);
 	anime({
 		targets: '#welcome',
@@ -342,9 +342,11 @@ const setChoice = (element) => {
 		}
 		choiceActivator(element);
 		requireDeactivator(nephew);
+		playSE('audio/click1.ogg');
 	} else {
 		requireDeactivator(element);
+		playSE('audio/click2.ogg');
 	}
-	playSE('audio/click2.ogg');
+	
 	hideHandler();
 }
