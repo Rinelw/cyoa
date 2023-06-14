@@ -224,3 +224,12 @@ const setChoice = (element) => {
 	
 	hideHandler();
 }
+const programming = document.getElementsByClassName('programming-old');
+let margin = 1.2;
+let color = 0xffffffaa;
+for (let i = 0; i < programming.length; i++) {
+	programming[i].style= `margin-bottom: ${margin}rem !important; color: #${color.toString(16)} !important`;
+	margin += 0.9;
+	color -= 0x33;
+	console.log(margin, color);
+  }

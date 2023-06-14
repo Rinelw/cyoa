@@ -7,8 +7,7 @@ class TextScramble {
 		this.start = start;
 		this.end = end;
 	}
-	setText(newText) {
-		const oldText = this.el.innerText;
+	setText(newText, oldText = this.el.innerText) {
 		const length = Math.max(oldText.length, newText.length);
 		const promise = new Promise((resolve) => this.resolve = resolve);
 		this.queue = [];
@@ -79,8 +78,8 @@ class Scramble {
 		this.fx = new TextScramble(this.el);
 		this.counter = 0;
 	}
-	setText() {
-		return this.fx.setText(this.phrases[this.counter]);
+	setText(start = this.fx.el.innerText) {
+		return this.fx.setText(this.phrases[this.counter], start);
 	}
 	next() {
 		this.counter++;
@@ -158,13 +157,15 @@ document.getElementById("accept").onclick = () => intro.accept();
 // 2nd scramble (it turns out I was wrong)
 // ——————————————————————————————————————————————————
 class World extends Scramble {
-	constructor(el) {
+	constructor(el, old) {
 		super('Universe Simulation 1.342', el)
+		this.old = old;
 		this.fx = new TextScramble(el, 'i + Math.floor(Math.random() * 20)', '1 + Math.floor(Math.random() * 20)')
 		this.serialNumber = "8h9i0-1d2e-3f4g";
 		this.worldLine = 0;
 		this.worldLines = [
-			[`Universe ${this.serialNumber} Encountered a Big Crunch Event... Resetting...`,
+			[`Universe ${this.serialNumber} Encountered a Big Crunch Event...`,
+				`Resetting...`,
 				`Universe ${this.serialNumber} Reset Successfully.`
 			]
 		];
@@ -175,129 +176,340 @@ class World extends Scramble {
 		const characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		for (let i = 0; i < 14; i++) {
 			if (i === 5 || i === 9) {
-			serialNumber.push('-');
+				serialNumber.push('-');
 			}
 			serialNumber.push(characters.charAt(Math.floor(Math.random() * characters.length)));
 		}
-		return serialNumber.join('');  
+		return serialNumber.join('');
 	}
 	randomWorld() {
 		this.serialNumber = this.randomSerial();
 		this.worldLines = [
-			[`Universe ${this.serialNumber} Encountered a Big Crunch Event... Resetting...`,
+			[`Universe ${this.serialNumber} Encountered a Big Crunch Event...`,
+				`Resetting...`,
 				`Universe ${this.serialNumber} Reset Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Divine Intervention Event... Logging...`,
+			[`Universe ${this.serialNumber} Encountered a Divine Intervention Event...`,
+				`Logging...`,
 				`Divine Intervention Event Logged Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Magic Overflow Event... Terminating...`,
+			[`Universe ${this.serialNumber} Encountered a Magic Overflow Event...`,
+				`Terminating...`,
 				`Universe ${this.serialNumber} Terminated Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Sin Accumulation Event... Purging...`,
+			[`Universe ${this.serialNumber} Encountered a Sin Accumulation Event...`,
+				`Purging...`,
 				`Sin Accumulation Event Purged Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Soul Fragmentation Event... Merging...`,
+			[`Universe ${this.serialNumber} Encountered a Soul Fragmentation Event...`,
+				`Merging...`,
 				`Soul Fragmentation Event Merged Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Time Loop Event... Breaking...`,
+			[`Universe ${this.serialNumber} Encountered a Time Loop Event...`,
+				`Breaking...`,
 				`Time Loop Event Broken Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Chaos Infection Event... Quarantining...`,
+			[`Universe ${this.serialNumber} Encountered a Chaos Infection Event...`,
+				`Quarantining...`,
 				`Chaos Infection Event Quarantined Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Reality Collapse Event... Repairing...`,
+			[`Universe ${this.serialNumber} Encountered a Reality Collapse Event...`,
+				`Repairing...`,
 				`Reality Collapse Event Repaired Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Cosmic Alignment Event... Aligning...`,
+			[`Universe ${this.serialNumber} Encountered a Cosmic Alignment Event...`,
+				`Aligning...`,
 				`Cosmic Alignment Event Aligned Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Dark Matter Invasion Event... Repelling...`,
+			[`Universe ${this.serialNumber} Encountered a Dark Matter Invasion Event...`,
+				`Repelling...`,
 				`Dark Matter Invasion Event Repelled Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Quantum Entanglement Event... Disentangling...`,
+			[`Universe ${this.serialNumber} Encountered a Quantum Entanglement Event...`,
+				`Disentangling...`,
 				`Quantum Entanglement Event Disentangled Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Parallel Universe Collision Event... Avoiding...`,
+			[`Universe ${this.serialNumber} Encountered a Parallel Universe Collision Event...`,
+				`Avoiding...`,
 				`Parallel Universe Collision Event Avoided Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Wormhole Formation Event... Closing...`,
+			[`Universe ${this.serialNumber} Encountered a Wormhole Formation Event...`,
+				`Closing...`,
 				`Wormhole Formation Event Closed Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Dimensional Shift Event... Shifting...`,
+			[`Universe ${this.serialNumber} Encountered a Dimensional Shift Event...`,
+				`Shifting...`,
 				`Dimensional Shift Event Shifted Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Magic Awakening Event... Adapting...`,`
+			[`Universe ${this.serialNumber} Encountered a Magic Awakening Event...`,
+				`Adapting...`, `
 			Magic Awakening Event Adapted Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Dream Invasion Event... Waking...`,
-				`Dream Invasion Event Failed to Wake... Attempting Lucidity...`,
-				`Lucidity Failed... Attempting Nightmare...`,
-				`Nightmare Failed... Attempting Reality...`,
-				`Reality Failed... Terminating Universe...`,
+			[`Universe ${this.serialNumber} Encountered a Dream Invasion Event...`,
+				`Waking...`,
+				`Dream Invasion Event Failed to Wake...`,
+				`Attempting Lucidity...`,
+				`Lucidity Failed...`,
+				`Attempting Nightmare...`,
+				`Nightmare Failed...`,
+				`Attempting Reality...`,
+				`Reality Failed...`,
+				`Terminating Universe...`,
 				`Universe ${this.serialNumber} Terminated Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Reality Warping Event... Restoring...`,
-				`Reality Warping Event Failed to Restore... Attempting Backup...`,
-				`Backup Failed... Attempting Repair...`,
-				`Repair Failed... Attempting Reset...`,
-				`Reset Failed... Terminating Universe...`,
+			[`Universe ${this.serialNumber} Encountered a Reality Warping Event...`,
+				`Restoring...`,
+				`Reality Warping Event Failed to Restore...`,
+				`Attempting Backup...`,
+				`Backup Failed...`,
+				`Attempting Repair...`,
+				`Repair Failed...`,
+				`Attempting Reset...`,
+				`Reset Failed...`,
+				`Terminating Universe...`,
 				`Universe ${this.serialNumber} Terminated Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Psychic Invasion Event... Repelling...`,
-				`Psychic Invasion Event Failed to Repel... Attempting Isolation...`,
-				`Isolation Failed... Attempting Eradication...`,
-				`Eradication Failed... Attempting Containment...`,
-				`Containment Failed... Terminating Universe...`,
+			[`Universe ${this.serialNumber} Encountered a Psychic Invasion Event...`,
+				`Repelling...`,
+				`Psychic Invasion Event Failed to Repel...`,
+				`Attempting Isolation...`,
+				`Isolation Failed...`,
+				`Attempting Eradication...`,
+				`Eradication Failed...`,
+				`Attempting Containment...`,
+				`Containment Failed...`,
+				`Terminating Universe...`,
 				`Universe ${this.serialNumber} Terminated Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Magic Corruption Event... Purifying...`,
-				`Magic Corruption Event Failed to Purify... Attempting Neutralization...`,
-				`Neutralization Failed... Attempting Dispersion...`,
-				`Dispersion Succeded... Magic Corruption Event Resolved Successfully.`
+			[`Universe ${this.serialNumber} Encountered a Magic Corruption Event...`,
+				`Purifying...`,
+				`Magic Corruption Event Failed to Purify...`,
+				`Attempting Neutralization...`,
+				`Neutralization Failed...`,
+				`Attempting Dispersion...`,
+				`Dispersion Succeded...`,
+				`Magic Corruption Event Resolved Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Cosmic Horror Event... Concealing...`,
-				`Cosmic Horror Event Failed to Conceal... Attempting Banishment...`,
-				`Banishment Failed... Attempting Destruction...`,
-				`Destruction Failed... Attempting Negotiation...`,
-				`Negotiation Failed... Terminating Universe...`,
+			[`Universe ${this.serialNumber} Encountered a Cosmic Horror Event...`,
+				`Concealing...`,
+				`Cosmic Horror Event Failed to Conceal...`,
+				`Attempting Banishment...`,
+				`Banishment Failed...`,
+				`Attempting Destruction...`,
+				`Destruction Failed...`,
+				`Attempting Negotiation...`,
+				`Negotiation Failed...`,
+				`Terminating Universe...`,
 				`Universe ${this.serialNumber} Terminated Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Soul Harvesting Event... Rescuing...`,
-				`Soul Harvesting Event Failed to Rescue... Attempting Liberation...`,
-				`Liberation Failed... Attempting Reincarnation...`,
-				`Reincarnation Failed... Attempting Restoration...`,
-				`Restoration Succeeded... Soul Harvesting Event Resolved Successfully.`
+			[`Universe ${this.serialNumber} Encountered a Soul Harvesting Event...`,
+				`Rescuing...`,
+				`Soul Harvesting Event Failed to Rescue...`,
+				`Attempting Liberation...`,
+				`Liberation Failed...`,
+				`Attempting Reincarnation...`,
+				`Reincarnation Failed...`,
+				`Attempting Restoration...`,
+				`Restoration Succeeded...`,
+				`Soul Harvesting Event Resolved Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Dimensional Rift Event... Closing...`,
-				`Dimensional Rift Event Failed to Close... Attempting Sealing...`,
-				`Sealing Failed... Attempting Stabilizing...`,
-				`Stabilizing Failed... Attempting Redirecting...`,
-				`Redirecting Succeeded... Dimensional Rift Event Resolved Successfully.`
+			[`Universe ${this.serialNumber} Encountered a Dimensional Rift Event...`,
+				`Closing...`,
+				`Dimensional Rift Event Failed to Close...`,
+				`Attempting Sealing...`,
+				`Sealing Failed...`,
+				`Attempting Stabilizing...`,
+				`Stabilizing Failed...`,
+				`Attempting Redirecting...`,
+				`Redirecting Succeeded...`,
+				`Dimensional Rift Event Resolved Successfully.`
 			],
-			[`Universe ${this.serialNumber} Encountered a Elemental Imbalance Event... Balancing...`,
-				`Elemental Imbalance Event Failed to Balance... Attempting Transmuting...`,
-				`Transmuting Failed... Attempting Harmonizing...`,
-				`Harmonizing Failed... Attempting Neutralizing...`,
-				`Neutralizing Succeeded... Elemental Imbalance Event Resolved Successfully.`
+			[`Universe ${this.serialNumber} Encountered a Elemental Imbalance Event...`,
+				`Balancing...`,
+				`Elemental Imbalance Event Failed to Balance...`,
+				`Attempting Transmuting...`,
+				`Transmuting Failed...`,
+				`Attempting Harmonizing...`,
+				`Harmonizing Failed...`,
+				`Attempting Neutralizing...`,
+				`Neutralizing Succeeded...`,
+				`Elemental Imbalance Event Resolved Successfully.`
 			]
 		];
 	}
-	auto() {
-		this.setText().then(() => {
-			if (this.counter == this.phrases.length -1) {
+	auto(interval = 800) {
+		this.setText('').then(() => {
+			if (this.counter == this.phrases.length - 1) {
 				this.randomWorld();
-				this.worldLine = Math.floor(Math.random() * (this.worldLines.length - 1)) ;
+				this.worldLine = Math.floor(Math.random() * (this.worldLines.length - 1));
 				this.phrases = this.worldLines[this.worldLine];
 				this.counter = 0;
-			}
-			else {
+			} else {
 				this.counter++;
 			}
 			setTimeout(() => {
-				this.auto();
-			}, 800);
+				console.log(this.old.length);
+				for (let i = this.old.length-1; i>=0; i--) {
+					const old = this.old[i];
+					old.innerText = i == 0 ? this.el.innerText : this.old[i-1].innerText;
+				}
+				;
+				this.auto(interval);
+			}, interval);
 		});
 	}
 }
-const worldScramble = new World(document.getElementById('programming-gibberish'));
-worldScramble.auto();
+const worldLines =`[
+	[\`Universe \${this.serialNumber} Encountered a Big Crunch Event...\`,
+		\`Resetting...\`,
+		\`Universe \${this.serialNumber} Reset Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Divine Intervention Event...\`,
+		\`Logging...\`,
+		\`Divine Intervention Event Logged Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Magic Overflow Event...\`,
+		\`Terminating...\`,
+		\`Universe \${this.serialNumber} Terminated Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Sin Accumulation Event...\`,
+		\`Purging...\`,
+		\`Sin Accumulation Event Purged Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Soul Fragmentation Event...\`,
+		\`Merging...\`,
+		\`Soul Fragmentation Event Merged Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Time Loop Event...\`,
+		\`Breaking...\`,
+		\`Time Loop Event Broken Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Chaos Infection Event...\`,
+		\`Quarantining...\`,
+		\`Chaos Infection Event Quarantined Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Reality Collapse Event...\`,
+		\`Repairing...\`,
+		\`Reality Collapse Event Repaired Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Cosmic Alignment Event...\`,
+		\`Aligning...\`,
+		\`Cosmic Alignment Event Aligned Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Dark Matter Invasion Event...\`,
+		\`Repelling...\`,
+		\`Dark Matter Invasion Event Repelled Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Quantum Entanglement Event...\`,
+		\`Disentangling...\`,
+		\`Quantum Entanglement Event Disentangled Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Parallel Universe Collision Event...\`,
+		\`Avoiding...\`,
+		\`Parallel Universe Collision Event Avoided Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Wormhole Formation Event...\`,
+		\`Closing...\`,
+		\`Wormhole Formation Event Closed Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Dimensional Shift Event...\`,
+		\`Shifting...\`,
+		\`Dimensional Shift Event Shifted Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Magic Awakening Event...\`,
+		\`Adapting...\`, \`
+	Magic Awakening Event Adapted Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Dream Invasion Event...\`,
+		\`Waking...\`,
+		\`Dream Invasion Event Failed to Wake...\`,
+		\`Attempting Lucidity...\`,
+		\`Lucidity Failed...\`,
+		\`Attempting Nightmare...\`,
+		\`Nightmare Failed...\`,
+		\`Attempting Reality...\`,
+		\`Reality Failed...\`,
+		\`Terminating Universe...\`,
+		\`Universe \${this.serialNumber} Terminated Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Reality Warping Event...\`,
+		\`Restoring...\`,
+		\`Reality Warping Event Failed to Restore...\`,
+		\`Attempting Backup...\`,
+		\`Backup Failed...\`,
+		\`Attempting Repair...\`,
+		\`Repair Failed...\`,
+		\`Attempting Reset...\`,
+		\`Reset Failed...\`,
+		\`Terminating Universe...\`,
+		\`Universe \${this.serialNumber} Terminated Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Psychic Invasion Event...\`,
+		\`Repelling...\`,
+		\`Psychic Invasion Event Failed to Repel...\`,
+		\`Attempting Isolation...\`,
+		\`Isolation Failed...\`,
+		\`Attempting Eradication...\`,
+		\`Eradication Failed...\`,
+		\`Attempting Containment...\`,
+		\`Containment Failed...\`,
+		\`Terminating Universe...\`,
+		\`Universe \${this.serialNumber} Terminated Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Magic Corruption Event...\`,
+		\`Purifying...\`,
+		\`Magic Corruption Event Failed to Purify...\`,
+		\`Attempting Neutralization...\`,
+		\`Neutralization Failed...\`,
+		\`Attempting Dispersion...\`,
+		\`Dispersion Succeded...\`,
+		\`Magic Corruption Event Resolved Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Cosmic Horror Event...\`,
+		\`Concealing...\`,
+		\`Cosmic Horror Event Failed to Conceal...\`,
+		\`Attempting Banishment...\`,
+		\`Banishment Failed...\`,
+		\`Attempting Destruction...\`,
+		\`Destruction Failed...\`,
+		\`Attempting Negotiation...\`,
+		\`Negotiation Failed...\`,
+		\`Terminating Universe...\`,
+		\`Universe \${this.serialNumber} Terminated Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Soul Harvesting Event...\`,
+		\`Rescuing...\`,
+		\`Soul Harvesting Event Failed to Rescue...\`,
+		\`Attempting Liberation...\`,
+		\`Liberation Failed...\`,
+		\`Attempting Reincarnation...\`,
+		\`Reincarnation Failed...\`,
+		\`Attempting Restoration...\`,
+		\`Restoration Succeeded...\`,
+		\`Soul Harvesting Event Resolved Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Dimensional Rift Event...\`,
+		\`Closing...\`,
+		\`Dimensional Rift Event Failed to Close...\`,
+		\`Attempting Sealing...\`,
+		\`Sealing Failed...\`,
+		\`Attempting Stabilizing...\`,
+		\`Stabilizing Failed...\`,
+		\`Attempting Redirecting...\`,
+		\`Redirecting Succeeded...\`,
+		\`Dimensional Rift Event Resolved Successfully.\`
+	],
+	[\`Universe \${this.serialNumber} Encountered a Elemental Imbalance Event...\`,
+		\`Balancing...\`,
+		\`Elemental Imbalance Event Failed to Balance...\`,
+		\`Attempting Transmuting...\`,
+		\`Transmuting Failed...\`,
+		\`Attempting Harmonizing...\`,
+		\`Harmonizing Failed...\`,
+		\`Attempting Neutralizing...\`,
+		\`Neutralizing Succeeded...\`,
+		\`Elemental Imbalance Event Resolved Successfully.\`
+	]
+]`;
+const worldScramble = new World(document.getElementById('programming-gibberish'), document.getElementsByClassName('programming-old'));
+worldScramble.auto(200);

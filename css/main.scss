@@ -110,8 +110,12 @@ html {
 #canopy{
     height: 5px;
 }
-#programming-gibberish{
+#programming-gibberish, .programming-old, #programming-title{
     height: 0.8rem!important;
     font-size: 0.8rem;
     color: white;
+}
+#programming-title {
+    color: #ffffff44;
+    margin-bottom: 3rem!important;
 }
