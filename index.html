@@ -6,7 +6,7 @@
 		<title>Nameless CYOA</title>
 		<link href="css/main.css" rel="stylesheet">
 	</head>
-	<body><audio id="bgm" preload="auto" loop autoplay>
+	<body oncontextmenu="return false;"><audio id="bgm" preload="auto" loop autoplay>
 			<source src="audio/bgm1.ogg" type="audio/ogg"> BGM
 		</audio>
 		<div class="m-0 p-0" id="canopy"><canvas id="canvas"></canvas></div>
@@ -15,7 +15,7 @@
 				<div class="text-white container-xl rounded pt-2 pb-0 pe-0">
 					<div class="row">
 						<div class="col overflow-hidden">
-							<div class="intro p-2 text-center fs-5 rounded bg-gradient"> Welcome, mortal, I am <span class='glitch'>Luxuria</span>, Goddess of Life</div>
+							<div class="p-2 text-center fs-5 rounded bg-gradient" id="intro"> Welcome, mortal, I am <span class='glitch'>Luxuria</span>, Goddess of Life</div>
 							<div class="grid rounded p-2 text-center">
 								<div class="btn-group" role="group" aria-label="Controls"><button type="button" onclick="previous()" id="previous" class="btn btn-lg btn-primary" disabled>Backtrack</button><button type="button" onclick="next()" id="next" class="btn btn-lg btn-primary">Proceed</button></div><button type="button" onclick="accept()" id="accept" class="mx-1 btn btn-primary btn-lg d-none">Accept the offer!</button>
 							</div>
@@ -353,6 +353,263 @@
 					</div>
 				</div>
 		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="wutian" data-limit="0">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Wutian Modifiers</h2>
+                <span class="text-white fs-5">A fascinating choice, dear soul. Wutian offers a rich and diverse landscape, steeped in the traditions of martial arts, cultivation, and mysticism. But within this realm, there are numerous paths to follow.</span>
+            </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="xianxia" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Xianxia</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of Wutian, the pursuit of cultivation is paramount. Mortals dedicate their lives to refining their inner energy, striving to ascend the ranks and attain immortality. Here, you may find yourself navigating treacherous sect politics and exploring forbidden knowledge, all in the name of self-improvement.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="wuxia" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Wuxia</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Should you choose this path, martial arts reign supreme in Wutian. Warriors test their mettle in fierce combat, honing their skills to achieve mastery over body and mind. In this world, you may build a legacy as a revered martial artist or even establish your own fighting style.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="sora" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Sora</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Embrace the rich tapestry of Japanese folklore and fantasy in this version of Wutian. You'll encounter mythical beasts, powerful spirits, and ancient legends as you weave your way through a realm inspired by the tales of old Nippon. Will you honor the traditions of the past or forge a new path in this mystic land?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="veiled-realms" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Veiled Realms</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Venture into the multifaceted world of Veiled Realms, where reality intertwines with the extraordinary. In this land, the boundaries between cultivation, martial prowess, and the supernatural blur, giving rise to countless enigmatic powers and abilities. As you navigate this realm, you'll uncover hidden dimensions and encounter beings that defy conventional wisdom. Will you embrace the unconventional and unearth the secrets that lie in the spaces between realms?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="warring-states" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Warring States</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Step into a tumultuous era in this version of Wutian, where powerful factions vie for supremacy, and the clang of steel echoes through the land. Diplomacy, cunning, and martial prowess will be your weapons as you navigate the treacherous landscape of shifting alliances and bloody conflicts.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="hidden-clans" data-karma="0" data-requires="wutian">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Hidden Clans</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Venture into a version of Wutian where clandestine clans govern the shadows, each wielding their own distinct martial arts and mystical techniques. Drawing inspiration from the vibrant lore and traditions of an enigmatic land, you'll find yourself embroiled in a world of intrigue, loyalty, and rivalry. Will you rise through the ranks of your clan, or perhaps even unite the hidden factions under one banner?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="nocturne" data-limit="0">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Nocturne Modifiers</h2>
+                <span class="text-white fs-5">Ah, a brave choice. Nocturne is a realm steeped in darkness, a place where nightmares come alive and ancient secrets threaten to unravel the fabric of reality itself.</span>
+            </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="dreaming-city" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Dreaming City</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of Nocturne, a Gothic metropolis stands as the last bastion of civilization against encroaching darkness. Unbeknownst to its inhabitants, the city is built upon a churning sea of horrors, and its very existence teeters on the brink of madness. Will you unravel its secrets and confront the entities that dwell within the shadows?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="drowned-world" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Drowned World</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Imagine a realm where the ocean has swallowed the land, leaving only the highest peaks as islands. In the depths, unspeakable monstrosities stir, and the survivors cling to their precarious existence atop the waves. Can you navigate this treacherous world and uncover the truth behind its watery doom?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="shattered-kingdom" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Shattered Kingdom</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Here, a once-great kingdom lies in ruins, the remnants of a cataclysmic event that shattered the very fabric of reality. Ghostly apparitions and twisted creatures roam the land, and the veil between worlds has grown perilously thin. Will you brave the remnants of this fallen realm and piece together its tragic past?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="ringed-world" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Ringed World</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this iteration of Nocturne, a world of interconnected realms is held together by a mysterious and powerful artifact. The artifact's influence has waned, and madness threatens to consume all. If you wish to save this world, you must traverse this treacherous landscape, seeking out the scattered fragments of the artifact.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="fading-fire" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Fading Fire</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Long ago, the world was kindled by a primordial flame that bestowed life and order. Now, the fire is fading, and a creeping darkness spreads across the land. Will you succeed in saving this world, or will your efforts be in vain?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="eldritch-frontier" data-karma="0" data-requires="nocturne">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Eldritch Frontier</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In the far reaches of Nocturne, a cosmic horror awaits. Strange, alien entities have infiltrated the realm, their inscrutable motives and eldritch powers threatening the fragile balance of reality. As a seeker of forbidden knowledge, can you withstand the cosmic onslaught and protect your world from these otherworldly horrors?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="gaia" data-limit="0">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Gaia Modifiers</h2>
+                <span class="text-white fs-5">A fascinating choice, dear soul. The foundations of civilization await your influence. However, I offer you four alternative versions of Gaia, each with its own unique features.</span>
+            </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-4 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="fantasy-gaia" data-karma="0" data-requires="gaia">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Fantasy Gaia</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of Gaia, the prehistoric world is infused with elements of fantasy. Magic courses through the land, and mythical creatures roam the untamed wilderness. Will you harness the arcane forces and guide your people to greatness?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="aftermath" data-karma="0" data-requires="gaia">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Aftermath</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Here, Gaia has suffered a catastrophic event, leaving the world in ruins. As one of the few survivors, you'll be tasked with rebuilding society amid the remnants of a once-thriving civilization. Can you lead your people through hardship and forge a new beginning?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="classical-era" data-karma="0" data-requires="gaia">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Classical Era</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Rather than the dawn of civilization, this Gaia is set in the classical era, a time of great thinkers, philosophers, and warriors. You'll navigate the intricate politics and conflicts of burgeoning empires. Can you leave a lasting impact on the annals of history?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="ark" data-karma="0" data-requires="gaia">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Ark</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Imagine a world where dinosaurs never went extinct. In this Gaia, you'll coexist with these magnificent creatures, establishing a symbiotic relationship as you build the foundations of human society. Will you rise to the challenge and tame the ancient beasts?</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="midgard" data-limit="0">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Nocturne Modifiers</h2>
+                <span class="text-white fs-5">Ah, a daring choice! Midgard is a realm of unparalleled myth and legend, where the divine and the mortal intertwine. The pantheons of ancient mythologies coexist here, and their eternal struggles will shape your destiny. Are you prepared to walk among gods and monsters?</span>
+            </div>
+				<div class="container-xl category-bg shadow-lg rounded p-4">
+					<div class="row row-cols-2 row-cols-lg-4 justify-content-center g-2">
+						<div class="col">
+							<div class="card choice" id="celestial-empire" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Celestial Empire</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this version of Midgard, the Chinese pantheon holds sway. You'll encounter the Jade Emperor, the Monkey King, and other celestial beings from Chinese mythology. Their influence permeates the land, shaping its culture, politics, and conflicts.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="odyssey" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Odyssey</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Here, the gods of Olympus reign supreme. The Hellenic pantheon, with Zeus, Athena, Poseidon, and other Greek deities, play an active role in the world. Your path may be guided by their divine intervention or hindered by their capricious whims.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="norse-sagas" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Norse Sagas</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The harsh and rugged landscape of this Midgard is ruled by the Norse pantheon. Odin, Thor, Loki, and the rest of the Aesir and Vanir create a world of epic battles, powerful magic, and fateful encounters. Can you survive in the land of ice and fire?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="hindu-cosmos" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Hindu Cosmos</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>"Immerse yourself in the rich tapestry of the Hindu pantheon, where myriad gods and goddesses shape the world. Brahma, Vishnu, Shiva, and countless other deities weave their divine influence into the fabric of this Midgard. Discover the secrets of karma and the cycle of life, death, and rebirth.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="pharaohs-domain" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Pharaoh's Domain</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Travel to a realm where the Egyptian pantheon holds dominion. Ra, Isis, Anubis, and other deities of the Nile influence the lives of mortals through their divine will. Unravel the mysteries of the sands and navigate the complex web of godly politics.</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="shinto-spirit" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Shinto Spirit</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this incarnation of Midgard, the Japanese pantheon and Shinto spirits hold sway over the land. Amaterasu, Susano-o, Tsukuyomi, and countless kami shape the world with their divine presence. Here, the veil between the mortal and spiritual realms is thin, and you'll encounter yokai, oni, and other supernatural beings as you navigate the delicate balance between nature, humanity, and the gods. Can you find harmony in the midst of spiritual chaos and unearth the ancient wisdom hidden within this enchanted realm?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="mesoamerican-domain" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">Mesoamerican Domain</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Venture into a realm where the Aztec and Maya pantheons reign supreme, their divine influence shaping the land and its people. Quetzalcoatl, Tezcatlipoca, Kukulkan, and other deities of Mesoamerican mythology guide the world through their celestial machinations. In this Midgard, you'll navigate the dense jungles, towering pyramids, and intricate rituals that define a civilization marked by its devotion to the gods. Will you uncover the secrets of the ancient calendar, appease the deities with your actions, and carve your name into the annals of this storied world?</span></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card choice" id="god-slayer" data-karma="0" data-requires="midgard">
+								<div class="card-header card-img-overlay">
+									<h2 class="category-title text-center">God Slayer</h2>
+									<h4 class="category-title text-center">0 Karma</h4>
+								</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+								<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>In this realm, the pantheons of multiple mythologies have been shattered, and their remnants scattered across the world. A lone warrior, seeking vengeance and redemption, has challenged the gods and emerged victorious. This Midgard is a world of chaos, where the old order has been upended, and new powers rise to fill the void. Will you follow in the footsteps of the God Slayer, or forge your own path?"</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="footer text-start fixed-bottom justify-content-start m-1" id="programming-gibberish">Universe Sim v1.23643</div>
 		<div class="footer mx-5 g-2 row fixed-bottom justify-content-center" id="pointBar">
 			<div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world, high-profile, impactful, average, uneventful"><span id="karma">Karma: 0</span></div>
 			<div class="col-2 text-center text-white fs-5"><label for="customRange1" class="form-label">BGM Volume</label><input type="range" class="form-range" id="customRange1" value="100" oninput="changeVolume(document.getElementById('bgm'), this.value)"></div>
