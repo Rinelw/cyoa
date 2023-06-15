@@ -1,17 +1,22 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Nameless CYOA</title>
-		<link href="css/main.css" rel="stylesheet">
-	</head>
-	<body oncontextmenu="return false;"><audio id="bgm" preload="auto" loop autoplay>
-			<source src="audio/bgm1.ogg" type="audio/ogg"> BGM
-		</audio>
-		<div class="m-0 p-0" id="canopy"><canvas id="canvas"></canvas></div>
-		<div class="category category-bg container-xl mt-2 pt-2 pe-0 shadow-lg rounded" id="welcome">
-			<h1 class="category-title text-center">Welcome Mortal</h2>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nameless CYOA</title>
+	<link href="css/main.css" rel="stylesheet">
+</head>
+
+<body oncontextmenu="return false;">
+	<audio id="bgm" preload="auto" loop autoplay>
+		<source src="audio/bgm1.ogg" type="audio/ogg"> BGM
+	</audio>
+	<div class="m-0 p-0" id="canopy">
+		<canvas id="canvas"></canvas>
+	</div>
+	<div class="category category-bg container-xl mt-2 pt-2 pe-0 shadow-lg rounded" id="welcome">
+		<h1 class="category-title text-center">Welcome Mortal</h2>
 				<div class="text-white container-xl rounded pt-2 pb-0 pe-0">
 					<div class="row">
 						<div class="col overflow-hidden">
@@ -24,6 +29,7 @@
 					</div>
 				</div>
 		</div>
+		<!-- Karma Here -->
 		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none" id="unwelcome">
             <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			    <h1 class="category-title pt-2 px-5">Starting Karma Values</h2>
@@ -79,6 +85,7 @@
 					</div>
 				</div>
 		</div>
+		<!-- World Section -->
 		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="changed-world, high-profile, impactful, average, uneventful">
 			<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
                 <h1 class="category-title pt-2 px-5">World Selection</h2>
@@ -609,6 +616,8 @@
 					</div>
 				</div>
 		</div>
+		<!-- Arrival Section -->
+		<!-- Body Section -->
 		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="changed-world, high-profile, impactful, average, uneventful">
 			<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
                 <h1 class="category-title pt-2 px-5">Body Selection</h2>
@@ -646,9 +655,200 @@
 					</div>
 				</div>
 		</div>
-
-
-		<!-- Footbar Here -->
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="design-body">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Sex</h2>
+                <span class="text-white fs-5">Let us begin by determining your sex. There are three options to consider: Male, Female, and Intersex. Each has its own unique characteristics and experiences.</span>
+            </div>
+			<div class="container-xl category-bg shadow-lg rounded p-4">
+				<div class="row row-cols-3 justify-content-center g-2">
+					<div class="col">
+						<div class="card choice" id="male" data-karma="0" data-requires="design-body">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Male</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Choosing a male body will grant you the physical and biological attributes typically associated with men. In some cultures and societies, this may also come with certain roles and expectations. Consider how this choice may shape your interactions and experiences in your new world.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="female" data-karma="0" data-requires="design-body">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Female</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Should you choose this variant, you'll find yourself in a world reminiscent of Tolkien's Middle-earth. A realm steeped in ancient lore, where the forces of darkness threaten to engulf the land. Will you rise as a beacon of hope, uniting the free peoples against the encroaching shadow?</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="intersex" data-karma="0" data-requires="design-body">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Intersex</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, you may choose to be intersex, a term that encompasses a variety of conditions in which a person is born with reproductive or sexual anatomy that doesn't fit typical definitions of male or female. This choice may present unique challenges and opportunities, as well as a diverse range of experiences.</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Male Design Here -->
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="male">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Face</h2>
+                <span class="text-white fs-5">Now, let us determine what visage you shall present to the world. Your face will be the first impression you create and can influence how others perceive you.</span>
+            </div>
+			<div class="container-xl category-bg shadow-lg rounded p-4">
+				<div class="row row-cols-3 row-cols-lg-5 justify-content-center g-2">
+					<div class="col">
+						<div class="card choice" id="hideous-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Hideous</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A face that many would consider repulsive or grotesque. This choice may lead to a challenging existence, where you must rely on your inner strength and resourcefulness to prove your worth and overcome prejudice. But remember, true beauty lies within, and those who see past the surface may find a loyal friend and ally.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="ugly-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Ugly</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Choosing an unattractive face may result in some social difficulties, but it can also foster resilience and determination. Your appearance will not define you, and you'll have the opportunity to demonstrate your true value through your actions and deeds.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="face-average-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Average</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An ordinary face, neither especially appealing nor unappealing. This option reflects the appearance of many in the world and offers you the chance to blend in and navigate life without drawing undue attention to yourself. Your achievements will be the product of your own efforts, not your appearance.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="handsome-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Handsome</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>With a handsome face, you'll enjoy a certain level of social advantages, as others may be drawn to you or view you favorably. However, it is important not to rely solely on your looks, for true success and happiness come from within.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="divine-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Divine</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An extremely handsome face is a rarity, often turning heads and capturing hearts wherever you go. This choice may grant you considerable social influence and power, but it can also invite unwanted attention, envy, and even danger. Remember, with great beauty comes great responsibility.</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-karma" data-reveals="male">
+            <div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+                <h1 class="category-title pt-2 px-5">Body Type</h2>
+                <span class="text-white fs-5">Now, let us determine the physical form that will carry you through your new life. Your body type can influence your abilities, experiences, and the way others perceive you.</span>
+            </div>
+			<div class="container-xl category-bg shadow-lg rounded p-4">
+				<div class="row row-cols-3 row-cols-lg-5 justify-content-center g-2">
+					<div class="col">
+						<div class="card choice" id="emaciated-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Emaciated</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An emaciated body is a frail body taken to extreme. This choice may present numerous physical challenges and health risks, but it can also serve as a powerful catalyst for developing inner strength, wisdom, or magical prowess.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="frail-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Frail</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A frail body is one with little muscle mass and strength. This choice may present physical challenges, but it can also inspire you to develop your intellect or cunning to compensate for your physical limitations. Remember, strength can take many forms.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="morbidly-obese" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Morbidly Obese</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A morbidly obese body comes with significant challenges and potential health issues. This choice may limit your mobility and physical abilities, but if you decide to do something about it, it can give you the opportunity to demonstrate your inner strength, resilience, and determination.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="overweight-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Overweight</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An overweight body may not possess the ideal proportions, but it can still be healthy and functional. This choice offers you a mix of comfort and practicality while promoting a more balanced lifestyle.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="body-average-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Average</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An average body type is neither particularly muscular nor slender, a balanced middle ground. This choice offers you a versatile form that can adapt to various situations, without drawing undue attention. Your path will be shaped more by your skills, knowledge, and choices rather than your physical attributes.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="lean-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Lean</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A lean body is slim and toned, with a healthy level of muscle mass. With this choice, you gain agility, grace, and a subtle strength that can be advantageous in many situations.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="fit-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Fit</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A fit body is one that is toned, healthy, and active. Choosing this option will provide you with a solid foundation for physical prowess, increased stamina, and agility. With a fit body, you will be well-prepared to face the challenges and adventures that await you.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="athletic-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Athletic</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A fit body is one that is toned, healthy, and active. Choosing this option will provide you with a solid foundation for physical prowess, increased stamina, and agility. With a fit body, you will be well-prepared to face the challenges and adventures that await you.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="muscular-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Muscular</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A muscular body boasts a high level of strength and power, commanding respect and admiration. This choice allows you to excel in feats of physical prowess but may also require constant maintenance to retain your impressive form.</span></div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card choice" id="adonis-male" data-karma="0" data-requires="male">
+							<div class="card-header card-img-overlay">
+								<h2 class="category-title text-center">Adonis-like</h2>
+								<h4 class="category-title text-center">0 Karma</h4>
+							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>An Adonis-like body is the epitome of physical perfection, a rare and extraordinary form that combines strength, agility, and aesthetic beauty. With this choice, you will possess a body that is the envy of many and the desire of others. It may grant you numerous advantages, but it can also attract unwanted attention and jealousy. Remember that true power comes from a balance of body, mind, and spirit.</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Foobar Here -->
 		<div class="footer text-start fixed-bottom justify-content-start m-1 programming-old"></div>
 		<div class="footer text-start fixed-bottom justify-content-start m-1 programming-old"></div>
 		<div class="footer text-start fixed-bottom justify-content-start m-1 programming-old"></div>
@@ -661,8 +861,7 @@
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/anime.min.js"></script>
 		<script src="js/main.js"></script>
-		<script src="js/matrix.js"></script>
+		<script src="js/matrix.js" defer></script>
 		<script src="js/scramble.js"></script>
-	</body>
 	</body>
 </html>
