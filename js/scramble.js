@@ -189,7 +189,6 @@ class World extends Scramble {
 				this.worldLine = Math.floor(Math.random() * (this.worldLines.length - 1));
 				this.serialNumber = this.randomSerial();
 				this.phrases = this.worldLines[this.worldLine].map((str) => str.replaceAll('${serialNumber}', this.serialNumber).replaceAll('${altNumber}', this.randomSerial()));
-				console.log(this.phrases);
 				this.counter = 0;
 			} else {
 				this.counter++;
@@ -213,7 +212,7 @@ const consoleOutputFromFile = async (url) => {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
 		const fileContent = await response.text();
-		const lines = fileContent.split('\r\n');
+		const lines = fileContent.replaceAll('\r', '').split('\n');
 		let formated = [
 			[]
 		];
