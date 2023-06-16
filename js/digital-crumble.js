@@ -100,7 +100,6 @@ for (let x = 2; x < app.screen.width; x+=5){
     let rand = Math.floor(Math.random() * 5 + 6)
     const middleDistance = Math.abs(halfScreen - x)
     const skipChance = Math.floor(Math.random()*800) - middleDistance;
-    console.log(skipChance, middleDistance);
     if (skipChance > 0 ) continue;
     par[i] = new particle(app, container);
     par[i].draw(0x8c5dca, rand, rand, Math.random() / 2);
