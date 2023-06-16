@@ -63,7 +63,7 @@ for (let choice of choices) {
 
 let karma = 0;
 const updateKarma = (number) => {
-	pointBar = document.getElementById("karma");
+	let pointBar = document.getElementById("karma");
 	pointBar.innerText = `Karma: ${number}`;
 }
 const setKarma = (number) => {
@@ -78,24 +78,31 @@ const addKarma = (number) => {
 	karma += number;
 	updateKarma(karma);
 }
-//Hide n Unhide
+//Hide n Reveal
 const hideHandler = () => {
-	const reveals = document.querySelectorAll('[data-reveals]');
-	const hides = document.querySelectorAll('[data-hides]');
-	for (let element of reveals){
+	const elements = document.querySelectorAll('[data-reveals], [data-hides]');
+	for (let element of elements) {
 		let active = false;
-		const ids = element.dataset.reveals.split(', ');
-		for (let id of ids) {
-			const el = document.getElementById(id);
-			const category = el.parentElement.parentElement.parentElement.parentElement;
-			if (el.classList.contains('active-choice') && (!category.classList.contains('d-none') || !element.classList.contains('category'))){
-				active = true;
+		let hidden = false;
+		const revealID = element.dataset.reveals ? element.dataset.reveals.split(', ') : [];
+		const hideID = element.dataset.hides ? element.dataset.hides.split(', ') : [];
+		const combinedID = new Set([...revealID, ...hideID]);
+		for (let id of combinedID) {
+			const controller = document.getElementById(id);
+			const category = controller.classList.contains('choice') ? controller.parentElement.parentElement.parentElement.parentElement : undefined;
+			const hides = hideID.includes(controller.id);
+			const reveals = revealID.includes(controller.id);
+			const isActive = controller.classList.contains('active-choice');
+			const isHidden = (!category) ? category.classList.contains('d-none') : true;
+			active = (reveals && isActive) || !isHidden || active
+			hidden = (hides && isActive)
+			if (hidden || (active && hideID === [])) {
 				break;
 			}
 		}
-		if (active && element.classList.contains('d-none')){
+		if (active && element.classList.contains('d-none') && !hidden){
 			element.classList.remove('d-none');
-		} else if (!active && !element.classList.contains('d-none')){
+		} else if ((!active && !element.classList.contains('d-none')) || hidden){
 			element.classList.add('d-none');
 		}
 	}
@@ -137,7 +144,7 @@ const requirementChecker = (element) => {
 	const requires = element.dataset.requires ? element.dataset.requires.split(', ') : undefined;
 	if (!requires) return true;
 	let last = requires[requires.length-1]
-	if (last == 'and' || last == 'xor' || last == 'or'){
+	if (last === 'and' || last === 'xor' || last === 'or'){
 		last = requires.pop();
 	} else {
 		last = 'or';
@@ -148,24 +155,22 @@ const requirementChecker = (element) => {
 			case 'and':
 				if (!document.getElementById(require).classList.contains("active-choice"))
 				return false;
+				break;
 			case 'xor':
 				if (document.getElementById(require).classList.contains("active-choice"))
 				active++;
 				if (active > 1)
 				return false;
+				break;
 			case 'or':
 				if (document.getElementById(require).classList.contains("active-choice"))
 				return true;
+				break;
 			default:
-				console.log(last);
 				break;
 		}
 	}
-	if (last == 'or' || (last == 'xor' && active == 0)) {
-		return false;
-	} else {
-		return true;
-	}
+	return !(last === 'or' || (last === 'xor' && active === 0));
 }
 const requireDeactivator = (disabledElement) => {
 	if (!disabledElement) return false;
@@ -180,7 +185,7 @@ const requireDeactivator = (disabledElement) => {
 	}
 }
 //false when there are conflicts and requirements are not met, true when there aren't any conflicts and requirements are met
-const conreq = (element) => {
+const conReq = (element) => {
 	return (!conflictChecker(element) && requirementChecker(element));
 }
 
@@ -193,15 +198,15 @@ const setChoice = (element) => {
 	let stop = false;
 	let value = 0;
 	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
-	if (limit != 0)
+	if (limit !== 0)
 	for (let sibling of siblings) {
 		if (sibling.firstElementChild.classList.contains("active-choice")) count++;
-		if (count == limit) {
+		if (count === limit) {
 			stop = true;
 			break;
 		}
 	}
-	if (!conreq(element)) {
+	if (!conReq(element)) {
 		playSE('audio/error.ogg');
 		return;
 	}

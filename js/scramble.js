@@ -99,8 +99,8 @@ class Intro extends Scramble {
 	next() {
 		playSE('audio/click1.ogg');
 		super.next();
-		if (this.counter == 1) document.getElementById("previous").removeAttribute("disabled");
-		if (this.counter + 1 == this.phrases.length) {
+		if (this.counter === 1) document.getElementById("previous").removeAttribute("disabled");
+		if (this.counter + 1 === this.phrases.length) {
 			document.getElementById("next").setAttribute("disabled", "");
 			document.getElementById("accept").classList.remove("d-none");
 		}
@@ -108,12 +108,12 @@ class Intro extends Scramble {
 	}
 	previous() {
 		playSE('audio/click1.ogg');
-		if (this.counter == this.phrases.length - 1) {
+		if (this.counter === this.phrases.length - 1) {
 			document.getElementById("next").removeAttribute("disabled");
 			document.getElementById("accept").classList.add("d-none");
 		}
 		super.previous();
-		if (this.counter == 0) document.getElementById("previous").setAttribute("disabled", "");
+		if (this.counter === 0) document.getElementById("previous").setAttribute("disabled", "");
 
 	}
 	accept() {
@@ -179,13 +179,13 @@ class World extends Scramble {
 		let i = 0;
 		serialNumber.push("1." + Math.floor(Math.random() * 1000000) + "e+" + Math.floor(Math.random() * 10000));
 		i++;
-		return serialNumber;
+		return serialNumber.toString();
 	}
 
 	// Automatically update text based on the given interval
 	auto(interval = 800) {
 		this.setText('').then(() => {
-			if (this.counter == this.phrases.length - 1) {
+			if (this.counter === this.phrases.length - 1) {
 				this.worldLine = Math.floor(Math.random() * (this.worldLines.length - 1));
 				this.serialNumber = this.randomSerial();
 				this.phrases = this.worldLines[this.worldLine].map((str) => str.replaceAll('${serialNumber}', this.serialNumber).replaceAll('${altNumber}', this.randomSerial()));
@@ -197,7 +197,7 @@ class World extends Scramble {
 			setTimeout(() => {
 				for (let i = this.old.length - 1; i >= 0; i--) {
 					const old = this.old[i];
-					old.innerText = i == 0 ? this.el.innerText : this.old[i - 1].innerText;
+					old.innerText = i === 0 ? this.el.innerText : this.old[i - 1].innerText;
 				}
 				this.auto(interval);
 			}, interval);
@@ -209,7 +209,7 @@ const consoleOutputFromFile = async (url) => {
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
+			return;
 		}
 		const fileContent = await response.text();
 		const lines = fileContent.replaceAll('\r', '').split('\n');
@@ -218,7 +218,7 @@ const consoleOutputFromFile = async (url) => {
 		];
 		let group = 0;
 		for (const line of lines) {
-			if (line == '') {
+			if (line === '') {
 				group++;
 				formated.push([]);
 			} else formated[group].push(line);
