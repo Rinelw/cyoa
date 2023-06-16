@@ -80,13 +80,15 @@ const addKarma = (number) => {
 }
 //Hide n Unhide
 const hideHandler = () => {
-	const elements = document.querySelectorAll('[data-reveals]');
-	for (let element of elements){
+	const reveals = document.querySelectorAll('[data-reveals]');
+	const hides = document.querySelectorAll('[data-hides]');
+	for (let element of reveals){
 		let active = false;
 		const ids = element.dataset.reveals.split(', ');
 		for (let id of ids) {
 			const el = document.getElementById(id);
-			if (el.classList.contains('active-choice') && !el.parentElement.parentElement.parentElement.parentElement.classList.contains('d-none')){
+			const category = el.parentElement.parentElement.parentElement.parentElement;
+			if (el.classList.contains('active-choice') && (!category.classList.contains('d-none') || !element.classList.contains('category'))){
 				active = true;
 				break;
 			}

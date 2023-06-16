@@ -9,10 +9,6 @@
     font-weight: bold;
 }
 @font-face {
-    font-family: "PixelRune";
-    src: local("Madoka Pixelica Regular"), local("MadokaPixelicaRegular"), url("../fonts/MadokaPixelicaRegular.ttf") format("truetype");
-}
-@font-face {
     font-family: "PixelSGA";
     src: local("SGA Pixies"), local("SgaPixies"), url("../fonts/SgaPixies.ttf") format("truetype");
 }
@@ -20,15 +16,13 @@
 
 html {
     user-select: none;
-    background-color: rgba(114, 9, 170, 1);
-    background: linear-gradient(180deg, rgba(158,0,89,1) 0%, rgba(43,14,136,1) 100%);
     background-image: url("../img/Aethereal_Planes_-_Cosmic_Rift_2500x2500.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100%;
     > body {
-        font-family: 'Pixeloid';
+        font-family: 'Pixeloid', ui-monospace;
         background-color: unset;
         margin-bottom: 100px;
     }
@@ -49,7 +43,7 @@ html {
     }
     height: 100%;
     background: rgb(43,14,136);
-    box-shadow: 0rem .125rem .25rem rgba(0,0,0,0.5);
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,0.5);
     > div > .category-title {
         text-shadow: rgb(0, 0, 0) 0 0 15px;
     }
@@ -96,7 +90,7 @@ html {
     background: radial-gradient(circle, rgba(43,14,136,1) 0%, rgba(113,9,170,1) 100%);
 }
 .glitch{
-    font-family: 'PixelSGA';
+    font-family: 'PixelSGA', ui-monospace;
 }
 #canvas {
     margin: 0;
@@ -108,7 +102,7 @@ html {
     z-index: -50;
 }
 #canopy{
-    height: 5px;
+    height: 5rem;
 }
 #programming-gibberish, .programming-old, #programming-title{
     height: 0.8rem!important;
@@ -118,4 +112,12 @@ html {
 #programming-title {
     color: #ffffff44;
     margin-bottom: 3rem!important;
+}
+#pixi {
+    > canvas {
+        pointer-events: none;
+        z-index: -100;
+        position: fixed;
+    }
+    
 }

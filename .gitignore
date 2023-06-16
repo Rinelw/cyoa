@@ -1,3 +1,5 @@
 .vscode/
+.idea/
 .hintrc
+jsconfig.json
 scss/
