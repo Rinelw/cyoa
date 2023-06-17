@@ -13034,6 +13034,7 @@ textarea.form-control-lg {
 }
 html {
   user-select: none;
+  scrollbar-width: none;
   background-image: url("../img/Aethereal_Planes_-_Cosmic_Rift_2500x2500.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -13041,9 +13042,14 @@ html {
   min-height: 100%;
 }
 html > body {
+  scrollbar-width: none;
   font-family: "Pixeloid", ui-monospace;
   background-color: unset;
   margin-bottom: 100px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
@@ -13068,14 +13074,34 @@ html > body {
   cursor: pointer;
 }
 .choice > div > .category-title {
-  text-shadow: black 0 0 15px;
+  text-shadow: black 0 1px 3px;
+}
+.choice > div > .points {
+  text-shadow: black 0 1px 2px;
+  color: #fff;
+}
+.choice > div > .points.positive {
+  color: #73d23b;
+}
+.choice > div > .points.negative {
+  color: #d23b73;
 }
 
 .active-choice {
   background: #1443a7;
 }
 .active-choice > div > .category-title {
-  text-shadow: aqua 0 0 15px, white 0 0 5px;
+  text-shadow: white 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 3px;
+}
+.active-choice > div > .points {
+  color: #fff !important;
+  text-shadow: white 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 2px;
+}
+.active-choice > div > .points.positive {
+  text-shadow: #84ff00 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 2px;
+}
+.active-choice > div > .points.negative {
+  text-shadow: #ff0090 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 2px;
 }
 
 .disabled-choice {
@@ -13134,6 +13160,15 @@ html > body {
   height: 5rem;
 }
 
+#backpack {
+  background: #2b0e88;
+  position: fixed;
+  left: 10px;
+  height: fit-content;
+  min-width: min-content;
+  max-width: 15%;
+}
+
 #programming-gibberish, .programming-old, #programming-title {
   height: 0.8rem !important;
   font-size: 0.8rem;
@@ -13149,6 +13184,16 @@ html > body {
   pointer-events: none;
   z-index: -100;
   position: fixed;
+}
+
+#points, .backpack-title {
+  text-shadow: white 0 0 15px;
+}
+#points.positive, .backpack-title.positive {
+  text-shadow: #84ff00 0 0 15px, white 0 0 5px;
+}
+#points.negative, .backpack-title.negative {
+  text-shadow: #ff0090 0 0 15px, white 0 0 5px;
 }
 
 /*# sourceMappingURL=main.css.map */

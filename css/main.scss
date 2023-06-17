@@ -16,16 +16,21 @@
 
 html {
     user-select: none;
+    scrollbar-width: none;
     background-image: url("../img/Aethereal_Planes_-_Cosmic_Rift_2500x2500.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100%;
     > body {
+        scrollbar-width: none;
         font-family: 'Pixeloid', ui-monospace;
         background-color: unset;
         margin-bottom: 100px;
     }
+}
+::-webkit-scrollbar {
+    display: none;
 }
 .card {
     background: rgb(43,14,136);
@@ -44,15 +49,40 @@ html {
     height: 100%;
     background: rgb(43,14,136);
     box-shadow: 0 .125rem .25rem rgba(0,0,0,0.5);
-    > div > .category-title {
-        text-shadow: rgb(0, 0, 0) 0 0 15px;
+    > div {
+        > .category-title {
+            text-shadow: rgb(0, 0, 0) 0 1px 3px;
+        }
+        > .points {
+            text-shadow: rgb(0, 0, 0) 0 1px 2px;
+            color: #fff;
+            &.positive {
+                color: #73d23b;
+            }
+            &.negative {
+                color: #d23b73;
+            }
+        }
     }
 }
 .active-choice {
     background: rgb(20, 67, 167);
-    > div > .category-title {
-        text-shadow: rgb(0, 255, 255) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+    > div {
+        > .category-title {
+            text-shadow: rgb(255, 255, 255) 0 0 15px, rgb(255, 255, 255) 0 0 5px, rgb(122, 122, 122) 0 1px 3px;
+        }
+        > .points {
+            color: #fff!important;
+            text-shadow: rgb(255, 255, 255) 0 0 15px, rgb(255, 255, 255) 0 0 5px, rgb(122, 122, 122) 0 1px 2px;
+            &.positive {
+                text-shadow: rgb(132, 255, 0) 0 0 15px, rgb(255, 255, 255) 0 0 5px, rgb(122, 122, 122) 0 1px 2px;
+            }
+            &.negative {
+                text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px, rgb(122, 122, 122) 0 1px 2px;
+            }
+        }
     }
+
 }
 .disabled-choice {
     filter: grayscale(70%) blur(1px);
@@ -104,6 +134,14 @@ html {
 #canopy{
     height: 5rem;
 }
+#backpack {
+    background: rgb(43,14,136);
+    position: fixed;
+    left: 10px;
+    height: fit-content;
+    min-width: min-content;
+    max-width: 15%;
+}
 #programming-gibberish, .programming-old, #programming-title{
     height: 0.8rem!important;
     font-size: 0.8rem;
@@ -120,4 +158,13 @@ html {
         position: fixed;
     }
     
+}
+#points, .backpack-title{
+    text-shadow: rgb(255, 255, 255) 0 0 15px;
+    &.positive {
+        text-shadow: rgb(132, 255, 0) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+    }
+    &.negative {
+        text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+    }
 }

@@ -59,24 +59,26 @@ for (let choice of choices) {
 	choice.addEventListener("click", () => {setChoice(choice)}, false);
 }
 
-//Karma System
+//Points System
 
-let karma = 0;
-const updateKarma = (number) => {
-	let pointBar = document.getElementById("karma");
-	pointBar.innerText = `Karma: ${number}`;
+let points = 0;
+const updatePoints = (number) => {
+	let pointBar = document.getElementById("points");
+	pointBar.classList.remove('positive', 'negative');
+	if (number !== 0) pointBar.classList.add(number > 0 ? 'positive' : 'negative');
+	pointBar.innerText = `${number}`;
 }
-const setKarma = (number) => {
-	karma = number;
-	updateKarma(number);
+const setPoints = (number) => {
+	points = number;
+	updatePoints(number);
 }
-const subKarma = (number) => {
-	karma -= number;
-	updateKarma(karma);
+const subPoints = (number) => {
+	points -= number;
+	updatePoints(points);
 }
-const addKarma = (number) => {
-	karma += number;
-	updateKarma(karma);
+const addPoints = (number) => {
+	points += number;
+	updatePoints(points);
 }
 //Hide n Reveal
 const hideHandler = () => {
@@ -109,18 +111,18 @@ const hideHandler = () => {
 }
 const choiceDeactivator = (element) => {
 	if (element.classList.contains("active-choice")){
-		let value = parseInt(element.dataset.karma);
+		let value = parseInt(element.dataset.points);
 		element.classList.remove("active-choice");
-		subKarma(value);
+		subPoints(value);
 		return true;
 	} else
 	return false;
 }
 const choiceActivator = (element) => {
 	if (!element.classList.contains("active-choice")){
-		let value = parseInt(element.dataset.karma);
+		let value = parseInt(element.dataset.points);
 		element.classList.add("active-choice");
-		addKarma(value);
+		addPoints(value);
 		return true;
 	} else
 	return false;
@@ -240,3 +242,19 @@ for (let i = 0; i < programming.length; i++) {
 	margin += 0.9;
 	color -= 0x33;
 }
+const setupCosts = () => {
+	const elements = document.getElementsByClassName('points');
+	for (let element of elements) {
+		const grandParent = element.parentElement.parentElement;
+		if (!grandParent.classList.contains('choice')) continue;
+		const cost= parseInt(grandParent.dataset.points);
+		const absoluteCost = Math.abs(cost)
+		if (cost !== 0) {
+			element.classList.add(cost > 0 ? 'positive' : 'negative')
+			element.innerText = cost > 0 ? `+${absoluteCost} Karma` : `-${absoluteCost} Karma`
+		} else {
+			element.innerText = `${absoluteCost} Karma`;
+		}
+	}
+}
+setupCosts();
