@@ -216,7 +216,7 @@ const setChoice = (element) => {
 	const count = siblings.length;
 	let stop = false;
 	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
-	if (count >= limit) stop = true;
+	if (count >= limit && limit !== 0) stop = true;
 	if (choiceDeactivator(element)) {
 		requireDeactivator(element);
 		playSE('audio/click2.ogg');
