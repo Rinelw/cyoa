@@ -13119,7 +13119,7 @@ html > body {
 }
 
 .category-header {
-  width: max-content;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
   height: auto;
@@ -13167,6 +13167,7 @@ html > body {
   background: #2b0e88;
   position: fixed;
   left: 10px;
+  z-index: 200;
   height: fit-content;
   min-width: min-content;
   max-width: 15%;
