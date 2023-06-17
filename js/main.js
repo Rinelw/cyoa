@@ -198,7 +198,6 @@ const setChoice = (element) => {
 	let siblings = grandParent.children;
 	let count = 0;
 	let stop = false;
-	let value = 0;
 	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
 	if (limit !== 0)
 	for (let sibling of siblings) {
