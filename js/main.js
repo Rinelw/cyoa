@@ -91,6 +91,7 @@ const hideHandler = () => {
 		const combinedID = new Set([...revealID, ...hideID]);
 		for (let id of combinedID) {
 			const controller = document.getElementById(id);
+			if (!controller) continue;
 			const category = controller.classList.contains('choice') ? controller.parentElement.parentElement.parentElement.parentElement : undefined;
 			const hides = hideID.includes(controller.id);
 			const reveals = revealID.includes(controller.id);
@@ -146,7 +147,8 @@ const requirementChecker = (element) => {
 	const requires = element.dataset.requires ? element.dataset.requires.split(', ') : undefined;
 	if (!requires) return true;
 	let last = requires[requires.length-1]
-	if (last === 'and' || last === 'xor' || last === 'or'){
+	const regEx = new RegExp(/\b(?:xor|or|and)\b/);
+	if (regEx.test(last)){
 		last = requires.pop();
 	} else {
 		last = 'or';
@@ -174,63 +176,68 @@ const requirementChecker = (element) => {
 	}
 	return !(last === 'or' || (last === 'xor' && active === 0));
 }
-const requireDeactivator = (disabledElement) => {
-	if (!disabledElement) return false;
-	const elements = document.querySelectorAll(`[data-requires*="${disabledElement.id}"]`);
-	if (!elements) return false;
-	for (let element of elements) {
-		if (requirementChecker(element)){
-		} else {
-			requireDeactivator(element);
-			choiceDeactivator(element);
-		}
-	}
-}
 //false when there are conflicts and requirements are not met, true when there aren't any conflicts and requirements are met
 const conReq = (element) => {
 	return (!conflictChecker(element) && requirementChecker(element));
 }
-
-//choice handler
-const setChoice = (element) => {
-	let grandParent = element.parentElement.parentElement;
-	let container = grandParent.parentElement.parentElement;
-	let siblings = grandParent.children;
-	let count = 0;
-	let stop = false;
-	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
-	if (limit !== 0)
-	for (let sibling of siblings) {
-		if (sibling.firstElementChild.classList.contains("active-choice")) count++;
-		if (count === limit) {
-			stop = true;
-			break;
+const requireDeactivator = (disabledElement) => {
+	if (!disabledElement) return false;
+	const elements = document.querySelectorAll(`[data-requires*="${disabledElement.id}"], [data-conflicts*="${disabledElement.id}"]`);
+	if (elements.length === 0) return false;
+	for (let element of elements) {
+		if (conflictChecker(element) && requirementChecker(element)){
+		} else {
+			if (element.classList.contains('active-choice')){
+				choiceDeactivator(element);
+				requireDeactivator(element);
+			}
 		}
 	}
+}
+
+const choiceDisabler = () => {
+	const elements = document.querySelectorAll('[data-requires], [data-conflicts]');
+	for (let element of elements){
+		if (!conReq(element))
+			element.classList.add('disabled-choice')
+		else
+			element.classList.remove('disabled-choice')
+	}
+}
+//choice handler
+const setChoice = (element) => {
 	if (!conReq(element)) {
 		playSE('audio/error.ogg');
 		return;
 	}
-	const deactivated = choiceDeactivator(element);
-	if (!deactivated){
+	const grandParent = element.parentElement.parentElement;
+	const container = grandParent.parentElement.parentElement;
+	const siblings = grandParent.children;
+	const count = siblings.length;
+	let stop = false;
+	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
+	if (count >= limit) stop = true;
+	if (choiceDeactivator(element)) {
+		console.log(element, 'element');
+		requireDeactivator(element);
+		playSE('audio/click2.ogg');
+	}
+	else {
 		let nephew
 		if (stop) {
 			for (let sibling of siblings) {
-				const deactivated = choiceDeactivator(sibling.firstElementChild);
-				if (deactivated) {
-					nephew = sibling.firstElementChild
+				nephew = sibling.firstElementChild
+				if (choiceDeactivator(nephew)) {
+					console.log(nephew, 'siostrzeniec');
+					requireDeactivator(nephew);
 					break;
 				}
 			}
 		}
 		choiceActivator(element);
-		requireDeactivator(nephew);
 		playSE('audio/click1.ogg');
-	} else {
-		requireDeactivator(element);
-		playSE('audio/click2.ogg');
 	}
-	
+	choiceDisabler();
 	hideHandler();
 }
 const programming = document.getElementsByClassName('programming-old');
@@ -256,4 +263,37 @@ const setupCosts = () => {
 		}
 	}
 }
+const setupRequirements = () => {
+	const elements = document.getElementsByClassName('conreqs');
+	const stringGenerator = (ids) => {
+		const idArray = ids.split(', ');
+		let result = "";
+		for (let id of idArray) {
+			const grandChild = document.getElementById(id).firstElementChild.firstElementChild;
+			result += grandChild.innerText + ', ';
+		}
+		result = result.substring(0, result.length-2);
+		return result;
+	}
+	for (let element of elements) {
+		const grandParent = element.parentElement.parentElement;
+		if (!grandParent.classList.contains('choice')) continue;
+		let requirements = grandParent.dataset.requires;
+		let conflicts = grandParent.dataset.conflicts;
+		let requiresString, conflictsString;
+		if (requirements !== undefined) {
+			requirements = requirements.replace(/\b(?:, xor|, or|, and)\b/, '');
+			requiresString = stringGenerator(requirements);
+			element.innerHTML += `<span class="requires">Requires: ${requiresString}<br></span>`
+		}
+		if (conflicts !== undefined) {
+			conflicts = conflicts.replace(/\b(?:, xor|, or|, and)\b/, '');
+			conflictsString = stringGenerator(conflicts);
+			element.innerHTML += `<span class="conflicts">Conflicts: ${conflictsString}</span>`
+		}
+
+	}
+}
+choiceDisabler();
 setupCosts();
+setupRequirements();
