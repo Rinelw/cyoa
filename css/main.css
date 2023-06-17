@@ -13076,15 +13076,21 @@ html > body {
 .choice > div > .category-title {
   text-shadow: black 0 1px 3px;
 }
-.choice > div > .points {
+.choice > div > .points, .choice > div .conflicts, .choice > div .requires {
   text-shadow: black 0 1px 2px;
   color: #fff;
 }
-.choice > div > .points.positive {
+.choice > div > .points.positive, .choice > div .conflicts.positive, .choice > div .requires.positive {
   color: #73d23b;
 }
-.choice > div > .points.negative {
+.choice > div > .points.negative, .choice > div .conflicts.negative, .choice > div .requires.negative {
   color: #d23b73;
+}
+.choice > div > .points > .conflicts, .choice > div .conflicts > .conflicts, .choice > div .requires > .conflicts {
+  color: #d23b73;
+}
+.choice > div > .points > .requires, .choice > div .conflicts > .requires, .choice > div .requires > .requires {
+  color: #3bbbd2;
 }
 
 .active-choice {
@@ -13110,9 +13116,6 @@ html > body {
 }
 .disabled-choice:hover {
   cursor: not-allowed;
-}
-.disabled-choice > div > .category-title {
-  text-shadow: unset;
 }
 
 .category-header {

@@ -218,7 +218,6 @@ const setChoice = (element) => {
 	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
 	if (count >= limit) stop = true;
 	if (choiceDeactivator(element)) {
-		console.log(element, 'element');
 		requireDeactivator(element);
 		playSE('audio/click2.ogg');
 	}
@@ -228,7 +227,6 @@ const setChoice = (element) => {
 			for (let sibling of siblings) {
 				nephew = sibling.firstElementChild
 				if (choiceDeactivator(nephew)) {
-					console.log(nephew, 'siostrzeniec');
 					requireDeactivator(nephew);
 					break;
 				}
@@ -264,7 +262,8 @@ const setupCosts = () => {
 	}
 }
 const setupRequirements = () => {
-	const elements = document.getElementsByClassName('conreqs');
+	const conElements = document.getElementsByClassName('conflicts');
+	const reqElements = document.getElementsByClassName('requires');
 	const stringGenerator = (ids) => {
 		const idArray = ids.split(', ');
 		let result = "";
@@ -275,24 +274,21 @@ const setupRequirements = () => {
 		result = result.substring(0, result.length-2);
 		return result;
 	}
-	for (let element of elements) {
-		const grandParent = element.parentElement.parentElement;
-		if (!grandParent.classList.contains('choice')) continue;
-		let requirements = grandParent.dataset.requires;
-		let conflicts = grandParent.dataset.conflicts;
-		let requiresString, conflictsString;
-		if (requirements !== undefined) {
-			requirements = requirements.replace(/\b(?:, xor|, or|, and)\b/, '');
-			requiresString = stringGenerator(requirements);
-			element.innerHTML += `<span class="requires">Requires: ${requiresString}<br></span>`
+	const stringWriter = (elements, isConflict = false) => {
+		for (let element of elements) {
+			const grandParent = element.parentElement.parentElement;
+			if (!grandParent.classList.contains('choice')) continue;
+			let conreq = isConflict ? grandParent.dataset.conflicts : grandParent.dataset.requires;
+			let conreqString;
+			if (conreq !== undefined) {
+				conreq = conreq.replace(/\b(?:, xor|, or|, and)\b/, '');
+				conreqString = stringGenerator(conreq);
+				element.innerHTML = isConflict ? `<span class="conflicts">Conflicts: </span><span>${conreqString}</span>` : `<span class="requires">Requires: </span><span>${conreqString}<br></span>`
+			}
 		}
-		if (conflicts !== undefined) {
-			conflicts = conflicts.replace(/\b(?:, xor|, or|, and)\b/, '');
-			conflictsString = stringGenerator(conflicts);
-			element.innerHTML += `<span class="conflicts">Conflicts: ${conflictsString}</span>`
-		}
-
 	}
+	stringWriter(conElements, true);
+	stringWriter(reqElements,false);
 }
 choiceDisabler();
 setupCosts();

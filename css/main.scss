@@ -53,7 +53,7 @@ html {
         > .category-title {
             text-shadow: rgb(0, 0, 0) 0 1px 3px;
         }
-        > .points {
+        > .points, .conflicts, .requires {
             text-shadow: rgb(0, 0, 0) 0 1px 2px;
             color: #fff;
             &.positive {
@@ -61,6 +61,12 @@ html {
             }
             &.negative {
                 color: #d23b73;
+            }
+            > .conflicts {
+                color: #d23b73;
+            }
+            > .requires {
+                color: #3bbbd2;
             }
         }
     }
@@ -90,9 +96,6 @@ html {
         cursor: not-allowed;
     }
     background: rgb(100, 14, 14);
-    > div > .category-title {
-        text-shadow: unset;
-    }
 }
 .category-header{
     width: max-content;
