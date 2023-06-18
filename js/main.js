@@ -1,4 +1,8 @@
 //Audio Handler
+let seVolume = 50;
+let bgmVolume = 50;
+const bgm = new Audio('audio/bgm1.ogg');
+bgm.loop = true;
 const playSE = (path, volume = 100) => {
 	const audio = new Audio(path);
 	audio.volume = (volume/100);
@@ -9,6 +13,7 @@ const changeVolume = (audio, value) => {
 	audio.volume = (value/100);
 	return audio;
 }
+changeVolume(bgm, bgmVolume);
 const fadeIn = (audio, endVolume = 100) => {
 	endVolume = endVolume > 100 ? 100 : endVolume;
 	return new Promise ((resolve) => {
@@ -51,7 +56,7 @@ const changeAudio = (audio, path, endVolume) => {
 }
 //Set up Event Listeners
 document.addEventListener('click', function firstInteraction() {
-	fadeIn(document.getElementById('bgm'), document.getElementById('customRange1').value);
+	fadeIn(bgm, document.getElementById('customRange1').value);
 	document.removeEventListener('click', firstInteraction);
 });
 const choices = document.getElementsByClassName("choice");
@@ -207,7 +212,7 @@ const choiceDisabler = () => {
 //choice handler
 const setChoice = (element) => {
 	if (!conReq(element)) {
-		playSE('audio/error.ogg');
+		playSE('audio/error.ogg', seVolume);
 		return;
 	}
 	const grandParent = element.parentElement.parentElement;
@@ -219,7 +224,7 @@ const setChoice = (element) => {
 	if (count >= limit && limit !== 0) stop = true;
 	if (choiceDeactivator(element)) {
 		requireDeactivator(element);
-		playSE('audio/click2.ogg');
+		playSE('audio/click2.ogg', seVolume);
 	}
 	else {
 		let nephew
@@ -233,7 +238,7 @@ const setChoice = (element) => {
 			}
 		}
 		choiceActivator(element);
-		playSE('audio/click1.ogg');
+		playSE('audio/click1.ogg', seVolume);
 	}
 	choiceDisabler();
 	hideHandler();

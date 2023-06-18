@@ -97,7 +97,7 @@ class Scramble {
 //Scramble Class for Intro part
 class Intro extends Scramble {
 	next() {
-		playSE('audio/click1.ogg');
+		playSE('audio/click1.ogg', seVolume);
 		super.next();
 		if (this.counter === 1) document.getElementById("previous").removeAttribute("disabled");
 		if (this.counter + 1 === this.phrases.length) {
@@ -107,7 +107,7 @@ class Intro extends Scramble {
 
 	}
 	previous() {
-		playSE('audio/click1.ogg');
+		playSE('audio/click1.ogg', seVolume);
 		if (this.counter === this.phrases.length - 1) {
 			document.getElementById("next").removeAttribute("disabled");
 			document.getElementById("accept").classList.add("d-none");
@@ -117,14 +117,15 @@ class Intro extends Scramble {
 
 	}
 	accept() {
-		playSE('audio/click1.ogg');
-		changeAudio(document.getElementById("bgm"), 'audio/bgm2.ogg', document.getElementById('customRange1').value);
+		playSE('audio/click1.ogg', seVolume);
+		changeAudio(bgm, 'audio/bgm2.ogg', bgmVolume);
 		anime({
-			targets: '#welcome',
+			targets: '#welcome, #goddess',
 			opacity: 0,
 			easing: 'easeInOutSine',
 			complete: () => {
 				document.getElementById("welcome").classList.add("d-none")
+				document.getElementById("goddess").classList.add("d-none")
 				document.getElementById("unwelcome").classList.remove("d-none");
 				anime({
 					targets: '#unwelcome',
@@ -183,7 +184,9 @@ class World extends Scramble {
 	}
 
 	// Automatically update text based on the given interval
-	auto(interval = 800) {
+	auto(maxInterval = 800) {
+		const max = maxInterval;
+		const interval = Math.floor(Math.random()*max + 200);
 		this.setText('').then(() => {
 			if (this.counter === this.phrases.length - 1) {
 				this.worldLine = Math.floor(Math.random() * (this.worldLines.length - 1));
@@ -199,7 +202,7 @@ class World extends Scramble {
 					const old = this.old[i];
 					old.innerText = i === 0 ? this.el.innerText : this.old[i - 1].innerText;
 				}
-				this.auto(interval);
+				this.auto(max);
 			}, interval);
 		});
 	}
@@ -224,7 +227,7 @@ const consoleOutputFromFile = async (url) => {
 			} else formated[group].push(line);
 		}
 		const worldScramble = new World(document.getElementById('programming-gibberish'), document.getElementsByClassName('programming-old'), formated);
-		worldScramble.auto(200);
+		worldScramble.auto(800);
 	} catch (error) {
 		console.error('Error:', error);
 	}
