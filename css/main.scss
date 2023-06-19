@@ -43,23 +43,27 @@ html {
 }
 
 #audioBar {
-    position: fixed;
     padding-top: 5px;
     max-width: fit-content;
+    max-height: 100px;
     border-radius: 1rem 1rem 0 0;
     background: rgba(43, 14, 136, 0.75);
     margin-bottom: -80px;
     transition: margin-bottom 0.2s;
+    overflow: hidden;
+    @media (min-resolution: 120dpi) {
+        max-width: 80px!important;
+
+        margin-bottom: -80px!important;
+    }
     &:hover, &:active {
+        max-width: fit-content!important;
         margin-bottom: 0!important;
     }
     .form-range {
         max-width: 200px;
         max-height: 100px;
         height: auto;
-    }
-    @media (min-resolution: 120dpi) {
-        margin-bottom: -80px!important;
     }
     //background: linear-gradient(90deg, rgba(43,14,136,0) 0%, rgba(43,14,136,0.5) 50%, rgba(43,14,136,0) 100%);
 }
@@ -169,11 +173,20 @@ html {
     height: fit-content;
     min-width: min-content;
     max-width: 15%;
+    @media (min-resolution: 120dpi) and (orientation: portrait) {
+        left: 0;
+        top: 0;
+        border-radius: 0 0 1rem 0!important;
+    }
 }
 #programming-gibberish, .programming-old, #programming-title{
-    height: 0.8rem!important;
+    height: 0.9rem!important;
     font-size: 0.8rem;
     color: white;
+    @media (min-resolution: 120dpi) and (orientation: portrait){
+        transform: translateY(-1.1rem);
+        overflow: hidden;
+    }
 }
 #programming-title {
     color: #ffffff44;
