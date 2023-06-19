@@ -13063,19 +13063,26 @@ html > body {
   opacity: 0;
 }
 
-#pointBar {
+#audioBar {
+  position: fixed;
+  padding-top: 5px;
   max-width: fit-content;
+  border-radius: 1rem 1rem 0 0;
+  background: rgba(43, 14, 136, 0.75);
+  margin-bottom: -80px;
+  transition: margin-bottom 0.2s;
 }
-#pointBar .form-range {
+#audioBar:hover, #audioBar:active {
+  margin-bottom: 0 !important;
+}
+#audioBar .form-range {
   max-width: 200px;
+  max-height: 100px;
   height: auto;
 }
 @media (min-resolution: 120dpi) {
-  #pointBar {
-    transform: scale(0.5, 0.5);
-    margin-right: 0 !important;
-    margin-left: auto;
-    max-width: 100px;
+  #audioBar {
+    margin-bottom: -80px !important;
   }
 }
 
@@ -13222,20 +13229,20 @@ html > body {
   width: auto;
   position: fixed;
   right: 0;
+  bottom: 0;
   z-index: -100;
 }
 @media (min-resolution: 120dpi) and (orientation: portrait) {
   #goddess {
-    height: 50%;
-    left: 0;
-    bottom: 0;
+    height: auto;
+    width: 100%;
+    right: unset;
   }
 }
 @media (min-resolution: 120dpi) and (orientation: landscape) {
   #goddess {
-    width: 50%;
-    height: auto;
-    top: 0;
+    height: 100%;
+    right: 0;
   }
 }
 

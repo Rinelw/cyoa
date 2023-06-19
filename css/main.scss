@@ -42,17 +42,24 @@ html {
     opacity: 0;
 }
 
-#pointBar {
+#audioBar {
+    position: fixed;
+    padding-top: 5px;
     max-width: fit-content;
+    border-radius: 1rem 1rem 0 0;
+    background: rgba(43, 14, 136, 0.75);
+    margin-bottom: -80px;
+    transition: margin-bottom 0.2s;
+    &:hover, &:active {
+        margin-bottom: 0!important;
+    }
     .form-range {
         max-width: 200px;
+        max-height: 100px;
         height: auto;
     }
     @media (min-resolution: 120dpi) {
-        transform: scale(0.5, 0.5);
-        margin-right: 0!important;
-        margin-left: auto;
-        max-width: 100px;
+        margin-bottom: -80px!important;
     }
     //background: linear-gradient(90deg, rgba(43,14,136,0) 0%, rgba(43,14,136,0.5) 50%, rgba(43,14,136,0) 100%);
 }
@@ -194,15 +201,15 @@ html {
     width: auto;
     position: fixed;
     right: 0;
+    bottom: 0;
     z-index: -100;
     @media (min-resolution: 120dpi) and (orientation: portrait) {
-        height: 50%;
-        left: 0;
-        bottom: 0;
+        height: auto;
+        width: 100%;
+        right: unset;
     }
     @media (min-resolution: 120dpi) and (orientation: landscape) {
-        width: 50%;
-        height: auto;
-        top: 0;
+        height: 100%;
+        right: 0;
     }
 }
