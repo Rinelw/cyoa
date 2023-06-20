@@ -117,6 +117,7 @@ const hideHandler = () => {
 }
 const choiceDeactivator = (element) => {
 	if (element.classList.contains("active-choice")){
+		modifyCosts(element, false);
 		let value = parseInt(element.dataset.points);
 		element.classList.remove("active-choice");
 		subPoints(value);
@@ -126,6 +127,7 @@ const choiceDeactivator = (element) => {
 }
 const choiceActivator = (element) => {
 	if (!element.classList.contains("active-choice")){
+		modifyCosts(element, true);
 		let value = parseInt(element.dataset.points);
 		element.classList.add("active-choice");
 		addPoints(value);
@@ -218,6 +220,7 @@ const setChoice = (element) => {
 	const grandParent = element.parentElement.parentElement;
 	const container = grandParent.parentElement.parentElement;
 	const siblings = grandParent.children;
+	const activeSiblings = grandParent.querySelectorAll('.active-choice');
 	const count = siblings.length;
 	let stop = false;
 	const limit = container.dataset.limit ? parseInt(container.dataset.limit) : 1;
@@ -228,7 +231,7 @@ const setChoice = (element) => {
 	}
 	else {
 		let nephew
-		if (stop) {
+		if (stop && activeSiblings.length >= limit) {
 			for (let sibling of siblings) {
 				nephew = sibling.firstElementChild
 				if (choiceDeactivator(nephew)) {
@@ -251,18 +254,41 @@ for (let i = 0; i < programming.length; i++) {
 	margin += 0.9;
 	color -= 0x33;
 }
+const setCosts = (cost = 0, element) => {
+	const absoluteCost = Math.abs(cost);
+	if (cost !== 0) {
+		element.classList.add(cost > 0 ? 'positive' : 'negative')
+		element.innerText = cost > 0 ? `+${absoluteCost} Karma` : `-${absoluteCost} Karma`
+	} else {
+		element.classList.remove('positive', 'negative')
+		element.innerText = `${absoluteCost} Karma`;
+	}
+}
 const setupCosts = () => {
-	const elements = document.getElementsByClassName('points');
+	const elements = document.getElementsByClassName('choice');
 	for (let element of elements) {
-		const grandParent = element.parentElement.parentElement;
-		if (!grandParent.classList.contains('choice')) continue;
-		const cost= parseInt(grandParent.dataset.points);
-		const absoluteCost = Math.abs(cost)
-		if (cost !== 0) {
-			element.classList.add(cost > 0 ? 'positive' : 'negative')
-			element.innerText = cost > 0 ? `+${absoluteCost} Karma` : `-${absoluteCost} Karma`
-		} else {
-			element.innerText = `${absoluteCost} Karma`;
+		const cost= element.dataset.points ? parseInt(element.dataset.points) : 0;
+		const pointsSpan = element.querySelector('.points');
+		setCosts(cost, pointsSpan);
+	}
+}
+const modifyCosts = (element, isPositive = true) => {
+	const costModifiers= element.dataset.pointsmod ? element.dataset.pointsmod.split(', ') : undefined;
+	if (costModifiers === undefined) return;
+	for (let modifier of costModifiers) {
+		const modId = modifier.split(' ');
+		if (modId.length > 1) {
+			const costMod = isPositive ? parseInt(modId.shift()) : -parseInt(modId.shift()) ;
+			for (let id of modId) {
+				const target = document.getElementById(id);
+				const points = parseInt(target.dataset.points) + costMod;
+				target.dataset.points = `${points}`;
+				const pointsSpan = target.querySelector('.points');
+				setCosts(points, pointsSpan);
+				if (target.classList.contains("active-choice")){
+					addPoints(costMod);
+				}
+			}
 		}
 	}
 }
@@ -283,12 +309,12 @@ const setupRequirements = () => {
 		for (let element of elements) {
 			const grandParent = element.parentElement.parentElement;
 			if (!grandParent.classList.contains('choice')) continue;
-			let conreq = isConflict ? grandParent.dataset.conflicts : grandParent.dataset.requires;
-			let conreqString;
-			if (conreq !== undefined) {
-				conreq = conreq.replace(/\b(?:, xor|, or|, and)\b/, '');
-				conreqString = stringGenerator(conreq);
-				element.innerHTML = isConflict ? `<span class="conflicts">Conflicts: </span><span>${conreqString}</span>` : `<span class="requires">Requires: </span><span>${conreqString}<br></span>`
+			let dataset = isConflict ? grandParent.dataset.conflicts : grandParent.dataset.requires;
+			let dataString;
+			if (dataset !== undefined) {
+				dataset = dataset.replace(/\b(?:, xor|, or|, and)\b/, '');
+				dataString = stringGenerator(dataset);
+				element.innerHTML = isConflict ? `<span class="conflicts">Conflicts: </span><span>${dataString}</span>` : `<span class="requires">Requires: </span><span>${dataString}<br></span>`
 			}
 		}
 	}

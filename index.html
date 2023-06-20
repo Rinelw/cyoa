@@ -110,7 +110,7 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="arborea" data-points="-5">
+						<div class="card choice" id="arborea" data-points="-5" data-pointsmod="5 earth">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Arborea</h3>
 								<h5 class="text-center points"></h5>
@@ -784,6 +784,61 @@
 				</div>
 			</div>
 	</div>
+	<!-- Race Section -->
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="design-body">
+		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			<h1 class="category-title pt-2 px-5">Races</h1>
+			<span class="text-white fs-5">Ah, my dear mortal, now that you have chosen to design your own body, it is time to select the race you shall embody. I have carefully curated four categories for your consideration.</span>
+		</div>
+		<div class="container-xl category-bg shadow-lg rounded p-4">
+			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center g-2">
+				<div class="col">
+					<div class="card choice" id="common-race" data-points="0" data-requires="design-body">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Common Race</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>These are the most prevalent races in the world you have selected. If you crave familiarity and a sense of belonging, these options will serve you well. As a member of a common race, you will have an easier time blending in with the masses.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="uncommon-race" data-points="0" data-requires="design-body">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Uncommon Race</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Should you desire to stand out from the crowd just a little, the less common races might intrigue you. While not entirely rare, these beings possess characteristics that set them apart from the majority.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="exotic-race" data-points="0" data-requires="design-body">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Exotic Races</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, the exotic races! A truly fascinating choice for those who yearn for a life less ordinary. These rare beings possess unique abilities and captivating appearances that are sure to draw attention. In this category, you will find races that are both powerful and alluring.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="unique-races" data-points="0" data-requires="design-body">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Unique Races</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, we have the unique races. These extraordinary beings do not exist in the world you've chosen, but I can make an exception just for you. Selecting a unique race will make you a truly one-of-a-kind entity.</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Sex Section -->
 	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="design-body">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
@@ -894,7 +949,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Body Type -->
 	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
@@ -1022,6 +1076,104 @@
 							<h6 class="text-center conflicts"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The hyper-masculine face structure amplifies masculine traits to an extreme degree. This choice is characterized by an exceptionally chiseled jawline and chin, strikingly prominent cheekbones, and a pronounced brow ridge. Choosing this option will result in a bold and imposing presence.</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="hyper-feminine-face, feminine-face, androgynous-face, masculine-face, hyper-masculine-face">
+		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			<h1 class="category-title pt-2 px-5">Hair Length</h1>
+			<span class="text-white fs-5">"Ah, my dear mortal! Now comes the time to choose the magnificent crown of your being, your hair. I present to you eight wondrous options to determine the maximum length and starting size of your tresses. Remember, your choice here only affects the potential length and initial size, so embrace your inner desires and let your imagination run wild.</span>
+		</div>
+		<div class="container-xl category-bg shadow-lg rounded p-4">
+			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
+				<div class="col">
+					<div class="card choice" id="bald-hair" data-points="0" data-conflicts="hyper-feminine-face">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Bald</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Some may say there's beauty in simplicity. If you prefer a smooth, shining scalp, this is the choice for you. But I must say, there's so much more potential in a full head of hair, don't you think?</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="buzz-cut-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Buzz Cut</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A very short and practical cut, but it might not be as exciting as some of the other options. However, if you desire a low-maintenance style, perhaps this is for you.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="short-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Short</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A sensible choice for those who want a bit more hair to play with, but still nothing too extravagant. It's cute, but I can't help but wonder if you're holding back.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="medium-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Medium</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, now we're getting somewhere! With a shoulder-length mane, you can enjoy the versatility of different styles and the delightful sensation of your hair brushing against your skin.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="long-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Long</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Flowing locks cascading down your back, this choice is sure to catch the eye of admirers. The possibilities for expressing your sensuality increase with every inch.</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="flowing-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Flowing</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A stunning statement of beauty! With hair reaching your waist, you can indulge in the feeling of silky tresses enveloping your body. Can you imagine the pleasure of running your fingers through such a luxurious mane?</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="floor-length-hair" data-points="0">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Floor-Length</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A truly spellbinding choice! Your hair will sweep the ground as you walk, leaving a mesmerizing trail behind you. The sheer volume and length is a testament to your irresistible allure</span></div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card choice" id="rapunzel-hair" data-points="0" data-conflicts="hyper-masculine-face">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Rapunzel</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires"></h6>
+							<h6 class="text-center conflicts"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Ah, now we're getting somewhere! With a shoulder-length mane, you can enjoy the versatility of different styles and the delightful sensation of your hair brushing against your skin.</span></div>
 					</div>
 				</div>
 			</div>
@@ -1213,6 +1365,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- Butt -->
 	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
