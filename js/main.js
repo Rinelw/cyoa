@@ -80,7 +80,7 @@ class Point {
 	}
 	setPoints = (number) => {
 		this.value = number;
-		updatePoints(number);
+		this.updatePoints(number);
 	}
 	subPoints = (number) => {
 		this.value -= number;
