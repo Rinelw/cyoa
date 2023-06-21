@@ -117,7 +117,7 @@ class Point {
 	#setupCosts = () => {
 		const elements = document.getElementsByClassName('choice');
 		for (let element of elements) {
-			const cost= this.#getPoints(element, `data-${this.name.toLowerCase()}`);
+			const cost= this.#getPoints(element, `data-points-${this.name.toLowerCase()}`);
 			const pointsSpan = element.querySelector('.points');
 			this.setCosts(cost, pointsSpan);
 		}
@@ -205,7 +205,7 @@ const hideHandler = () => {
 const choiceDeactivator = (element) => {
 	if (element.classList.contains("active-choice")){
 		karma.modifyCosts(element, false);
-		let value = parseInt(element.dataset.points);
+		let value = parseInt(element.dataset.pointsKarma);
 		element.classList.remove("active-choice");
 		karma.subPoints(value);
 		return true;
@@ -215,7 +215,7 @@ const choiceDeactivator = (element) => {
 const choiceActivator = (element) => {
 	if (!element.classList.contains("active-choice")){
 		karma.modifyCosts(element, true);
-		let value = parseInt(element.dataset.points);
+		let value = parseInt(element.dataset.pointsKarma);
 		element.classList.add("active-choice");
 		karma.addPoints(value);
 		return true;
@@ -333,14 +333,7 @@ const setChoice = (element) => {
 	choiceDisabler();
 	hideHandler();
 }
-const programming = document.getElementsByClassName('programming-old');
-let margin = 1.2;
-let color = 0xffffffaa;
-for (let i = 0; i < programming.length; i++) {
-	programming[i].style= `margin-bottom: ${margin}rem !important; color: #${color.toString(16)} !important`;
-	margin += 0.9;
-	color -= 0x33;
-}
+
 const setupRequirements = () => {
 	const conElements = document.getElementsByClassName('conflicts');
 	const reqElements = document.getElementsByClassName('requires');
