@@ -13059,6 +13059,10 @@ html > body {
   max-width: 800px;
 }
 
+#intro {
+  min-height: 360px !important;
+}
+
 #unwelcome {
   opacity: 0;
 }
@@ -13206,6 +13210,15 @@ html > body {
     border-radius: 0 0 1rem 0 !important;
   }
 }
+#backpack > div > .backpack-title, #backpack > div > span {
+  text-shadow: white 0 0 15px;
+}
+#backpack > div > .backpack-title.positive, #backpack > div > span.positive {
+  text-shadow: #84ff00 0 0 15px, white 0 0 5px;
+}
+#backpack > div > .backpack-title.negative, #backpack > div > span.negative {
+  text-shadow: #ff0090 0 0 15px, white 0 0 5px;
+}
 
 #programming-gibberish, .programming-old, #programming-title {
   height: 0.9rem !important;
@@ -13228,16 +13241,6 @@ html > body {
   pointer-events: none;
   z-index: -100;
   position: fixed;
-}
-
-#points, .backpack-title {
-  text-shadow: white 0 0 15px;
-}
-#points.positive, .backpack-title.positive {
-  text-shadow: #84ff00 0 0 15px, white 0 0 5px;
-}
-#points.negative, .backpack-title.negative {
-  text-shadow: #ff0090 0 0 15px, white 0 0 5px;
 }
 
 #goddess {

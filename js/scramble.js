@@ -7,7 +7,7 @@ class TextScramble {
 		this.start = start;
 		this.end = end;
 	}
-	setText(newText, oldText = this.el.innerText) {
+	setText(newText, oldText = this.el.textContent) {
 		const length = Math.max(oldText.length, newText.length);
 		const promise = new Promise((resolve) => this.resolve = resolve);
 		this.queue = [];
@@ -78,7 +78,7 @@ class Scramble {
 		this.fx = new TextScramble(this.el);
 		this.counter = 0;
 	}
-	setText(start = this.fx.el.innerText) {
+	setText(start = this.fx.el.textContent) {
 		return this.fx.setText(this.phrases[this.counter], start);
 	}
 	next() {
@@ -87,10 +87,6 @@ class Scramble {
 	}
 	previous() {
 		this.counter--
-		this.setText();
-	}
-	random() {
-		this.counter = Math.floor(Math.random * this.phrases.length) - 1;
 		this.setText();
 	}
 }
@@ -200,14 +196,13 @@ class World extends Scramble {
 			setTimeout(() => {
 				for (let i = this.old.length - 1; i >= 0; i--) {
 					const old = this.old[i];
-					old.innerText = i === 0 ? this.el.innerText : this.old[i - 1].innerText;
+					old.textContent = i === 0 ? this.el.textContent : this.old[i - 1].textContent;
 				}
 				this.auto(max);
 			}, interval);
 		});
 	}
 }
-
 const consoleOutputFromFile = async (url) => {
 	try {
 		const response = await fetch(url);
@@ -232,4 +227,4 @@ const consoleOutputFromFile = async (url) => {
 		console.error('Error:', error);
 	}
 }
-consoleOutputFromFile('data/console.txt');
+consoleOutputFromFile('data/console.txt').then();

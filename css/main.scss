@@ -38,6 +38,9 @@ html {
 #welcome {
     max-width: 800px;
 }
+#intro {
+    min-height: 360px!important;
+}
 #unwelcome {
     opacity: 0;
 }
@@ -178,6 +181,19 @@ html {
         top: 0;
         border-radius: 0 0 1rem 0!important;
     }
+    > div > {
+        .backpack-title, span {
+            text-shadow: rgb(255, 255, 255) 0 0 15px;
+
+            &.positive {
+                text-shadow: rgb(132, 255, 0) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+            }
+
+            &.negative {
+                text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
+            }
+        }
+    }
 }
 #programming-gibberish, .programming-old, #programming-title{
     height: 0.9rem!important;
@@ -199,15 +215,6 @@ html {
         position: fixed;
     }
     
-}
-#points, .backpack-title{
-    text-shadow: rgb(255, 255, 255) 0 0 15px;
-    &.positive {
-        text-shadow: rgb(132, 255, 0) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
-    }
-    &.negative {
-        text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
-    }
 }
 #goddess {
     height: 100%;

@@ -6,7 +6,7 @@ bgm.loop = true;
 const playSE = (path, volume = 100) => {
 	const audio = new Audio(path);
 	audio.volume = (volume/100);
-	audio.play();
+	audio.play().then();
 	return audio;
 }
 const changeVolume = (audio, value) => {
@@ -65,26 +65,113 @@ for (let choice of choices) {
 }
 
 //Points System
-
+class Point {
+	constructor(name = '', value = 0) {
+		this.value = value;
+		this.name = name;
+		this.prefix = ''
+	}
+	updatePoints = (number) => {
+		const pointBar = document.getElementById(this.name).querySelector('span');
+		if (!pointBar) return;
+		pointBar.classList.remove('positive', 'negative');
+		if (number !== 0) pointBar.classList.add(number > 0 ? 'positive' : 'negative');
+		pointBar.textContent = `${number}`;
+	}
+	setPoints = (number) => {
+		this.value = number;
+		updatePoints(number);
+	}
+	subPoints = (number) => {
+		this.value -= number;
+		this.updatePoints(this.value);
+	}
+	addPoints = (number) => {
+		this.value += number;
+		this.updatePoints(this.value);
+	}
+	setCosts = (cost = 0, element) => {
+		const absoluteCost = Math.abs(cost);
+		if (cost !== 0) {
+			element.classList.add(cost > 0 ? 'positive' : 'negative')
+			element.textContent = cost > 0 ? `+${absoluteCost} ${this.name}` : `-${absoluteCost} ${this.name}`
+		} else {
+			element.classList.remove('positive', 'negative')
+			element.textContent = `${absoluteCost} ${this.name}`;
+		}
+	}
+	#getPoints = (element, attribute) => {
+		return element.getAttribute(attribute) ? parseInt(element.getAttribute(attribute)) : 0;
+	}
+	#setupBackpack = () => {
+		const backpack = document.getElementById("backpack");
+		const container = backpack.appendChild(document.createElement("div"));
+		container.classList.add("col");
+		container.setAttribute("id", this.name);
+		const title = container.appendChild(document.createElement("h4"));
+		title.classList.add("backpack-title");
+		const points = container.appendChild(document.createElement("span"));
+		points.textContent = "0";
+		points.classList.add("fs-4");
+	}
+	#setupCosts = () => {
+		const elements = document.getElementsByClassName('choice');
+		for (let element of elements) {
+			const cost= this.#getPoints(element, `data-${this.name.toLowerCase()}`);
+			const pointsSpan = element.querySelector('.points');
+			this.setCosts(cost, pointsSpan);
+		}
+	}
+	changePrefix = (prefix = '') => {
+		this.prefix = prefix;
+		const points = document.getElementById(this.name).querySelector('.backpack-title');
+		points.textContent = `${this.prefix + ' ' + this.name.charAt(0).toUpperCase() + this.name.slice(1)}:`;
+	}
+	setup() {
+		this.#setupBackpack();
+		this.#setupCosts();
+		this.changePrefix();
+	}
+	modifyCosts = (element, isPositive = true) => {
+		const dataModifier = this.#getPoints(element, element.getAttribute(`data-${this.name.toLowerCase()}-mod`));
+		const costModifiers = dataModifier === 0 ? undefined : dataModifier;
+		if (costModifiers === undefined) return;
+		for (let modifier of costModifiers) {
+			const modId = modifier.split(' ');
+			if (modId.length > 1) {
+				const costMod = isPositive ? parseInt(modId.shift()) : -parseInt(modId.shift()) ;
+				for (let id of modId) {
+					const target = document.getElementById(id).querySelector('h4');
+					const initialPoints = this.getPoints(target, `data-${this.name.toLowerCase()}`);
+					const modifiedPoints = initialPoints + costMod;
+					target.setAttribute(`data-${this.name.toLowerCase()}`, `${modifiedPoints}`);
+					const pointsSpan = target.querySelector('.points');
+					this.setCosts(points, pointsSpan);
+					if (target.classList.contains("active-choice")){
+						this.addPoints(costMod);
+					}
+				}
+			}
+		}
+	}
+}
+class Bank {
+	constructor(vault = []) {
+		this.names = vault;
+		this.vault = [];
+		this.currencySetup();
+	}
+	currencySetup() {
+		for (let i = 0; i < this.names.length; i++) {
+			this.vault[i] = new Point(this.names[i]);
+		}
+	}
+}
+const backpack = new Bank(['karma']);
+const karma = backpack.vault[0];
+karma.setup();
+karma.changePrefix('Current:')
 let points = 0;
-const updatePoints = (number) => {
-	let pointBar = document.getElementById("points");
-	pointBar.classList.remove('positive', 'negative');
-	if (number !== 0) pointBar.classList.add(number > 0 ? 'positive' : 'negative');
-	pointBar.innerText = `${number}`;
-}
-const setPoints = (number) => {
-	points = number;
-	updatePoints(number);
-}
-const subPoints = (number) => {
-	points -= number;
-	updatePoints(points);
-}
-const addPoints = (number) => {
-	points += number;
-	updatePoints(points);
-}
 //Hide n Reveal
 const hideHandler = () => {
 	const elements = document.querySelectorAll('[data-reveals], [data-hides]');
@@ -117,20 +204,20 @@ const hideHandler = () => {
 }
 const choiceDeactivator = (element) => {
 	if (element.classList.contains("active-choice")){
-		modifyCosts(element, false);
+		karma.modifyCosts(element, false);
 		let value = parseInt(element.dataset.points);
 		element.classList.remove("active-choice");
-		subPoints(value);
+		karma.subPoints(value);
 		return true;
 	} else
 	return false;
 }
 const choiceActivator = (element) => {
 	if (!element.classList.contains("active-choice")){
-		modifyCosts(element, true);
+		karma.modifyCosts(element, true);
 		let value = parseInt(element.dataset.points);
 		element.classList.add("active-choice");
-		addPoints(value);
+		karma.addPoints(value);
 		return true;
 	} else
 	return false;
@@ -254,44 +341,6 @@ for (let i = 0; i < programming.length; i++) {
 	margin += 0.9;
 	color -= 0x33;
 }
-const setCosts = (cost = 0, element) => {
-	const absoluteCost = Math.abs(cost);
-	if (cost !== 0) {
-		element.classList.add(cost > 0 ? 'positive' : 'negative')
-		element.innerText = cost > 0 ? `+${absoluteCost} Karma` : `-${absoluteCost} Karma`
-	} else {
-		element.classList.remove('positive', 'negative')
-		element.innerText = `${absoluteCost} Karma`;
-	}
-}
-const setupCosts = () => {
-	const elements = document.getElementsByClassName('choice');
-	for (let element of elements) {
-		const cost= element.dataset.points ? parseInt(element.dataset.points) : 0;
-		const pointsSpan = element.querySelector('.points');
-		setCosts(cost, pointsSpan);
-	}
-}
-const modifyCosts = (element, isPositive = true) => {
-	const costModifiers= element.dataset.pointsmod ? element.dataset.pointsmod.split(', ') : undefined;
-	if (costModifiers === undefined) return;
-	for (let modifier of costModifiers) {
-		const modId = modifier.split(' ');
-		if (modId.length > 1) {
-			const costMod = isPositive ? parseInt(modId.shift()) : -parseInt(modId.shift()) ;
-			for (let id of modId) {
-				const target = document.getElementById(id);
-				const points = parseInt(target.dataset.points) + costMod;
-				target.dataset.points = `${points}`;
-				const pointsSpan = target.querySelector('.points');
-				setCosts(points, pointsSpan);
-				if (target.classList.contains("active-choice")){
-					addPoints(costMod);
-				}
-			}
-		}
-	}
-}
 const setupRequirements = () => {
 	const conElements = document.getElementsByClassName('conflicts');
 	const reqElements = document.getElementsByClassName('requires');
@@ -300,7 +349,7 @@ const setupRequirements = () => {
 		let result = "";
 		for (let id of idArray) {
 			const grandChild = document.getElementById(id).firstElementChild.firstElementChild;
-			result += grandChild.innerText + ', ';
+			result += grandChild.textContent + ', ';
 		}
 		result = result.substring(0, result.length-2);
 		return result;
@@ -322,5 +371,4 @@ const setupRequirements = () => {
 	stringWriter(reqElements,false);
 }
 choiceDisabler();
-setupCosts();
 setupRequirements();
