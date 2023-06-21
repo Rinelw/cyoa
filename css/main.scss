@@ -52,16 +52,21 @@ html {
     border-radius: 1rem 1rem 0 0;
     background: rgba(43, 14, 136, 0.75);
     margin-bottom: -80px;
-    transition: margin-bottom 0.2s;
+    transition: margin-bottom 0.2s, opacity 0.2s;
     overflow: hidden;
     @media (min-resolution: 120dpi) {
         max-width: 80px!important;
-
         margin-bottom: -80px!important;
+        > div {
+            opacity: 0;
+        }
     }
     &:hover, &:active {
         max-width: fit-content!important;
         margin-bottom: 0!important;
+        > div {
+            opacity: 1;
+        }
     }
     .form-range {
         max-width: 200px;

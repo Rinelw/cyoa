@@ -103,17 +103,6 @@ class Point {
 	#getPoints = (element, attribute) => {
 		return element.getAttribute(attribute) ? parseInt(element.getAttribute(attribute)) : 0;
 	}
-	#setupBackpack = () => {
-		const backpack = document.getElementById("backpack");
-		const container = backpack.appendChild(document.createElement("div"));
-		container.classList.add("col");
-		container.setAttribute("id", this.name);
-		const title = container.appendChild(document.createElement("h4"));
-		title.classList.add("backpack-title");
-		const points = container.appendChild(document.createElement("span"));
-		points.textContent = "0";
-		points.classList.add("fs-4");
-	}
 	#setupCosts = () => {
 		const elements = document.getElementsByClassName('choice');
 		for (let element of elements) {
@@ -122,15 +111,8 @@ class Point {
 			this.setCosts(cost, pointsSpan);
 		}
 	}
-	changePrefix = (prefix = '') => {
-		this.prefix = prefix;
-		const points = document.getElementById(this.name).querySelector('.backpack-title');
-		points.textContent = `${this.prefix + ' ' + this.name.charAt(0).toUpperCase() + this.name.slice(1)}:`;
-	}
-	setup() {
-		this.#setupBackpack();
+	setup(inBackpack = false) {
 		this.#setupCosts();
-		this.changePrefix();
 	}
 	modifyCosts = (element, isPositive = true) => {
 		const dataModifier = this.#getPoints(element, element.getAttribute(`data-${this.name.toLowerCase()}-mod`));
@@ -155,22 +137,50 @@ class Point {
 		}
 	}
 }
+class mainCurrency extends Point {
+	constructor(name = '', value = 0) {
+		super(name, value);
+	}
+	#setupBackpack = () => {
+		const backpack = document.getElementById("backpack");
+		const container = backpack.appendChild(document.createElement("div"));
+		container.classList.add("col");
+		container.setAttribute("id", this.name);
+		const title = container.appendChild(document.createElement("h4"));
+		title.classList.add("backpack-title");
+		const points = container.appendChild(document.createElement("span"));
+		points.textContent = "0";
+		points.classList.add("fs-4");
+	}
+	changePrefix = (prefix = '') => {
+		this.prefix = prefix;
+		const points = document.getElementById(this.name).querySelector('.backpack-title');
+		points.textContent = `${this.prefix + ' ' + this.name.charAt(0).toUpperCase() + this.name.slice(1)}:`;
+	}
+	setup(inBackpack = false) {
+		super.setup();
+		this.#setupBackpack();
+		this.changePrefix();
+	}
+
+}
 class Bank {
-	constructor(vault = []) {
-		this.names = vault;
-		this.vault = [];
+	constructor(name = '$',vault = []) {
+		this.names = vault
+		this.names.unshift(name);
+		this.vault = [new mainCurrency(name)];
 		this.currencySetup();
 	}
 	currencySetup() {
-		for (let i = 0; i < this.names.length; i++) {
+		for (let i = 1; i < (this.names.length)+1; i++) {
 			this.vault[i] = new Point(this.names[i]);
 		}
 	}
 }
-const backpack = new Bank(['karma']);
+const backpack = new Bank('karma');
 const karma = backpack.vault[0];
 karma.setup();
-karma.changePrefix('Current:')
+karma.changePrefix('Current')
 let points = 0;
 //Hide n Reveal
 const hideHandler = () => {
