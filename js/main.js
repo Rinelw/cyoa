@@ -1,4 +1,6 @@
 //Audio Handler
+// noinspection JSUnusedGlobalSymbols
+
 let seVolume = 50;
 let bgmVolume = 50;
 const bgm = new Audio('audio/bgm1.ogg');
@@ -71,39 +73,39 @@ class Point {
 		this.name = name;
 		this.prefix = ''
 	}
-	updatePoints = (number) => {
+	updatePoints(number) {
 		const pointBar = document.getElementById(this.name).querySelector('span');
 		if (!pointBar) return;
 		pointBar.classList.remove('positive', 'negative');
 		if (number !== 0) pointBar.classList.add(number > 0 ? 'positive' : 'negative');
 		pointBar.textContent = `${number}`;
 	}
-	setPoints = (number) => {
+	setPoints(number) {
 		this.value = number;
 		this.updatePoints(number);
 	}
-	subPoints = (number) => {
+	subPoints(number) {
 		this.value -= number;
 		this.updatePoints(this.value);
 	}
-	addPoints = (number) => {
+	addPoints(number) {
 		this.value += number;
 		this.updatePoints(this.value);
 	}
-	setCosts = (cost = 0, element) => {
+	setCosts(cost = 0, element) {
 		const absoluteCost = Math.abs(cost);
+		element.classList.remove('positive', 'negative')
 		if (cost !== 0) {
 			element.classList.add(cost > 0 ? 'positive' : 'negative')
 			element.textContent = cost > 0 ? `+${absoluteCost} ${this.name}` : `-${absoluteCost} ${this.name}`
 		} else {
-			element.classList.remove('positive', 'negative')
 			element.textContent = `${absoluteCost} ${this.name}`;
 		}
 	}
-	#getPoints = (element, attribute) => {
+	#getPoints(element, attribute) {
 		return element.getAttribute(attribute) ? parseInt(element.getAttribute(attribute)) : 0;
 	}
-	#setupCosts = () => {
+	#setupCosts() {
 		const elements = document.getElementsByClassName('choice');
 		for (let element of elements) {
 			const cost= this.#getPoints(element, `data-points-${this.name.toLowerCase()}`);
@@ -114,21 +116,22 @@ class Point {
 	setup(inBackpack = false) {
 		this.#setupCosts();
 	}
-	modifyCosts = (element, isPositive = true) => {
-		const dataModifier = this.#getPoints(element, element.getAttribute(`data-${this.name.toLowerCase()}-mod`));
-		const costModifiers = dataModifier === 0 ? undefined : dataModifier;
+	modifyCosts(element, isPositive = true) {
+		const dataModifier = element.getAttribute(`data-points-${this.name.toLowerCase()}-mod`);
+		const costModifiers = !dataModifier ? undefined : dataModifier.split(',');
 		if (costModifiers === undefined) return;
 		for (let modifier of costModifiers) {
-			const modId = modifier.split(' ');
+			const modId = modifier.trim().split(' ');
 			if (modId.length > 1) {
 				const costMod = isPositive ? parseInt(modId.shift()) : -parseInt(modId.shift()) ;
 				for (let id of modId) {
-					const target = document.getElementById(id).querySelector('h4');
-					const initialPoints = this.getPoints(target, `data-${this.name.toLowerCase()}`);
+					const target = document.getElementById(id);
+					if (!target) continue;
+					const initialPoints = this.#getPoints(target, `data-points-${this.name.toLowerCase()}`);
 					const modifiedPoints = initialPoints + costMod;
-					target.setAttribute(`data-${this.name.toLowerCase()}`, `${modifiedPoints}`);
+					target.setAttribute(`data-points-${this.name.toLowerCase()}`, `${modifiedPoints}`);
 					const pointsSpan = target.querySelector('.points');
-					this.setCosts(points, pointsSpan);
+					this.setCosts(modifiedPoints, pointsSpan);
 					if (target.classList.contains("active-choice")){
 						this.addPoints(costMod);
 					}
@@ -141,7 +144,7 @@ class mainCurrency extends Point {
 	constructor(name = '', value = 0) {
 		super(name, value);
 	}
-	#setupBackpack = () => {
+	#setupBackpack() {
 		const backpack = document.getElementById("backpack");
 		const container = backpack.appendChild(document.createElement("div"));
 		container.classList.add("col");
@@ -152,7 +155,7 @@ class mainCurrency extends Point {
 		points.textContent = "0";
 		points.classList.add("fs-4");
 	}
-	changePrefix = (prefix = '') => {
+	changePrefix(prefix = '') {
 		this.prefix = prefix;
 		const points = document.getElementById(this.name).querySelector('.backpack-title');
 		points.textContent = `${this.prefix + ' ' + this.name.charAt(0).toUpperCase() + this.name.slice(1)}:`;
@@ -175,6 +178,10 @@ class Bank {
 		for (let i = 1; i < (this.names.length)+1; i++) {
 			this.vault[i] = new Point(this.names[i]);
 		}
+	}
+	addCurrency(name){
+		if (!name || name === '' || !(name instanceof String)) throw new Error("Cannot add unnamed currency.");
+		this.vault.push(new Point(name));
 	}
 }
 const backpack = new Bank('karma');
@@ -237,8 +244,9 @@ const choiceActivator = (element) => {
 
 // false when no conflicts and true when conflicts found
 const conflictChecker = (element) => {
-	const conflicts = element.dataset.conflicts ? element.dataset.conflicts.split(', ') : undefined;
-	if (!conflicts) return false;
+	if (!element.dataset.conflicts) return false;
+	const dataset = element.dataset.conflicts.replaceAll(" ", "");
+	const conflicts = dataset.split(',');
 	for (let conflict of conflicts){
 		if (document.getElementById(conflict).classList.contains("active-choice")){
 			return true;
@@ -247,38 +255,42 @@ const conflictChecker = (element) => {
 	return false;
 }
 // True when requirements are met and false when they aren't
-const requirementChecker = (element) => {
-	const requires = element.dataset.requires ? element.dataset.requires.split(', ') : undefined;
-	if (!requires) return true;
-	let last = requires[requires.length-1]
-	const regEx = new RegExp(/\b(?:xor|or|and)\b/);
-	if (regEx.test(last)){
-		last = requires.pop();
-	} else {
-		last = 'or';
+const requirementChecker = (element, data) => {
+	if (!element.dataset.requires) return true;
+	const dataset = !data ? element.dataset.requires.replace(/\s/g, "") : data;
+	const andGroups = dataset.split('{and}');
+	const xorGroups = dataset.split('{xor}');
+	const requires = dataset.split(',').map( (empty) => {if (empty !== '') return empty});
+
+	if (andGroups.length > 1) {
+		let meetsRequirements = false;
+		for (let andGroup of andGroups){
+			meetsRequirements = requirementChecker(element, andGroup);
+			if (!meetsRequirements) return false;
+		}
+		return meetsRequirements;
 	}
-	let active = 0;
-	for (let require of requires){
-		switch (last){
-			case 'and':
-				if (!document.getElementById(require).classList.contains("active-choice"))
-				return false;
-				break;
-			case 'xor':
-				if (document.getElementById(require).classList.contains("active-choice"))
-				active++;
-				if (active > 1)
-				return false;
-				break;
-			case 'or':
-				if (document.getElementById(require).classList.contains("active-choice"))
-				return true;
-				break;
-			default:
-				break;
+
+	if (xorGroups.length > 1) {
+		let meetsRequirements = false;
+		let moreThanOnce = false;
+		for (let xorGroup of xorGroups) {
+			meetsRequirements = requirementChecker(element, xorGroup);
+			if (moreThanOnce && meetsRequirements) return false;
+			if (meetsRequirements) {
+				moreThanOnce = meetsRequirements;
+			}
+		}
+		return moreThanOnce;
+	}
+	for (let requirement of requires) {
+		const element = document.getElementById(requirement);
+		if (!element) return false;
+		if (element.classList.contains("active-choice")){
+			return true;
 		}
 	}
-	return !(last === 'or' || (last === 'xor' && active === 0));
+	return false;
 }
 //false when there are conflicts and requirements are not met, true when there aren't any conflicts and requirements are met
 const conReq = (element) => {
@@ -348,13 +360,25 @@ const setupRequirements = () => {
 	const conElements = document.getElementsByClassName('conflicts');
 	const reqElements = document.getElementsByClassName('requires');
 	const stringGenerator = (ids) => {
-		const idArray = ids.split(', ');
+		const idArray = ids.split(/(,|{and}|{xor})/gi).flat();
 		let result = "";
 		for (let id of idArray) {
-			const grandChild = document.getElementById(id).firstElementChild.firstElementChild;
-			result += grandChild.textContent + ', ';
+			const grandChild = id.search(/(,|{and}|{xor})/gi) ? document.getElementById(id).firstElementChild.firstElementChild.textContent : id;
+			switch (id) {
+				case '{and}':
+					result += ' and ';
+					break;
+				case '{xor}':
+					result +=  ' xor ';
+					break;
+				case ',':
+					result += ', ';
+					break;
+				default:
+					result += grandChild;
+					break;
+			}
 		}
-		result = result.substring(0, result.length-2);
 		return result;
 	}
 	const stringWriter = (elements, isConflict = false) => {
@@ -362,10 +386,9 @@ const setupRequirements = () => {
 			const grandParent = element.parentElement.parentElement;
 			if (!grandParent.classList.contains('choice')) continue;
 			let dataset = isConflict ? grandParent.dataset.conflicts : grandParent.dataset.requires;
-			let dataString;
 			if (dataset !== undefined) {
-				dataset = dataset.replace(/\b(?:, xor|, or|, and)\b/, '');
-				dataString = stringGenerator(dataset);
+				dataset = dataset.replace(/\s/g, "");
+				const dataString = stringGenerator(dataset);
 				element.innerHTML = isConflict ? `<span class="conflicts">Conflicts: </span><span>${dataString}</span>` : `<span class="requires">Requires: </span><span>${dataString}<br></span>`
 			}
 		}

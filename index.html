@@ -99,7 +99,7 @@
 			</div>
 	</div>
 	<!-- World Section -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world, high-profile, impactful, average, uneventful">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world, high-profile, impactful, average, uneventful" data-limit="2">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">World Selection</h1>
 			<span class="text-white fs-5">Now that we've assessed your Karma, it's time to present you with the realms available for your reincarnation. Each world offers its own unique challenges and opportunities, and the path you'll tread will be shaped by the choice you make. Remember, dear soul, that your journey will not only entertain me but also determine the course of your existence. So, choose wisely, and let your heart guide you to the world that calls your name.</span>
@@ -107,7 +107,7 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="arborea" data-points-karma="-5" data-points-karmamod="5 earth">
+						<div class="card choice" id="arborea" data-points-karma="-5" data-points-karma-mod="5 earth, 5 future, 21 dsf">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Arborea</h3>
 								<h5 class="text-center points"></h5>
@@ -206,11 +206,11 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="faeborea" data-points-karma="0" data-requires="arborea">
+						<div class="card choice" id="faeborea" data-points-karma="0" data-requires="arborea {and} earth">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Faeborea</h3>
 								<h5 class="text-center points"></h5>
-								<h6 class="text-center requires d-none"></h6>
+								<h6 class="text-center requires "></h6>
 								<h6 class="text-center conflicts"></h6>
 							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>This version of Arborea appear similar to the rich and diverse world of Faerun. Here, you'll find a land teeming with intrigue, where countless factions vie for power and influence. In this realm, your choices could have far-reaching consequences, and your actions may determine the fate of empires.</span></div>
@@ -856,7 +856,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia, or">
+					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Elf</h3>
 							<h5 class="text-center points"></h5>
@@ -867,7 +867,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia, or">
+					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Dwarf</h3>
 							<h5 class="text-center points"></h5>
@@ -878,7 +878,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea, fantasy-gaia, or">
+					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Orc</h3>
 							<h5 class="text-center points"></h5>
@@ -1658,7 +1658,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-breasts" data-points-karma="0" data-requires="feminine-body, hyper-feminine-body, or">
+					<div class="card choice" id="large-breasts" data-points-karma="0" data-requires="feminine-body, hyper-feminine-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1669,7 +1669,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="huge-breasts" data-points-karma="0" data-conflicts="male" data-requires="feminine-body, hyper-feminine-body, or">
+					<div class="card choice" id="huge-breasts" data-points-karma="0" data-conflicts="male" data-requires="feminine-body, hyper-feminine-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Huge</h3>
 							<h5 class="text-center points"></h5>
@@ -1691,7 +1691,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="innie-pussy" data-points-karma="0" data-requires="female, intersex, or">
+					<div class="card choice" id="innie-pussy" data-points-karma="0" data-requires="female, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Innie</h3>
 							<h5 class="text-center points"></h5>
@@ -1702,7 +1702,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="semi-innie-pussy" data-points-karma="0" data-requires="female, intersex, or">
+					<div class="card choice" id="semi-innie-pussy" data-points-karma="0" data-requires="female, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Semi-Innie</h3>
 							<h5 class="text-center points"></h5>
@@ -1713,7 +1713,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="puffy-pussy" data-points-karma="0" data-requires="female, intersex, or">
+					<div class="card choice" id="puffy-pussy" data-points-karma="0" data-requires="female, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Puffy</h3>
 							<h5 class="text-center points"></h5>
@@ -1724,7 +1724,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="outie-pussy" data-points-karma="0" data-requires="female, intersex, or">
+					<div class="card choice" id="outie-pussy" data-points-karma="0" data-requires="female, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Outie</h3>
 							<h5 class="text-center points"></h5>
@@ -1735,7 +1735,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="curtains-pussy" data-points-karma="0" data-requires="female, intersex, or">
+					<div class="card choice" id="curtains-pussy" data-points-karma="0" data-requires="female, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Curtains</h3>
 							<h5 class="text-center points"></h5>
@@ -1821,7 +1821,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="microscopic-penis" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="microscopic-penis" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Microscopic</h3>
 							<h5 class="text-center points"></h5>
@@ -1832,7 +1832,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="small-penis" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="small-penis" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Small</h3>
 							<h5 class="text-center points"></h5>
@@ -1843,7 +1843,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="average-penis" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="average-penis" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Average</h3>
 							<h5 class="text-center points"></h5>
@@ -1854,7 +1854,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-penis" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="large-penis" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1865,7 +1865,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="gigantic-penis" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="gigantic-penis" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Gigantic</h3>
 							<h5 class="text-center points"></h5>
@@ -1886,7 +1886,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="vestigial-balls" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="vestigial-balls" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Vestigial</h3>
 							<h5 class="text-center points"></h5>
@@ -1897,7 +1897,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="small-balls" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="small-balls" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Small</h3>
 							<h5 class="text-center points"></h5>
@@ -1908,7 +1908,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="average-balls" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="average-balls" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Average</h3>
 							<h5 class="text-center points"></h5>
@@ -1919,7 +1919,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-balls" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="large-balls" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1930,7 +1930,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="basket-balls" data-points-karma="0" data-requires="male, intersex, or">
+					<div class="card choice" id="basket-balls" data-points-karma="0" data-requires="male, intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Basket Balls</h3>
 							<h5 class="text-center points"></h5>
