@@ -13144,6 +13144,13 @@ html > body {
   text-shadow: #ff0090 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 2px;
 }
 
+.forced {
+  background: #14a765;
+}
+.forced > div > .category-title {
+  text-shadow: white 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 3px;
+}
+
 .disabled-choice {
   filter: grayscale(70%) blur(1px);
   background: #640e0e;

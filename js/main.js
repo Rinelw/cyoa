@@ -223,8 +223,7 @@ const hideHandler = () => {
 }
 
 const forceChoice = (element, on = true) => {
-	const forceON = element.dataset.forces ? element.dataset.forces.trim().split(/(?:\s+)/g) : undefined;
-	if (!forceON) return false;
+	const forceON = element.dataset.forces ? element.dataset.forces.trim().split(/(?:\s+)/g) : [];
 	for (let forced of forceON) {
 		const target = document.getElementById(forced);
 		if (!target) continue;
@@ -370,18 +369,29 @@ const setChoice = (element) => {
 		playSE('audio/click2.ogg', seVolume);
 	}
 	else {
-		let nephew
+		let nephew;
+		let forced = 0;
 		if (stop && activeSiblings.length >= limit) {
 			for (let sibling of siblings) {
 				nephew = sibling.firstElementChild
+				if (nephew.classList.contains("forced")){
+					forced++;
+					continue;
+				}
 				if (choiceDeactivator(nephew)) {
 					requireDeactivator(nephew);
 					break;
 				}
 			}
 		}
-		choiceActivator(element);
-		playSE('audio/click1.ogg', seVolume);
+		if (forced < limit) {
+			choiceActivator(element);
+			playSE('audio/click1.ogg', seVolume);
+		} else  {
+			playSE('audio/error.ogg', seVolume);
+			return;
+		}
+
 	}
 	choiceDisabler();
 	hideHandler();

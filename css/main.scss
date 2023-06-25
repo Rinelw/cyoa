@@ -123,6 +123,15 @@ html {
     }
 
 }
+.forced {
+    background: rgb(20, 167, 101);
+    > div {
+        > .category-title {
+            text-shadow: rgb(255, 255, 255) 0 0 15px, rgb(255, 255, 255) 0 0 5px, rgb(122, 122, 122) 0 1px 3px;
+        }
+    }
+
+}
 .disabled-choice {
     filter: grayscale(70%) blur(1px);
     &:hover {
