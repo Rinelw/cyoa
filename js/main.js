@@ -118,10 +118,10 @@ class Point {
 	}
 	modifyCosts(element, isPositive = true) {
 		const dataModifier = element.getAttribute(`data-points-${this.name.toLowerCase()}-mod`);
-		const costModifiers = !dataModifier ? undefined : dataModifier.split(',');
+		const costModifiers = !dataModifier ? undefined : dataModifier.trim().split(',');
 		if (costModifiers === undefined) return;
 		for (let modifier of costModifiers) {
-			const modId = modifier.trim().split(' ');
+			const modId = modifier.trim().split(/(?:\s+)/g);
 			if (modId.length > 1) {
 				const costMod = isPositive ? parseInt(modId.shift()) : -parseInt(modId.shift()) ;
 				for (let id of modId) {

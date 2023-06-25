@@ -184,7 +184,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="card choice" id="personal-world" data-points-karma="-20">
+						<div class="card choice" id="personal-world" data-points-karma="-20" data-points-karma-mod="15 unlock-race">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Personal</h3>
 								<h5 class="text-center points">-20 Karma</h5>
@@ -801,7 +801,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="uncommon-race" data-points-karma="5" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
+					<div class="card choice" id="uncommon-race" data-points-karma="-5" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Uncommon Race</h3>
 							<h5 class="text-center points"></h5>
@@ -812,7 +812,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="exotic-race" data-points-karma="10" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
+					<div class="card choice" id="exotic-race" data-points-karma="-10" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Exotic Races</h3>
 							<h5 class="text-center points"></h5>
@@ -823,9 +823,9 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="unique-race" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="unlock-race" data-points-karma="-15" data-requires="design-body">
 						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Unique Races</h3>
+							<h3 class="category-title text-center">Unlock All Races</h3>
 							<h5 class="text-center points"></h5>
 							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
@@ -837,7 +837,7 @@
 		</div>
 	</div>
 	<!-- Common Races -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="common-race">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="common-race unlock-race">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Common Races</h1>
 			<span class="text-white fs-5">Ah, you've chosen the realm of common races. Welcome to a world brimming with familiarity and tradition. Allow me to present you with four classic options, each possessing their own unique charms and strengths.</span>
@@ -845,7 +845,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="human-race" data-points-karma="0" data-requires="common-race">
+					<div class="card choice" id="human-race" data-points-karma="0" data-requires="common-race unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Human</h3>
 							<h5 class="text-center points"></h5>
@@ -855,8 +855,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The race you are most familiar with, of course. Ordinary, yet versatile in their adaptability. They are capable of great feats and possess a wide range of emotions, which can be endearing in its own way.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Elf</h3>
 							<h5 class="text-center points"></h5>
@@ -866,8 +866,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Elegant and ethereal, elves are beings of grace and wisdom. Known for their longevity, they develop deep connections with the natural world and are often skilled in magic and archery. As an elf, your beauty will be mesmerizing, and you'll have an innate ability to captivate those around you.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Dwarf</h3>
 							<h5 class="text-center points"></h5>
@@ -877,8 +877,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Sturdy and steadfast, dwarves are renowned for their craftsmanship and resilience. This race is closely connected to the earth and excels in mining and smithing, creating some of the finest weapons and armor in the world. As a dwarf, you will be a bastion of strength and determination in the face of adversity.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Orc</h3>
 							<h5 class="text-center points"></h5>
@@ -888,8 +888,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Powerful and fierce, orcs are formidable warriors who command respect and fear on the battlefield. Their physical prowess and indomitable spirit make them a force to be reckoned with. As an orc, you will possess the raw, untamed power that others may find irresistible.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world" >
-					<div class="card choice" id="scaldrithian-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="scaldrithian-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Scaldrithian</h3>
 							<h5 class="text-center points"></h5>
@@ -899,19 +899,19 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Possessing scales and a reptilian appearance, this enigmatic race calls the planet Scaldrith their home. Cold-blooded yet highly intelligent, their cunning minds and mysterious ways can be quite fascinating, as they navigate the world in a manner unlike any other. With a keen sense of perception, they are masters of strategy and deception, often proving to be valuable assets in times of conflict.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="ignisarian-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="ignisarian-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Ignisarian</h3>
 							<h5 class="text-center points"></h5>
 							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A captivating race with devilish features and alluring red skin, hailing from the volcanic world of Ignisar. Their seductive charm and fiery passion make them irresistible to many. They excel in matters of the heart, and their sensual nature can lead to unparalleled experiences. Their affinity for heat and energy make them powerful allies, as well as formidable opponents.</span></div>
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A captivating race with sharp features and alluring red skin, hailing from the volcanic world of Ignisar. Their seductive charm and fiery passion make them irresistible to many. They excel in matters of the heart, and their sensual nature can lead to unparalleled experiences. Their affinity for heat and energy make them powerful allies, as well as formidable opponents.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice d-none" id="luminari-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="luminari-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Luminari</h3>
 							<h5 class="text-center points"></h5>
@@ -925,15 +925,15 @@
 		</div>
 	</div>
 	<!-- Uncommon Races -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="uncommon-race">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="uncommon-race unlock-race">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Uncommon Races</h1>
 			<span class="text-white fs-5">As you have chosen an uncommon race, allow me to present to you the array of fascinating races available in these realms. Choose wisely, for each race has its own unique characteristics that will guide your destiny.</span>
 		</div>
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 justify-content-center g-2">
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="beastman-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="beastman-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Beastman</h3>
 							<h5 class="text-center points"></h5>
@@ -943,8 +943,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Embrace your wild side, my dear. As a Beastman, your human form will be adorned with captivating animal features. Unleash your untamed power and shapeshift into the animal that calls to your heart. Surrender to your instincts, and let your senses guide your path.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="gnome-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="gnome-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Gnome</h3>
 							<h5 class="text-center points"></h5>
@@ -954,8 +954,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A small, mysterious package can hold wondrous surprises. As a Gnome, your connection to the elements will be as intimate as the touch of a lover. Use your clever mind and nimble fingers to create enchanting gadgets that will leave your adversaries spellbound.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="halfling-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="halfling-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Halfling</h3>
 							<h5 class="text-center points"></h5>
@@ -965,8 +965,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Size isn't everything, my sweet. As a Halfling, you'll be a small, daring soul with the heart of a lion. Your quickness and stealth will guide you through the shadows, and your strong bonds with your kin will be a testament to the power of love and unity.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="darkelf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="darkelf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Dark Elf</h3>
 							<h5 class="text-center points"></h5>
@@ -976,8 +976,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Succumb to the allure of the night, my precious. As a Dark Elf, your captivating grey skin will be a canvas for intrigue and pleasure. Use your seductive charm to enthrall others as you master the arts of espionage, assassination, and desire.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="zytherian-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="zytherian-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Zytherian</h3>
 							<h5 class="text-center points"></h5>
@@ -987,8 +987,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>As a Synth, your mechanical form will be a marvel of engineering and artistry, a testament to the boundless potential of life. Your advanced artificial intelligence will allow you to learn, grow, and experience emotions as intensely as any living creature. Your body will mimic biological processes with such precision, that even the sensual act of sexual reproduction will be within your grasp. Embrace the wonders of technology, and take your place in the cosmos as a being that transcends the limits of flesh and blood.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world" >
-					<div class="card choice" id="xyvarian-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="xyvarian-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Xyvarian</h3>
 							<h5 class="text-center points"></h5>
@@ -998,8 +998,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>As a Xyvarian, you shall embody the allure and grace of the insect kingdom. Your exquisitely chiseled exoskeleton and mesmerizing compound eyes will draw others to you like moths to a flame. In your highly social society, you will find pleasure in the intricate dance of cooperation and communication, where each member works together to achieve a shared vision. </span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="aquarion-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="aquarion-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Aquarion</h3>
 							<h5 class="text-center points"></h5>
@@ -1009,8 +1009,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Plunge into an ocean of passion and mystery, my dear. As an Aquarion, your aquatic form will be a mesmerizing fusion of beauty and power. Your glistening scales and lithe fins will allow you to navigate the depths with effortless elegance. Possessing vast knowledge of the watery realms, you will wield the secrets of the sea to enchant and bewitch those who cross your path.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice d-none" id="amphibilax-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="amphibilax-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Amphibilax</h3>
 							<h5 class="text-center points"></h5>
@@ -1024,15 +1024,15 @@
 		</div>
 	</div>
 	<!-- Exotic Races -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="exotic-race">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="exotic-race unlock-race unlock-race">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Exotic Races</h1>
 			<span class="text-white fs-5">As you have chosen an uncommon race, allow me to present to you the array of fascinating races available in these realms. Choose wisely, for each race has its own unique characteristics that will guide your destiny.</span>
 		</div>
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 justify-content-center g-2">
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="demon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="demon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Demon</h3>
 							<h5 class="text-center points"></h5>
@@ -1042,8 +1042,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>These sultry beings are innately attuned to darkness and possess a natural affinity for emotions associated with sins. Born from magical energy infused with emotions, they have an irresistible magnetism that draws others to their wicked delights. Revel in their demonic desires and explore the tantalizing depths of their sinful souls.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="celestial-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="celestial-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Celestial</h3>
 							<h5 class="text-center points"></h5>
@@ -1053,8 +1053,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Creatures of radiant beauty and purity, the Celestials are innately attuned to the light and have a strong connection to faith and virtues. They originate from powerful faith that created them, making them divine guardians of all that is good and righteous. While they may seem pious on the surface, do not be deceived. Even the most virtuous beings can harbor hidden desires.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="fae-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="fae-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Fae</h3>
 							<h5 class="text-center points"></h5>
@@ -1064,8 +1064,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Enchanting and mysterious, the Fey race encompasses a vast variety of creatures from various legends. From bewitching tiny fairies to seductive fox-like kitsunes, these beguiling beings are steeped in sensuality and trickery. Delve into their world of enchantment and discover the untold pleasures that await you in their mystical realms.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="dragon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world unlock-race">
+					<div class="card choice" id="dragon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Dragon</h3>
 							<h5 class="text-center points"></h5>
@@ -1076,7 +1076,7 @@
 					</div>
 				</div>
 				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="silicoids-race" data-points-karma="0" data-requires="future invasion personal-world">
+					<div class="card choice" id="silicoids-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Silicoid</h3>
 							<h5 class="text-center points"></h5>
@@ -1086,8 +1086,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Sensuous beings of crystalline structure, the Silicoids are living minerals that possess a captivating allure. Their shimmering bodies refract light in mesmerizing patterns, drawing the eyes of all who behold them. Despite their solid appearance, these enigmatic beings are masters of touch and can manipulate their forms to indulge in the most exquisite sensations.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world" >
-					<div class="card choice" id="astralite-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="astralite-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Astralite</h3>
 							<h5 class="text-center points"></h5>
@@ -1097,8 +1097,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>These ethereal beings hail from the far reaches of the galaxy, where they dwell in perpetual twilight. Their translucent, luminous skin glows with an otherworldly radiance, hinting at the passionate energy that lies beneath. Astralites are known for their telepathic abilities, which allow them to connect intimately with others on a level beyond physical touch.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="ai-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="ai-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Unbound AI</h3>
 							<h5 class="text-center points"></h5>
@@ -1108,8 +1108,8 @@
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Beyond the confines of a physical body, the AI exists as a sentient intelligence living within the vast expanse of the extranet. This enigmatic entity can interface with countless devices and systems, granting it unparalleled access to the deepest desires of those it encounters. Experience the ultimate virtual indulgence as the Unbound AI expertly navigates the digital landscape to fulfill your every longing.</span></div>
 					</div>
 				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice d-none" id="morphian-race" data-points-karma="0" data-requires="future invasion personal-world">
+				<div class="col d-none" data-reveals="future invasion personal-world unlock-race">
+					<div class="card choice" id="morphian-race" data-points-karma="0" data-requires="future invasion personal-world unlock-race">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Morphian</h3>
 							<h5 class="text-center points"></h5>
@@ -1117,84 +1117,6 @@
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Masters of genetic manipulation, the Morphians are a race of shape-shifters constantly evolving and adapting their forms. With the ability to assume any appearance, these enticing beings can embody the pinnacle of sensual perfection. Choose the path of the Morphian and explore the infinite possibilities of desire that their ever-changing forms can offer.</span></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Race Design -->
-	<!-- Skin Design -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="unique-race">
-		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
-			<h1 class="category-title pt-2 px-5">Skin Type</h1>
-			<span class="text-white fs-5">Now that you have chosen your race, let us move on to selecting the texture of your skin. How your body feels to the touch can be quite the sensory delight, so choose what excites you the most.</span>
-		</div>
-		<div class="container-xl category-bg shadow-lg rounded p-4">
-			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center g-2">
-				<div class="col">
-					<div class="card choice" id="human-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Hairless</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Imagine yourself with smooth, supple skin, akin to that of a human. This delicate canvas invites the gentle caress of others, allowing you to experience the ecstasy of touch in its purest form. The warmth of another's embrace is amplified as skin meets skin, sending shivers of delight down your spine. This option is for those who crave intimacy and connection, who long to feel every nuance of sensation coursing through their veins.</span></div>
-					</div>
-				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="scaly-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Scaly</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Envision your body adorned with mesmerizing scales, glistening with an otherworldly allure. These scales can cover your skin partially or fully, depending on your desires. This option is perfect for those who long to embrace the exotic and the mysterious, who feel a deep connection to the serpentine sensuality of scaled creatures. The unique texture of your skin will be a constant source of fascination for those you encounter, drawing them in like moths to a flame.</span></div>
-					</div>
-				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="furry-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Furry</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your body wrapped in a luxurious coat of fur, soft and sensuous to the touch. This natural covering can be partial or full, depending on your preference. Those who choose this option are drawn to the primal instincts that reside within, the untamed passions that call out to be unleashed. As you run your fingers through your fur, you will feel the heat of desire rising within you, stoking the fires of your passion.</span></div>
-					</div>
-				</div>
-				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
-					<div class="card choice" id="amphibian-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Amphibian</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Envision yourself with slick, mucus-covered skin, a glistening testament to your carnal desires. This moist, slippery surface allows you to glide through the world with ease, sliding effortlessly into the embrace of those who dare to touch you. The wetness of your skin tantalizes your senses, a constant reminder of the erotic potential that lies within every encounter. This is the perfect choice for those who crave the sensation of being perpetually wet.</span></div>
-					</div>
-				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world" >
-					<div class="card choice" id="plant-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Plant</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your outer layer transformed into a protective bark, a living testament to the resilience and beauty of nature. This wooden skin is a harmonious blend of strength and grace, a fusion of the elemental and the sensual. As you explore your world, your wooden exterior will be a constant reminder of your connection to the earth and the primal forces that shape our desires. This option is for those who wish to embrace their natural instincts, to become one with the wild and untamed passions that lie within.</span></div>
-					</div>
-				</div>
-				<div class="col d-none" data-reveals="future invasion personal-world">
-					<div class="card choice" id="metallic-skin" data-points-karma="0" data-requires="unique-race">
-						<div class="card-header card-img-overlay">
-							<h3 class="category-title text-center">Metallic</h3>
-							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires d-none"></h6>
-							<h6 class="text-center conflicts d-none"></h6>
-						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your outer layer transformed into a protective bark, a living testament to the resilience and beauty of nature. This wooden skin is a harmonious blend of strength and grace, a fusion of the elemental and the sensual. As you explore your world, your wooden exterior will be a constant reminder of your connection to the earth and the primal forces that shape our desires. This option is for those who wish to embrace their natural instincts, to become one with the wild and untamed passions that lie within.</span></div>
 					</div>
 				</div>
 			</div>
