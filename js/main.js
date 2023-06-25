@@ -371,7 +371,7 @@ const setChoice = (element) => {
 	else {
 		let nephew;
 		let forced = 0;
-		if (stop && activeSiblings.length >= limit) {
+		if (stop && (activeSiblings.length >= limit || limit !== 0)) {
 			for (let sibling of siblings) {
 				nephew = sibling.firstElementChild
 				if (nephew.classList.contains("forced")){
@@ -384,7 +384,7 @@ const setChoice = (element) => {
 				}
 			}
 		}
-		if (forced < limit) {
+		if (forced < limit && limit !== 0) {
 			choiceActivator(element);
 			playSE('audio/click1.ogg', seVolume);
 		} else  {
