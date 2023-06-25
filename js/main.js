@@ -384,7 +384,7 @@ const setChoice = (element) => {
 				}
 			}
 		}
-		if (forced < limit && limit !== 0) {
+		if (forced < limit || limit === 0) {
 			choiceActivator(element);
 			playSE('audio/click1.ogg', seVolume);
 		} else  {
