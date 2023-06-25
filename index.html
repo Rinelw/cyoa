@@ -15,7 +15,7 @@
 	<!-- Goddess -->
 	<img id="goddess" src="img/goddess2.png" class="rounded mb-0 pb-0" alt="White Goddess">
 	<!-- Backpack -->
-	<div class="text-center text-white rounded py-1 px-2 shadow d-none" id="backpack" data-reveals="changed-world, high-profile, impactful, average, uneventful">
+	<div class="text-center text-white rounded py-1 px-2 shadow d-none" id="backpack" data-reveals="changed-world high-profile impactful average uneventful">
 	</div>
 	<!-- Intro -->
 	<div class="category container-xl mt-2 p-2" id="welcome">
@@ -41,7 +41,7 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-5 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="uneventful" data-points-karma="-50">
+						<div class="card choice" id="uneventful" data-points-karma="-50" data-forces="earth">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Uneventful Life</h3>
 								<h5 class="text-center points"></h5>
@@ -99,7 +99,7 @@
 			</div>
 	</div>
 	<!-- World Section -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world, high-profile, impactful, average, uneventful" data-limit="2">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world high-profile impactful average uneventful" data-limit="2">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">World Selection</h1>
 			<span class="text-white fs-5">Now that we've assessed your Karma, it's time to present you with the realms available for your reincarnation. Each world offers its own unique challenges and opportunities, and the path you'll tread will be shaped by the choice you make. Remember, dear soul, that your journey will not only entertain me but also determine the course of your existence. So, choose wisely, and let your heart guide you to the world that calls your name.</span>
@@ -107,7 +107,7 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="arborea" data-points-karma="-5" data-points-karma-mod="5 earth, 5 future, 21 dsf">
+						<div class="card choice" id="arborea" data-points-karma="-5">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Arborea</h3>
 								<h5 class="text-center points"></h5>
@@ -184,7 +184,7 @@
 						</div>
 					</div>
 					<div class="col">
-						<div class="card choice" id="personal" data-points-karma="-20">
+						<div class="card choice" id="personal-world" data-points-karma="-20">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Personal</h3>
 								<h5 class="text-center points">-20 Karma</h5>
@@ -206,11 +206,11 @@
 			<div class="container-xl category-bg shadow-lg rounded p-4">
 				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center g-2">
 					<div class="col">
-						<div class="card choice" id="faeborea" data-points-karma="0" data-requires="arborea {and} earth">
+						<div class="card choice" id="faeborea" data-points-karma="0" data-requires="arborea">
 							<div class="card-header card-img-overlay">
 								<h3 class="category-title text-center">Faeborea</h3>
 								<h5 class="text-center points"></h5>
-								<h6 class="text-center requires "></h6>
+								<h6 class="text-center requires d-none"></h6>
 								<h6 class="text-center conflicts"></h6>
 							</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 							<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>This version of Arborea appear similar to the rich and diverse world of Faerun. Here, you'll find a land teeming with intrigue, where countless factions vie for power and influence. In this realm, your choices could have far-reaching consequences, and your actions may determine the fate of empires.</span></div>
@@ -738,7 +738,7 @@
 	</div>
 	<!-- Arrival Section -->
 	<!-- Body Section -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world, high-profile, impactful, average, uneventful">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="changed-world high-profile impactful average uneventful">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Body Selection</h1>
 			<span class="text-white fs-5">Now that you've chosen your world it is time to decide upon the vessel that will carry your soul. What kind of body you wish to inhabit.</span>
@@ -801,7 +801,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="uncommon-race" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="uncommon-race" data-points-karma="5" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Uncommon Race</h3>
 							<h5 class="text-center points"></h5>
@@ -812,7 +812,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="exotic-race" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="exotic-race" data-points-karma="10" data-requires="design-body {and} arborea fantasy-gaia personal-world future invasion">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Exotic Races</h3>
 							<h5 class="text-center points"></h5>
@@ -823,14 +823,14 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="unique-races" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="unique-race" data-points-karma="0" data-requires="design-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Unique Races</h3>
 							<h5 class="text-center points"></h5>
 							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Lastly, we have the unique races. These extraordinary beings do not exist in the world you've chosen, but I can make an exception just for you. Selecting a unique race will make you a truly one-of-a-kind entity.</span></div>
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Oh, my curious child, I can see that the mundane races of this world do not satisfy your adventurous spirit. Fear not, for I shall grant you the power to choose any race you desire, even those beyond the boundaries of this realm. Embrace the limitless possibilities and indulge in the pleasure of selecting a race that truly resonates with your deepest desires. Let your imagination run wild, and I shall bestow upon you the form that sets your heart ablaze with passion.</span></div>
 					</div>
 				</div>
 			</div>
@@ -852,40 +852,349 @@
 							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
-						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>As versatile and adaptable as ever, humans are the most widespread race in your chosen world. Their resilience and ambition have shaped history, and their innate curiosity has led them to explore every corner of the land. As a human, you will experience a full range of emotions and desires, making your life a rich tapestry of experiences.</span></div>
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>The race you are most familiar with, of course. Ordinary, yet versatile in their adaptability. They are capable of great feats and possess a wide range of emotions, which can be endearing in its own way.</span></div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="elf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Elf</h3>
 							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires"></h6>
+							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Elegant and ethereal, elves are beings of grace and wisdom. Known for their longevity, they develop deep connections with the natural world and are often skilled in magic and archery. As an elf, your beauty will be mesmerizing, and you'll have an innate ability to captivate those around you.</span></div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="dwarf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Dwarf</h3>
 							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires"></h6>
+							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Sturdy and steadfast, dwarves are renowned for their craftsmanship and resilience. This race is closely connected to the earth and excels in mining and smithing, creating some of the finest weapons and armor in the world. As a dwarf, you will be a bastion of strength and determination in the face of adversity.</span></div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea, fantasy-gaia">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="orc-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Orc</h3>
 							<h5 class="text-center points"></h5>
-							<h6 class="text-center requires"></h6>
+							<h6 class="text-center requires d-none"></h6>
 							<h6 class="text-center conflicts d-none"></h6>
 						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
 						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Powerful and fierce, orcs are formidable warriors who command respect and fear on the battlefield. Their physical prowess and indomitable spirit make them a force to be reckoned with. As an orc, you will possess the raw, untamed power that others may find irresistible.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world" >
+					<div class="card choice" id="scaldrithian-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Scaldrithian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Possessing scales and a reptilian appearance, this enigmatic race calls the planet Scaldrith their home. Cold-blooded yet highly intelligent, their cunning minds and mysterious ways can be quite fascinating, as they navigate the world in a manner unlike any other. With a keen sense of perception, they are masters of strategy and deception, often proving to be valuable assets in times of conflict.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="ignisarian-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Ignisarian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A captivating race with devilish features and alluring red skin, hailing from the volcanic world of Ignisar. Their seductive charm and fiery passion make them irresistible to many. They excel in matters of the heart, and their sensual nature can lead to unparalleled experiences. Their affinity for heat and energy make them powerful allies, as well as formidable opponents.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice d-none" id="luminari-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Luminari</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A truly enchanting race, composed solely of females from the radiant world of Luminara. Their ethereal beauty and graceful demeanor leave many in awe. As a result, they possess a unique perspective on life, love, and everything in between. Gifted with innate abilities to manipulate light and energy, they are revered for their wisdom and spiritual connection to the universe.</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Uncommon Races -->
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="uncommon-race">
+		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			<h1 class="category-title pt-2 px-5">Uncommon Races</h1>
+			<span class="text-white fs-5">As you have chosen an uncommon race, allow me to present to you the array of fascinating races available in these realms. Choose wisely, for each race has its own unique characteristics that will guide your destiny.</span>
+		</div>
+		<div class="container-xl category-bg shadow-lg rounded p-4">
+			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 justify-content-center g-2">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="beastman-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Beastman</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Embrace your wild side, my dear. As a Beastman, your human form will be adorned with captivating animal features. Unleash your untamed power and shapeshift into the animal that calls to your heart. Surrender to your instincts, and let your senses guide your path.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="gnome-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Gnome</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>A small, mysterious package can hold wondrous surprises. As a Gnome, your connection to the elements will be as intimate as the touch of a lover. Use your clever mind and nimble fingers to create enchanting gadgets that will leave your adversaries spellbound.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="halfling-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Halfling</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Size isn't everything, my sweet. As a Halfling, you'll be a small, daring soul with the heart of a lion. Your quickness and stealth will guide you through the shadows, and your strong bonds with your kin will be a testament to the power of love and unity.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="darkelf-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Dark Elf</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Succumb to the allure of the night, my precious. As a Dark Elf, your captivating grey skin will be a canvas for intrigue and pleasure. Use your seductive charm to enthrall others as you master the arts of espionage, assassination, and desire.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="zytherian-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Zytherian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>As a Synth, your mechanical form will be a marvel of engineering and artistry, a testament to the boundless potential of life. Your advanced artificial intelligence will allow you to learn, grow, and experience emotions as intensely as any living creature. Your body will mimic biological processes with such precision, that even the sensual act of sexual reproduction will be within your grasp. Embrace the wonders of technology, and take your place in the cosmos as a being that transcends the limits of flesh and blood.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world" >
+					<div class="card choice" id="xyvarian-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Xyvarian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>As a Xyvarian, you shall embody the allure and grace of the insect kingdom. Your exquisitely chiseled exoskeleton and mesmerizing compound eyes will draw others to you like moths to a flame. In your highly social society, you will find pleasure in the intricate dance of cooperation and communication, where each member works together to achieve a shared vision. </span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="aquarion-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Aquarion</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Plunge into an ocean of passion and mystery, my dear. As an Aquarion, your aquatic form will be a mesmerizing fusion of beauty and power. Your glistening scales and lithe fins will allow you to navigate the depths with effortless elegance. Possessing vast knowledge of the watery realms, you will wield the secrets of the sea to enchant and bewitch those who cross your path.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice d-none" id="amphibilax-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Amphibilax</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Unveil the treasures of duality, my precious. As an Amphibilax, your amphibious nature will grant you the ability to flourish in both aquatic and terrestrial domains. Your moist, vibrant skin, hypnotic eyes, and robust limbs will be a testament to your adaptability and strength. With exceptional agility, you shall leap from land to water, bridging the divide between worlds.</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Exotic Races -->
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="exotic-race">
+		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			<h1 class="category-title pt-2 px-5">Exotic Races</h1>
+			<span class="text-white fs-5">As you have chosen an uncommon race, allow me to present to you the array of fascinating races available in these realms. Choose wisely, for each race has its own unique characteristics that will guide your destiny.</span>
+		</div>
+		<div class="container-xl category-bg shadow-lg rounded p-4">
+			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 justify-content-center g-2">
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="demon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Demon</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>These sultry beings are innately attuned to darkness and possess a natural affinity for emotions associated with sins. Born from magical energy infused with emotions, they have an irresistible magnetism that draws others to their wicked delights. Revel in their demonic desires and explore the tantalizing depths of their sinful souls.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="celestial-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Celestial</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Creatures of radiant beauty and purity, the Celestials are innately attuned to the light and have a strong connection to faith and virtues. They originate from powerful faith that created them, making them divine guardians of all that is good and righteous. While they may seem pious on the surface, do not be deceived. Even the most virtuous beings can harbor hidden desires.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="fae-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Fae</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Enchanting and mysterious, the Fey race encompasses a vast variety of creatures from various legends. From bewitching tiny fairies to seductive fox-like kitsunes, these beguiling beings are steeped in sensuality and trickery. Delve into their world of enchantment and discover the untold pleasures that await you in their mystical realms.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="dragon-race" data-points-karma="0" data-requires="arborea fantasy-gaia personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Dragon</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Majestic and awe-inspiring, Dragons are beings of immense power and wisdom. With their vast hoards of treasure and ancient knowledge, they command respect and admiration. However, few are aware of their ability to shapeshift into humanoid forms, a secret that adds an alluring air of mystery to an already enigmatic race. Choose the path of the Dragon and experience the boundless passion and desires that smolder within their indomitable hearts.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="silicoids-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Silicoid</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Sensuous beings of crystalline structure, the Silicoids are living minerals that possess a captivating allure. Their shimmering bodies refract light in mesmerizing patterns, drawing the eyes of all who behold them. Despite their solid appearance, these enigmatic beings are masters of touch and can manipulate their forms to indulge in the most exquisite sensations.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world" >
+					<div class="card choice" id="astralite-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Astralite</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>These ethereal beings hail from the far reaches of the galaxy, where they dwell in perpetual twilight. Their translucent, luminous skin glows with an otherworldly radiance, hinting at the passionate energy that lies beneath. Astralites are known for their telepathic abilities, which allow them to connect intimately with others on a level beyond physical touch.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="ai-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Unbound AI</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Beyond the confines of a physical body, the AI exists as a sentient intelligence living within the vast expanse of the extranet. This enigmatic entity can interface with countless devices and systems, granting it unparalleled access to the deepest desires of those it encounters. Experience the ultimate virtual indulgence as the Unbound AI expertly navigates the digital landscape to fulfill your every longing.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice d-none" id="morphian-race" data-points-karma="0" data-requires="future invasion personal-world">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Morphian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Masters of genetic manipulation, the Morphians are a race of shape-shifters constantly evolving and adapting their forms. With the ability to assume any appearance, these enticing beings can embody the pinnacle of sensual perfection. Choose the path of the Morphian and explore the infinite possibilities of desire that their ever-changing forms can offer.</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Race Design -->
+	<!-- Skin Design -->
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="unique-race">
+		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
+			<h1 class="category-title pt-2 px-5">Skin Type</h1>
+			<span class="text-white fs-5">Now that you have chosen your race, let us move on to selecting the texture of your skin. How your body feels to the touch can be quite the sensory delight, so choose what excites you the most.</span>
+		</div>
+		<div class="container-xl category-bg shadow-lg rounded p-4">
+			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center g-2">
+				<div class="col">
+					<div class="card choice" id="human-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Hairless</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Imagine yourself with smooth, supple skin, akin to that of a human. This delicate canvas invites the gentle caress of others, allowing you to experience the ecstasy of touch in its purest form. The warmth of another's embrace is amplified as skin meets skin, sending shivers of delight down your spine. This option is for those who crave intimacy and connection, who long to feel every nuance of sensation coursing through their veins.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="scaly-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Scaly</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Envision your body adorned with mesmerizing scales, glistening with an otherworldly allure. These scales can cover your skin partially or fully, depending on your desires. This option is perfect for those who long to embrace the exotic and the mysterious, who feel a deep connection to the serpentine sensuality of scaled creatures. The unique texture of your skin will be a constant source of fascination for those you encounter, drawing them in like moths to a flame.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="furry-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Furry</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your body wrapped in a luxurious coat of fur, soft and sensuous to the touch. This natural covering can be partial or full, depending on your preference. Those who choose this option are drawn to the primal instincts that reside within, the untamed passions that call out to be unleashed. As you run your fingers through your fur, you will feel the heat of desire rising within you, stoking the fires of your passion.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="arborea fantasy-gaia personal-world">
+					<div class="card choice" id="amphibian-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Amphibian</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Envision yourself with slick, mucus-covered skin, a glistening testament to your carnal desires. This moist, slippery surface allows you to glide through the world with ease, sliding effortlessly into the embrace of those who dare to touch you. The wetness of your skin tantalizes your senses, a constant reminder of the erotic potential that lies within every encounter. This is the perfect choice for those who crave the sensation of being perpetually wet.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world" >
+					<div class="card choice" id="plant-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Plant</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your outer layer transformed into a protective bark, a living testament to the resilience and beauty of nature. This wooden skin is a harmonious blend of strength and grace, a fusion of the elemental and the sensual. As you explore your world, your wooden exterior will be a constant reminder of your connection to the earth and the primal forces that shape our desires. This option is for those who wish to embrace their natural instincts, to become one with the wild and untamed passions that lie within.</span></div>
+					</div>
+				</div>
+				<div class="col d-none" data-reveals="future invasion personal-world">
+					<div class="card choice" id="metallic-skin" data-points-karma="0" data-requires="unique-race">
+						<div class="card-header card-img-overlay">
+							<h3 class="category-title text-center">Metallic</h3>
+							<h5 class="text-center points"></h5>
+							<h6 class="text-center requires d-none"></h6>
+							<h6 class="text-center conflicts d-none"></h6>
+						</div><img src="https://placehold.co/300x400" class="card-img" alt="...">
+						<div class="card-body text-white p-2 text-center fs-6 bg-gradient"><span>Picture your outer layer transformed into a protective bark, a living testament to the resilience and beauty of nature. This wooden skin is a harmonious blend of strength and grace, a fusion of the elemental and the sensual. As you explore your world, your wooden exterior will be a constant reminder of your connection to the earth and the primal forces that shape our desires. This option is for those who wish to embrace their natural instincts, to become one with the wild and untamed passions that lie within.</span></div>
 					</div>
 				</div>
 			</div>
@@ -900,7 +1209,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="male" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="male" data-points-karma="0" data-conflicts="luminari-race" data-requires="design-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Male</h3>
 							<h5 class="text-center points"></h5>
@@ -922,7 +1231,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="intersex" data-points-karma="0" data-requires="design-body">
+					<div class="card choice" id="intersex" data-points-karma="0" data-conflicts="luminari-race" data-requires="design-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Intersex</h3>
 							<h5 class="text-center points"></h5>
@@ -1002,7 +1311,7 @@
 		</div>
 	</div>
 	<!-- Body Type -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Body Type</h1>
 			<span class="text-white fs-5">Now, let us consider your body type. These choices focus on your overall body structure and bone shape. Keep in mind that subsequent selections will allow you to further refine your body.</span>
@@ -1068,7 +1377,7 @@
 		</div>
 	</div>
 	<!-- Face  -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Face</h1>
 			<span class="text-white fs-5">it's now time to determine the structure of your face. These choices are centered around the overall face structure and bone shape, rather than beauty or handsomeness, as those aspects can be further refined in later steps.</span>
@@ -1133,7 +1442,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="hyper-feminine-face, feminine-face, androgynous-face, masculine-face, hyper-masculine-face">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="hyper-feminine-face feminine-face androgynous-face masculine-face hyper-masculine-face">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Hair Length</h1>
 			<span class="text-white fs-5">"Ah, my dear mortal! Now comes the time to choose the magnificent crown of your being, your hair. I present to you eight wondrous options to determine the maximum length and starting size of your tresses. Remember, your choice here only affects the potential length and initial size, so embrace your inner desires and let your imagination run wild.</span>
@@ -1232,7 +1541,7 @@
 		</div>
 	</div>
 	<!-- Attractiveness -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Attractiveness</h1>
 			<span class="text-white fs-5">Alright, let's not hold back this time. Here are five options for you, ranging from downright hideous to radiantly divine. These choices will affect your beauty and sex appeal, regardless of gender.</span>
@@ -1297,7 +1606,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Physique</h1>
 			<span class="text-white fs-5">Now, let's talk about your fat-to-muscle ratio. Remember, your selection will determine your starting point, and it's up to you where you go from there.</span>
@@ -1419,7 +1728,7 @@
 	</div>
 
 	<!-- Butt -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Butt</h1>
 			<span class="text-white fs-5">Oh, I've been waiting for this part! Let's discuss your options for your derriere, shall we? Here are five choices, ranging from flat to enormous. Remember, I do have a personal penchant for the more alluring options.</span>
@@ -1485,7 +1794,7 @@
 		</div>
 	</div>
 	<!-- Thighs -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Thighs</h1>
 			<span class="text-white fs-5">Ah, now it's time to consider the size of your thighs. This choice will affect the overall shape and appeal of your lower half, so choose wisely.</span>
@@ -1551,7 +1860,7 @@
 		</div>
 	</div>
 	<!-- Hips -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Hips</h1>
 			<span class="text-white fs-5">Now that you've made your decision about your thighs, let's consider the shape of your hips. Remember, my dear, that the size and curve of your hips can add a certain allure to your overall appearance.</span>
@@ -1617,7 +1926,7 @@
 		</div>
 	</div>
 	<!-- Breasts -->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Breasts</h1>
 			<span class="text-white fs-5">We've now arrived at a particularly enticing feature, your breasts. Allow me to present you with a range of options to suit your tastes and desires.</span>
@@ -1658,7 +1967,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-breasts" data-points-karma="0" data-requires="feminine-body, hyper-feminine-body">
+					<div class="card choice" id="large-breasts" data-points-karma="0" data-requires="feminine-body hyper-feminine-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1669,7 +1978,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="huge-breasts" data-points-karma="0" data-conflicts="male" data-requires="feminine-body, hyper-feminine-body">
+					<div class="card choice" id="huge-breasts" data-points-karma="0" data-conflicts="male" data-requires="feminine-body hyper-feminine-body">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Huge</h3>
 							<h5 class="text-center points"></h5>
@@ -1683,7 +1992,7 @@
 		</div>
 	</div>
 	<!-- Sexual Design Here-->
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Pussy</h1>
 			<span class="text-white fs-5">We've arrived at a particularly delightful feature, your pussy. I have a variety of options for you to consider, each with its own unique appeal and charm.</span>
@@ -1691,7 +2000,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="innie-pussy" data-points-karma="0" data-requires="female, intersex">
+					<div class="card choice" id="innie-pussy" data-points-karma="0" data-requires="female intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Innie</h3>
 							<h5 class="text-center points"></h5>
@@ -1702,7 +2011,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="semi-innie-pussy" data-points-karma="0" data-requires="female, intersex">
+					<div class="card choice" id="semi-innie-pussy" data-points-karma="0" data-requires="female intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Semi-Innie</h3>
 							<h5 class="text-center points"></h5>
@@ -1713,7 +2022,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="puffy-pussy" data-points-karma="0" data-requires="female, intersex">
+					<div class="card choice" id="puffy-pussy" data-points-karma="0" data-requires="female intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Puffy</h3>
 							<h5 class="text-center points"></h5>
@@ -1724,7 +2033,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="outie-pussy" data-points-karma="0" data-requires="female, intersex">
+					<div class="card choice" id="outie-pussy" data-points-karma="0" data-requires="female intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Outie</h3>
 							<h5 class="text-center points"></h5>
@@ -1735,7 +2044,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="curtains-pussy" data-points-karma="0" data-requires="female, intersex">
+					<div class="card choice" id="curtains-pussy" data-points-karma="0" data-requires="female intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Curtains</h3>
 							<h5 class="text-center points"></h5>
@@ -1748,7 +2057,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, female, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male female intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Anus</h1>
 			<span class="text-white fs-5">Ah, we've now arrived at a particularly delightful and intimate feature, one that I must confess holds a special place in my heart. Let us turn our attention to the captivating allure of your anus. As a goddess, it's my duty to ensure that every detail of your form is perfect, and this area is no exception.</span>
@@ -1813,7 +2122,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">PP Points</h1>
 			<span class="text-white fs-5">Ah, now it's time to determine the size of your... ahem... personal endowment. This choice can influence your relationships, social interactions, and even your own self-esteem. Choose wisely, for the size of your 'junk' may bring pleasure or pain.</span>
@@ -1821,7 +2130,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="microscopic-penis" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="microscopic-penis" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Microscopic</h3>
 							<h5 class="text-center points"></h5>
@@ -1832,7 +2141,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="small-penis" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="small-penis" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Small</h3>
 							<h5 class="text-center points"></h5>
@@ -1843,7 +2152,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="average-penis" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="average-penis" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Average</h3>
 							<h5 class="text-center points"></h5>
@@ -1854,7 +2163,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-penis" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="large-penis" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1865,7 +2174,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="gigantic-penis" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="gigantic-penis" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Gigantic</h3>
 							<h5 class="text-center points"></h5>
@@ -1878,7 +2187,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male, intersex">
+	<div class="category container-xl text-center mt-2 px-0 py-2 rounded d-none after-points" data-reveals="male intersex">
 		<div class= "category-header category-bg rounded-top mb-0 py-1 px-4">
 			<h1 class="category-title pt-2 px-5">Ball Size</h1>
 			<span class="text-white fs-5">Now, we must determine the size of your 'balls.' This choice will not only affect your physical appearance but also your virility and fluid output. </span>
@@ -1886,7 +2195,7 @@
 		<div class="container-xl category-bg shadow-lg rounded p-4">
 			<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-5 justify-content-center g-2">
 				<div class="col">
-					<div class="card choice" id="vestigial-balls" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="vestigial-balls" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Vestigial</h3>
 							<h5 class="text-center points"></h5>
@@ -1897,7 +2206,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="small-balls" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="small-balls" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Small</h3>
 							<h5 class="text-center points"></h5>
@@ -1908,7 +2217,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="average-balls" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="average-balls" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Average</h3>
 							<h5 class="text-center points"></h5>
@@ -1919,7 +2228,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="large-balls" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="large-balls" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Large</h3>
 							<h5 class="text-center points"></h5>
@@ -1930,7 +2239,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<div class="card choice" id="basket-balls" data-points-karma="0" data-requires="male, intersex">
+					<div class="card choice" id="basket-balls" data-points-karma="0" data-requires="male intersex">
 						<div class="card-header card-img-overlay">
 							<h3 class="category-title text-center">Basket Balls</h3>
 							<h5 class="text-center points"></h5>
@@ -1951,7 +2260,7 @@
 	<div class="footer text-start fixed-bottom justify-content-start m-1 programming-old"></div>
 	<div class="footer text-start fixed-bottom justify-content-start m-1" id="programming-gibberish">Universe Sim v1.23643</div>
 	<div class="footer g-2 row row-cols-1 fixed-bottom justify-content-center m-auto" id="audioBar">
-		<!--<div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world, high-profile, impactful, average, uneventful"><span id="points">Karma: 0</span></div>-->
+		<!--<div class="col-2 text-center text-white fs-5 d-none" data-reveals="changed-world high-profile impactful average uneventful"><span id="points">Karma: 0</span></div>-->
 		<div class="col text-center text-white fs-5"><label for="customRange1" class="form-label">Music: </label><input type="range" class="form-range" id="customRange1" value="50" oninput="bgmVolume = parseInt(this.value); changeVolume(bgm, bgmVolume)"></div>
 		<div class="col text-center text-white fs-5"><label for="customRange2" class="form-label">Sound: </label><input type="range" class="form-range" id="customRange2" value="50" oninput="seVolume = parseInt(this.value)"></div>
 	</div>

@@ -187,16 +187,18 @@ class Bank {
 const backpack = new Bank('karma');
 const karma = backpack.vault[0];
 karma.setup();
-karma.changePrefix('Current')
+karma.changePrefix('Current');
+
 let points = 0;
+//All that handles choices
 //Hide n Reveal
 const hideHandler = () => {
 	const elements = document.querySelectorAll('[data-reveals], [data-hides]');
 	for (let element of elements) {
 		let active = false;
 		let hidden = false;
-		const revealID = element.dataset.reveals ? element.dataset.reveals.split(', ') : [];
-		const hideID = element.dataset.hides ? element.dataset.hides.split(', ') : [];
+		const revealID = element.dataset.reveals ? element.dataset.reveals.split(/(?:\s+)/g) : [];
+		const hideID = element.dataset.hides ? element.dataset.hides.split(/(?:\s+)/g) : [];
 		const combinedID = new Set([...revealID, ...hideID]);
 		for (let id of combinedID) {
 			const controller = document.getElementById(id);
@@ -219,12 +221,41 @@ const hideHandler = () => {
 		}
 	}
 }
+
+const forceChoice = (element, on = true) => {
+	const forceON = element.dataset.forces ? element.dataset.forces.trim().split(/(?:\s+)/g) : undefined;
+	if (!forceON) return false;
+	for (let forced of forceON) {
+		const target = document.getElementById(forced);
+		if (!target) continue;
+		if (on){
+			const count = parseInt(target.getAttribute("data-forced"));
+			const result = isNaN(count) ? '1' : (count+1).toString() ;
+			target.setAttribute("data-forced", result);
+			target.classList.add('forced');
+			choiceActivator(target);
+		}
+		else {
+			const count = parseInt(target.getAttribute("data-forced"));
+			const result = isNaN(count) ? '0' : (count-1).toString() ;
+			target.setAttribute("data-forced", result);
+			if(result === '0') target.classList.remove("forced");
+			if(!conReq(target)) {
+				choiceDeactivator(target);
+				requireDeactivator(target);
+			}
+		}
+	}
+	return true;
+}
+
 const choiceDeactivator = (element) => {
-	if (element.classList.contains("active-choice")){
+	if (element.classList.contains("active-choice") && !element.classList.contains("forced")){
 		karma.modifyCosts(element, false);
 		let value = parseInt(element.dataset.pointsKarma);
 		element.classList.remove("active-choice");
 		karma.subPoints(value);
+		forceChoice(element, false);
 		return true;
 	} else
 	return false;
@@ -235,6 +266,7 @@ const choiceActivator = (element) => {
 		let value = parseInt(element.dataset.pointsKarma);
 		element.classList.add("active-choice");
 		karma.addPoints(value);
+		forceChoice(element, true);
 		return true;
 	} else
 	return false;
@@ -245,8 +277,8 @@ const choiceActivator = (element) => {
 // false when no conflicts and true when conflicts found
 const conflictChecker = (element) => {
 	if (!element.dataset.conflicts) return false;
-	const dataset = element.dataset.conflicts.replaceAll(" ", "");
-	const conflicts = dataset.split(',');
+	const dataset = element.dataset.conflicts.trim();
+	const conflicts = dataset.split(/(?:\s+)/g);
 	for (let conflict of conflicts){
 		if (document.getElementById(conflict).classList.contains("active-choice")){
 			return true;
@@ -257,12 +289,12 @@ const conflictChecker = (element) => {
 // True when requirements are met and false when they aren't
 const requirementChecker = (element, data) => {
 	if (!element.dataset.requires) return true;
-	const dataset = !data ? element.dataset.requires.replace(/\s/g, "") : data;
-	const andGroups = dataset.split('{and}');
-	const xorGroups = dataset.split('{xor}');
-	const requires = dataset.split(',').map( (empty) => {if (empty !== '') return empty});
+	const dataset = !data ? element.dataset.requires.trim() : data;
+	const andGroups = dataset.search(REGEX.AND) !== -1 ? dataset.split(REGEX.AND) : undefined;
+	const xorGroups = dataset.search(REGEX.XOR) !== -1 ? dataset.split(REGEX.XOR) : undefined;
+	const requires = dataset.split(/(?:\s+)/g);
 
-	if (andGroups.length > 1) {
+	if (andGroups) {
 		let meetsRequirements = false;
 		for (let andGroup of andGroups){
 			meetsRequirements = requirementChecker(element, andGroup);
@@ -271,7 +303,7 @@ const requirementChecker = (element, data) => {
 		return meetsRequirements;
 	}
 
-	if (xorGroups.length > 1) {
+	if (xorGroups) {
 		let meetsRequirements = false;
 		let moreThanOnce = false;
 		for (let xorGroup of xorGroups) {
@@ -297,14 +329,13 @@ const conReq = (element) => {
 	return (!conflictChecker(element) && requirementChecker(element));
 }
 const requireDeactivator = (disabledElement) => {
-	if (!disabledElement) return false;
+	if (!disabledElement || disabledElement.classList.contains('forced')) return false;
 	const elements = document.querySelectorAll(`[data-requires*="${disabledElement.id}"], [data-conflicts*="${disabledElement.id}"]`);
 	if (elements.length === 0) return false;
 	for (let element of elements) {
 		if (conflictChecker(element) && requirementChecker(element)){
 		} else {
-			if (element.classList.contains('active-choice')){
-				choiceDeactivator(element);
+			if (element.classList.contains('active-choice') && choiceDeactivator(element)){
 				requireDeactivator(element);
 			}
 		}
@@ -314,15 +345,15 @@ const requireDeactivator = (disabledElement) => {
 const choiceDisabler = () => {
 	const elements = document.querySelectorAll('[data-requires], [data-conflicts]');
 	for (let element of elements){
-		if (!conReq(element))
+		if (!conReq(element) && !element.classList.contains('forced'))
 			element.classList.add('disabled-choice')
 		else
 			element.classList.remove('disabled-choice')
 	}
 }
-//choice handler
+
 const setChoice = (element) => {
-	if (!conReq(element)) {
+	if (!conReq(element) || element.classList.contains("forced")) {
 		playSE('audio/error.ogg', seVolume);
 		return;
 	}
@@ -355,24 +386,28 @@ const setChoice = (element) => {
 	choiceDisabler();
 	hideHandler();
 }
-
+const REGEX = {
+	AND: /\s{and}\s/g,
+	XOR: /\s{xor}\s/g,
+	OR:  /\s+/g
+}
 const setupRequirements = () => {
 	const conElements = document.getElementsByClassName('conflicts');
 	const reqElements = document.getElementsByClassName('requires');
 	const stringGenerator = (ids) => {
-		const idArray = ids.split(/(,|{and}|{xor})/gi).flat();
+		const idArray = ids.split(/(\s{and}\s|\s{xor}\s|\s+)/g).filter( x => x).flat();
 		let result = "";
 		for (let id of idArray) {
-			const grandChild = id.search(/(,|{and}|{xor})/gi) ? document.getElementById(id).firstElementChild.firstElementChild.textContent : id;
+			const grandChild = id.search(/(\s{and}\s|\s{xor}\s|\s+)/g) === -1 && document.getElementById(id) ? document.getElementById(id).firstElementChild.firstElementChild.textContent : id;
 			switch (id) {
-				case '{and}':
+				case ' {and} ':
 					result += ' and ';
 					break;
-				case '{xor}':
+				case ' {xor} ':
 					result +=  ' xor ';
 					break;
-				case ',':
-					result += ', ';
+				case ' ':
+					result += ' or ';
 					break;
 				default:
 					result += grandChild;
@@ -387,7 +422,7 @@ const setupRequirements = () => {
 			if (!grandParent.classList.contains('choice')) continue;
 			let dataset = isConflict ? grandParent.dataset.conflicts : grandParent.dataset.requires;
 			if (dataset !== undefined) {
-				dataset = dataset.replace(/\s/g, "");
+				dataset = dataset.trim();
 				const dataString = stringGenerator(dataset);
 				element.innerHTML = isConflict ? `<span class="conflicts">Conflicts: </span><span>${dataString}</span>` : `<span class="requires">Requires: </span><span>${dataString}<br></span>`
 			}
