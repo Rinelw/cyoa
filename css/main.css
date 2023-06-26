@@ -13144,6 +13144,10 @@ html > body {
   text-shadow: #ff0090 0 0 15px, white 0 0 5px, #7a7a7a 0 1px 2px;
 }
 
+.rows-header:hover {
+  cursor: pointer;
+}
+
 .forced {
   background: #14a765;
 }
@@ -13172,6 +13176,11 @@ html > body {
   max-width: 800px;
 }
 
+.collapsed > * {
+  transition: opacity 500ms;
+  opacity: 0 !important;
+}
+
 .category-title {
   color: white;
   text-shadow: #ff0090 0 0 15px, white 0 0 5px;
@@ -13191,6 +13200,10 @@ html > body {
 
 .glitch {
   font-family: "PixelSGA", ui-monospace;
+}
+
+.row-container {
+  overflow: hidden;
 }
 
 #canvas {
@@ -13242,6 +13255,38 @@ html > body {
   #programming-gibberish, .programming-old, #programming-title {
     transform: translateY(-1.1rem);
     overflow: hidden;
+  }
+}
+
+#shameless-self-promotion {
+  height: 0.9rem !important;
+  font-size: 0.8rem;
+  color: white;
+}
+#shameless-self-promotion > a {
+  text-decoration: none !important;
+}
+#shameless-self-promotion > a:visited {
+  color: #14a765;
+}
+#shameless-self-promotion > a:hover {
+  color: #b533fc;
+}
+#shameless-self-promotion > a:link {
+  color: white;
+}
+#shameless-self-promotion > a:active {
+  color: #3bbbd2;
+}
+
+#unisim {
+  height: 0.9rem !important;
+  font-size: 0.8rem;
+  color: white;
+}
+@media (min-resolution: 120dpi) and (orientation: portrait) {
+  #unisim {
+    display: none;
   }
 }
 

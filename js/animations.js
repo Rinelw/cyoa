@@ -70,8 +70,8 @@ class TextScramble {
 	}
 }
 
-//Scramble Class
-class Scramble {
+//Animations Class
+class Animations {
 	constructor(phrases, el) {
 		this.phrases = phrases;
 		this.el = el;
@@ -90,8 +90,8 @@ class Scramble {
 		this.setText();
 	}
 }
-//Scramble Class for Intro part
-class Intro extends Scramble {
+//Animations Class for Intro part
+class Intro extends Animations {
 	next() {
 		playSE('audio/click1.ogg', seVolume);
 		super.next();
@@ -153,7 +153,7 @@ document.getElementById("accept").onclick = () => intro.accept();
 // ——————————————————————————————————————————————————
 // 2nd scramble (it turns out I was wrong)
 // ——————————————————————————————————————————————————
-class World extends Scramble {
+class World extends Animations {
 	constructor(el, old, worldLines) {
 		super('World Simulation 1.342', el);
 		this.old = old;
@@ -236,3 +236,84 @@ const consoleOutputFromFile = async (url) => {
 	}
 }
 consoleOutputFromFile('data/console.txt').then();
+//collapsing categories
+const collapseCategory = (category) => {
+	const toCollapse = category.nextElementSibling;
+	if (toCollapse.classList.contains("animating")) {
+		playSE('audio/error.ogg', seVolume);
+		return;
+	}
+	toCollapse.classList.add("animating");
+	playSE('audio/click1.ogg', seVolume);
+	const toCollapseAttribute = toCollapse.getAttribute("data-height");
+	const toCollapseHeight = toCollapseAttribute ? toCollapseAttribute : toCollapse.offsetHeight.toString() + 'px';
+	const toFade = toCollapse.children;
+	toCollapse.setAttribute("data-height", toCollapseHeight);
+	if (!toCollapse.classList.contains("collapsed")) {
+		toCollapse.classList.add("collapsed");
+		anime({
+			targets: toCollapse,
+			keyframes: [
+				{height: 0},
+				{scaleX: 0.5}
+			],
+			height: 0,
+			easing: 'easeInOutExpo',
+			duration: 500
+		});
+		anime({
+			targets: toFade,
+			opacity: 0,
+			easing: 'easeInOutExpo',
+			duration: 500,
+			complete: () => {
+				toCollapse.classList.remove("animating");
+				for (let element of toFade){
+					element.classList.add("d-none");
+				}
+			}
+		})
+		anime({
+			targets: category,
+			boxShadow: "0rem -2.5rem 2.0rem -2.5rem rgba(0,0,0,0.25) inset",
+			borderRadius: ".375rem",
+			easing: 'easeInOutExpo',
+			duration: 500
+		})
+	}
+	else {
+		toCollapse.classList.remove("collapsed");
+		toCollapse.removeAttribute("data-height");
+		anime({
+			targets: toCollapse,
+			keyframes: [
+				{scaleX: 1},
+				{height: toCollapseHeight}
+			],
+			easing: 'easeInOutExpo',
+			duration: 500,
+			complete: () => {
+				toCollapse.classList.remove("collapsed", "animating");
+				toCollapse.removeAttribute("data-height");
+				toCollapse.removeAttribute("style");
+			}
+		});
+		for (let element of toFade){
+			element.classList.remove("d-none");
+		}
+		anime({
+			targets: toFade,
+			opacity: 1,
+			easing: 'easeInOutExpo',
+			duration: 500
+		})
+		anime({
+			targets: category,
+			boxShadow: "0rem -2.5rem 2.0rem -2.5rem rgba(0,0,0,0.75) inset",
+			borderRadius: ".375rem .375rem 0 0",
+			easing: 'easeInOutExpo',
+			duration: 500,
+			complete: () => category.removeAttribute("style")
+		})
+	}
+}

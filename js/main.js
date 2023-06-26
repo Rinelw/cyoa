@@ -62,10 +62,13 @@ document.addEventListener('click', function firstInteraction() {
 	document.removeEventListener('click', firstInteraction);
 });
 const choices = document.getElementsByClassName("choice");
+const headers = document.getElementsByClassName("rows-header");
 for (let choice of choices) {
 	choice.addEventListener("click", () => {setChoice(choice)}, false);
 }
-
+for (let header of headers) {
+	header.addEventListener("click", () => {collapseCategory(header)}, false);
+}
 //Points System
 class Point {
 	constructor(name = '', value = 0) {

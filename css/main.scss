@@ -121,7 +121,10 @@ html {
             }
         }
     }
+}
 
+.rows-header:hover {
+    cursor: pointer;
 }
 .forced {
     background: rgb(20, 167, 101);
@@ -151,6 +154,12 @@ html {
         max-width: 800px;
     }
 }
+.collapsed {
+    > * {
+        transition: opacity 500ms;
+        opacity:0!important;
+    }
+}
 .category-title {
     color: rgb(255, 255, 255);
     text-shadow: rgb(255, 0, 144) 0 0 15px, rgb(255, 255, 255) 0 0 5px;
@@ -169,6 +178,9 @@ html {
 }
 .glitch{
     font-family: 'PixelSGA', ui-monospace;
+}
+.row-container {
+    overflow: hidden;
 }
 #canvas {
     margin: 0;
@@ -216,6 +228,34 @@ html {
     @media (min-resolution: 120dpi) and (orientation: portrait){
         transform: translateY(-1.1rem);
         overflow: hidden;
+    }
+}
+#shameless-self-promotion {
+    height: 0.9rem!important;
+    font-size: 0.8rem;
+    color: white;
+    > a {
+        text-decoration: none!important;
+        &:visited {
+            color: rgb(20, 167, 101);
+        }
+        &:hover {
+            color: rgb(181, 51, 252);
+        }
+        &:link {
+            color: white;
+        }
+        &:active {
+            color: rgb(59, 187, 210);
+        }
+    }
+}
+#unisim {
+    height: 0.9rem!important;
+    font-size: 0.8rem;
+    color: white;
+    @media (min-resolution: 120dpi) and (orientation: portrait){
+        display: none;
     }
 }
 #programming-title {
