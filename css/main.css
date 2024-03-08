@@ -13069,34 +13069,38 @@ html > body {
 
 #audioBar {
   padding-top: 5px;
-  max-width: fit-content;
   max-height: 100px;
-  border-radius: 1rem 1rem 0 0;
+  max-width: fit-content;
+  transform: scaleX(0.2);
+  border-radius: 0;
   background: rgba(43, 14, 136, 0.75);
-  margin-bottom: -80px;
-  transition: margin-bottom 0.2s, opacity 0.2s;
+  transition: margin-bottom 0.2s, transform 0.2s 0.2s, border-radius 0.2s;
   overflow: hidden;
+  margin-bottom: -80px !important;
 }
-@media (min-resolution: 120dpi) {
-  #audioBar {
-    max-width: 80px !important;
-    margin-bottom: -80px !important;
-  }
-  #audioBar > div {
-    opacity: 0;
-  }
+#audioBar > div {
+  opacity: 0;
+  transition: opacity 0.2s 0.2s;
 }
 #audioBar:hover, #audioBar:active {
-  max-width: fit-content !important;
+  border-radius: 1rem 1rem 0 0;
+  transform: scaleX(1);
   margin-bottom: 0 !important;
+  transition: margin-bottom 0.2s 0.2s, transform 0.2s;
 }
 #audioBar:hover > div, #audioBar:active > div {
+  transform: scaleX(1);
   opacity: 1;
+  transition: opacity 0.2s 0.2s;
 }
 #audioBar .form-range {
   max-width: 200px;
   max-height: 100px;
   height: auto;
+}
+
+.footer {
+  max-width: fit-content;
 }
 
 .choice {
@@ -13250,12 +13254,19 @@ html > body {
   height: 0.9rem !important;
   font-size: 0.8rem;
   color: white;
+  z-index: -100;
+  max-width: fit-content;
 }
 @media (min-resolution: 120dpi) and (orientation: portrait) {
   #programming-gibberish, .programming-old, #programming-title {
     transform: translateY(-1.1rem);
     overflow: hidden;
   }
+}
+
+#programming-title {
+  color: #ffffff44;
+  margin-bottom: 3rem !important;
 }
 
 #shameless-self-promotion {
@@ -13288,11 +13299,6 @@ html > body {
   #unisim {
     display: none;
   }
-}
-
-#programming-title {
-  color: #ffffff44;
-  margin-bottom: 3rem !important;
 }
 
 #pixi > canvas {
